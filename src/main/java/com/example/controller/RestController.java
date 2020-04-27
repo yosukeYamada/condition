@@ -12,9 +12,9 @@ public class RestController {
 
 //	@CrossOrigin
 	@RequestMapping("/test")
-	@CrossOrigin(origins= {"https://condition-meter.web.app"})
-	public String test(@RequestBody TestMessageForm form) {
-		return "送られてきた値は"+form.getTestMessage()+"でした！";
+	@CrossOrigin
+	public String test() {
+		return "送られてきた値はでした！";
 
 	}
 
