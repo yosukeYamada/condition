@@ -19,4 +19,5 @@ public class User {
 	private Timestamp updateDate;
 	private Integer version;
 	private Integer status;
+	
 }
