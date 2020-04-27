@@ -18,4 +18,7 @@ public class User {
 	private Timestamp updateDate;
 	private Integer version;
 	private Integer status;
+//	private Dep dep;
+	//private List<DailyPost> dailyPost;
+	
 }
