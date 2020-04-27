@@ -22,10 +22,13 @@ public interface DailyPostMapper {
      */
     public List<DailyPost> findByYearAndMonth();
     
+
     /**
      * 年月日で検索して投稿を取得するメソッド.
      * @return 引数で受け取った年月日に合致する投稿一覧
      */
     public List<DailyPost> findByDate(Timestamp ts);
+
+
 
 }
