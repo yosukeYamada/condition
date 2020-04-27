@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,9 +13,9 @@ import com.example.form.RegisterUserForm;
 @RequestMapping("/user")
 public class UserController {
 	
-//	@PostMapping(params="registerUser")
-//	public User registerUser(@RequestBody RegisterUserForm form) {
-//		
-//	}
+	@PostMapping(params="registerUser")
+	public void registerUser(@RequestBody RegisterUserForm form) {
+		
+	}
 
 }

@@ -7,9 +7,9 @@ public class RegisterUserForm {
 
 	private String userName;
 	private String userNameKana;
-	private String mailAddress;
-	private String hireDate;
 	private String depId;
+	private String hireDate;
+	private String mailAddress;
 	private String password;
 	
 }
