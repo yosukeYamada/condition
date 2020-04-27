@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.DailyPostMapper">
-    <resultMap id="dailyPost" type="com.example.domain.DailyPost">
+    <resultMap id="onlyDailyPost" type="com.example.domain.DailyPost">
         <id column="daily_post_id" property="dailyPostId" />
         <result column="user_id" property="userId" />
         <result column="date" property="date" />
@@ -32,40 +32,15 @@
             <result column="pm_update_date" property="updateDate" />
             <result column="pm_version" property="version" />
             <result column="pm_status" property="status" />
+            <association property="motivation" javaType="com.example.domain.Motivation">
+                <id column="m_motivation_id" property="motivationId" />
+                <result column="m_motivation_name" property="motivationName"/>
+            </association>
         </association>
     </resultMap>
-    <select id="findByDate" parameterType="java.sql.Timestamp" resultMap="dailyPost">
+    <select id="findByDate" parameterType="java.sql.Timestamp" resultMap="onlyDailyPost">
         SELECT * FROM daily_posts WHERE date = #{ts} ORDER BY daily_post_id
     </select>
-    <!-- とりあえずdaily_postとposted_motivationだけを結合してSQL文は取得チェック完了 -->
-    <!-- <select id="findByDate" parameterType="java.sql.Timestamp" resultMap="dailyPost">
-        SELECT 
-        dp.daily_post_id, 
-        dp.user_id, 
-        dp.date, 
-        dp.register_user_id, 
-        dp.register_date, 
-        dp.update_user_id, 
-        dp.update_date, 
-        dp.version, 
-        dp.status,
-        pm.posted_motivation_id pm_posted_motivation_id, 
-        pm.daily_post_id pm_daily_post_id, 
-        pm.motivation_id pm_motivation_id, 
-        pm.register_user_id pm_register_user_id,
-        pm.register_date pm_register_date, 
-        pm.update_user_id pm_update_user_id, 
-        pm.update_date pm_update_date, 
-        pm.update_date pm_update_date, 
-        pm.version pm_version, 
-        pm.status pm_status 
-        FROM daily_posts AS dp LEFT OUTER JOIN posted_motivations AS pm 
-        ON dp.daily_post_id = pm.daily_post_id 
-        ORDER BY dp.daily_post_id;
-    </select> -->
-    <!-- <select id="findAll" resultMap="dailyPost">
-        SELECT * FROM daily_posts ORDER BY daily_post_id
-    </select> -->
     <select id="findAll" resultMap="dailyPostAndPostedMotivation">
         SELECT 
         dp.daily_post_id, 
@@ -86,9 +61,12 @@
         pm.update_date pm_update_date, 
         pm.update_date pm_update_date, 
         pm.version pm_version, 
-        pm.status pm_status 
-        FROM daily_posts AS dp LEFT OUTER JOIN posted_motivations AS pm 
-        ON dp.daily_post_id = pm.daily_post_id 
+        pm.status pm_status,
+        m.motivation_id m_motivation_id,
+        m.motivation_name m_motivation_name 
+        FROM daily_posts AS dp 
+        LEFT OUTER JOIN posted_motivations AS pm ON dp.daily_post_id = pm.daily_post_id 
+        LEFT OUTER JOIN motivations AS m ON pm.motivation_id = m.motivation_id
         ORDER BY dp.daily_post_id;
     </select>
 </mapper>
