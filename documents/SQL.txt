@@ -6,9 +6,9 @@ create table users (user_id serial primary key,user_name text not null, user_nam
 drop table if exists mails;
 create table mails(mail_id serial primary key, mail_name text not null,user_id Integer not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
 drop table if exists authority_memos;
-create table authority_memos(authority_id serial primary key,authority_name text not null);
+create table authority_memos(authority_id serial primary key,authority_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
 drop table if exists status_memos;
-create table status_memos(status_id serial primary key,status_name text not null);
+create table status_memos(status_id serial primary key,status_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
 drop table if exists deps;
 create table deps(dep_id serial primary key,dep_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp,version Integer not null,status Integer not null);
 drop table if exists daily_posts;
@@ -22,19 +22,19 @@ create table posted_performances(posted_performance_id serial primary key, daily
 drop table if exists posted_motivations;
 create table posted_motivations(posted_motivation_id serial primary key, daily_post_id Integer not null, motivation_id Integer not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp, version Integer not null,status Integer not null);
 drop table if exists conditions;
-create table conditions (condition_id serial primary key,condition_name text not null);
+create table conditions (condition_id serial primary key,condition_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
 drop table if exists performances;
-create table performances (performance_id serial primary key,performance_name text not null);
+create table performances (performance_id serial primary key,performance_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
 drop table if exists motivations;
-create table motivations (motivation_id serial primary key,motivation_name text not null);
+create table motivations (motivation_id serial primary key,motivation_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
 
 INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカルくん','らくすかるくん',1,'2019-10-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
-INSERT INTO authority_memos(authority_name)VALUES('管理者');
-INSERT INTO authority_memos(authority_name)VALUES('利用者');
-INSERT INTO status_memos(status_name)VALUES('保留中');
-INSERT INTO status_memos(status_name)VALUES('公開');
-INSERT INTO status_memos(status_name)VALUES('停止');
-INSERT INTO status_memos(status_id,status_name)VALUES(9,'削除');
+INSERT INTO authority_memos(authority_name,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('管理者',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO authority_memos(authority_name,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('利用者',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO status_memos(status_name,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('保留中',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO status_memos(status_name,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('公開',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO status_memos(status_name,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('停止',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO status_memos(status_id,status_name,register_user_id,register_date,update_user_id,update_date,version,status)VALUES(9,'削除',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO deps(dep_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('管理部',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO deps(dep_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('営業部',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO deps(dep_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('開発部',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
@@ -52,21 +52,21 @@ INSERT INTO posted_comments(daily_post_id,comment,register_user_id,register_date
 INSERT INTO posted_conditions(daily_post_id,condition_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES(1,1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO posted_performances(daily_post_id,performance_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES(1,1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO posted_motivations(daily_post_id,motivation_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES(1,1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
-INSERT INTO conditions(condition_name) VALUES ('快晴');
-INSERT INTO conditions(condition_name) VALUES ('晴');
-INSERT INTO conditions(condition_name) VALUES ('曇');
-INSERT INTO conditions(condition_name) VALUES ('雨');
-INSERT INTO conditions(condition_name) VALUES ('嵐');
-INSERT INTO performances(performance_name) VALUES ('快晴');
-INSERT INTO performances(performance_name) VALUES ('晴');
-INSERT INTO performances(performance_name) VALUES ('曇');
-INSERT INTO performances(performance_name) VALUES ('雨');
-INSERT INTO performances(performance_name) VALUES ('嵐');
-INSERT INTO motivations(motivation_name) VALUES ('快晴');
-INSERT INTO motivations(motivation_name) VALUES ('晴');
-INSERT INTO motivations(motivation_name) VALUES ('曇');
-INSERT INTO motivations(motivation_name) VALUES ('雨');
-INSERT INTO motivations(motivation_name) VALUES ('嵐');
+INSERT INTO conditions(condition_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('快晴',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO conditions(condition_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('晴',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO conditions(condition_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('曇',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO conditions(condition_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('雨',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO conditions(condition_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('嵐',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO performances(performance_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('快晴',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO performances(performance_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('晴',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO performances(performance_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('曇',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO performances(performance_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('雨',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO performances(performance_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('嵐',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('快晴',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('晴',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('曇',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('雨',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('嵐',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 
 
 
