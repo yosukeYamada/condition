@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.DailyPostMapper">
+    <resultMap id="dailyPost" type="com.example.domain.DailyPost">
+        <id column="daily_post_id" property="dailyPostId" />
+        <result column="user_id" property="userId"/>
+        <result column="date" property="date"/>
+        <result column="register_user_id" property="registerUserId"/>
+        <result column="register_date" property="registerDate"/>
+        <result column="update_user_id" property="updateUserId"/>
+        <result column="update_date" property="updateDate"/>
+        <result column="version" property="version"/>
+        <result column="status" property="status"/>
+    </resultMap>
+    <select id="findByDate" parameterType="java.sql.Timestamp" resultMap="dailyPost">
+        SELECT * FROM daily_posts WHERE date = #{ts} ORDER BY daily_post_id
+    </select>
+    <select id="findAll" resultMap="dailyPost">
+        SELECT * FROM daily_posts ORDER BY daily_post_id
+    </select>
+</mapper>

@@ -1,8 +1,8 @@
 package com.example.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
+import com.example.domain.DailyPost;
 import com.example.service.ShowAggregateService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 集計表示画面を表示するコントローラー.
- * 
+ * @author yuichiyasui
  */
 @RestController
 public class ShowAggregateController {
@@ -22,10 +22,8 @@ public class ShowAggregateController {
 
     @ResponseBody
     @RequestMapping("/showAggregate")
-    public Map<String, String> showAggregate() {
-        Map<String, String> responseMap = new HashMap<>();
-        responseMap.put("test","test");
-        return responseMap;
+    public List<DailyPost> showAggregate() {
+        return showAggregateService.showAggregate();
     }
 
 }
