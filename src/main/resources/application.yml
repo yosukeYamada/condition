@@ -6,6 +6,6 @@ spring:
   # DBの設定
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/condition
+    url: jdbc:postgresql://localhost:5432/conditions
     username: postgres
     password: postgres
