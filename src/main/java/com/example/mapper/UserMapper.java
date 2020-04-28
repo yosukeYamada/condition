@@ -32,9 +32,11 @@ public interface UserMapper {
 	 */
 	public List<User> findAll() ;
 	
-	 
-
-	
-	
+	/**
+	 * 新規ユーザ登録時、登録したuserのidを登録するメソッド.
+	 * 
+	 * @param userId
+	 */
+	public void updateRegisterUserId(Integer userId);
 	
 }
