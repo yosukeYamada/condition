@@ -11,18 +11,16 @@ import lombok.Data;
  */
 @Data
 public class RegisterDailyPostForm {
-	//  投稿者のuserId
+	/** 投稿者のuserId */
 	private int userId;
-//	private int dailyPostId; serial？
-//	private Date date; いらない？
-	//  登録時間
+	/** 登録時間 */  
 	private Date registerDate;
-	//  体調
+	/** 体調 */  
 	private String condition;
-	//  成果進捗
+	/** 成果進捗 */  
 	private String performance;
-	//  やる気
+	/** やる気 */  
 	private String motivation;
-	//  その他コメント
+	/** その他コメント */  
 	private String comment;
 }
