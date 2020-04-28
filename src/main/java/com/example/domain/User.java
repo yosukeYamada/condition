@@ -1,6 +1,7 @@
 package com.example.domain;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.Data;
 
@@ -19,7 +20,7 @@ public class User {
 	private Timestamp updateDate;
 	private Integer version;
 	private Integer status;
-//	private Dep dep;
-	//private List<DailyPost> dailyPost;
+	private Dep dep;
+	private List<DailyPost> dailyPost;
 	
 }

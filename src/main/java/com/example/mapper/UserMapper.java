@@ -27,7 +27,10 @@ public interface UserMapper {
 	 * 全件検索するマッパー.
 	 * 
 	 * @return ユーザリスト
+	 * ユーザー情報を全件取得
+	 * 
+	 * @return　ユーザー情報
 	 */
-	public List<User> findAll();
+	public List<User> findAll() ;
 	
 }
