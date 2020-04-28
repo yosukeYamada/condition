@@ -16,11 +16,11 @@ public class RegisterDailyPostForm {
 	/** 登録時間 */  
 	private Date registerDate;
 	/** 体調 */  
-	private String condition;
+	private String conditionName;
 	/** 成果進捗 */  
-	private String performance;
+	private String performanceName;
 	/** やる気 */  
-	private String motivation;
+	private String motivationName;
 	/** その他コメント */  
 	private String comment;
 }
