@@ -20,6 +20,11 @@
 		user_id,user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status
 		from users
 	</select>
-
+	<select id="insertUser" parameterMap="UserResultMap" resultType="Integer">
+		INSERT INTO USERS(user_name,user_name_kana,dep_id,hire_date,register_date,version,ststus) VALUES(#{userName},#{userNameKana},#{depId},#{hireDate},#{registerDate},#{version},#{status}) returning user_id
+	</select>
+	<update id = "updateRegisterUserId" parameterType = "Integer">
+		UPDATE users SET(register_user_id = #{registerUserId}) WHERE user_id = #{registerUserId}
+	</update>
 
 </mapper>

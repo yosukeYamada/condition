@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.domain.User;
+import com.example.form.RegisterUserForm;
 
 /**
  * ユーザ登録処理を行うserviceのインターフェース.
@@ -19,9 +20,9 @@ public interface RegisterUserService {
 	 * ユーザ登録をするメソッド.
 	 * 
 	 * @param user 登録するユーザー
-	 * @return ユーザーID
+	 * @return 登録したユーザ情報
 	 */
-	public Integer registerUser(User user);
+	public User registerUser(RegisterUserForm form);
 	
 	/**
 	 * 全件検索メソッド.
@@ -29,5 +30,7 @@ public interface RegisterUserService {
 	 * @return ユーザリスト
 	 */
 	public List<User> findAll();
+	
+
 
 }

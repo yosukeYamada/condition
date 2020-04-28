@@ -8,4 +8,11 @@ import com.example.domain.Mail;
 public interface MailMapper {
 
 	public Mail findByMail(String mail);
+
+	/**
+	 * メール情報を登録するMapper.
+	 * 
+	 * @param mail メール情報
+	 */
+	public void insertMailAddress(Mail mail);
 }
