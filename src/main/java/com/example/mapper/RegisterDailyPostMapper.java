@@ -4,5 +4,5 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface RegisterDailyPostMapper {
-	public void insertDailyPost(/*引数必要？*/);
+	public void insertDailyPost(/*リストで引数モテる？*/);
 }
