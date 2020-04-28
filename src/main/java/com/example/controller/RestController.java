@@ -11,10 +11,11 @@ import com.example.form.TestMessageForm;
 public class RestController {
 
 //	@CrossOrigin
-	@RequestMapping("/test")
+	@RequestMapping("/api/test")
 	@CrossOrigin
-	public String test() {
-		return "送られてきた値はでした！";
+	public String test(@RequestBody TestMessageForm form) {
+		System.out.println(form);
+		return "送られてきた値は"+form.getTestMessage()+"でした！";
 
 	}
 

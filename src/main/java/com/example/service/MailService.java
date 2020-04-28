@@ -1,10 +1,12 @@
 package com.example.service;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.Mail;
+import com.example.domain.User;
 import com.example.mapper.MailMapper;
 
 /**
@@ -33,5 +35,12 @@ public class MailService {
 		} else {
 			return mailName;
 		}
+	}
+	
+	public void registerMail(User user,String mailAddress) {
+		Mail mail = new Mail();
+		BeanUtils.copyProperties(user, mail);
+		mail.setMailName(mailAddress);
+		mailMapper.insertMailAddress(mail);
 	}
 }
