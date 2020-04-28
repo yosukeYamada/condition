@@ -27,14 +27,20 @@ public class ShowAggregateService {
     private DailyPostMapper dailyPostMapper;
 
     /**
-     * 投稿の集計を行うメソッド
+     * 投稿の集計を行うメソッド TODO フロントができたら引数を受け取る場合の実装を行う
      * 
      * @return 集計結果
      */
     public Map<String, DailyScore> showAggregate() {
-        LocalDateTime ldt = LocalDateTime.of(2020, 4, 27, 9, 0, 0); // 日付を生成
-        Timestamp ts = Timestamp.valueOf(ldt); // LocalDateTime→Timestamp
-        List<DailyPost> todaysPostList = dailyPostMapper.findByDate(ts);
+        // LocalDateTime startLtd = LocalDateTime.now().with(LocalTime.of(0, 0)); //
+        // 今日の0時0分を生成
+        // LocalDateTime endLtd = LocalDateTime.now().with(LocalTime.of(23, 59)); //
+        // 今日の23時59分を生成
+        LocalDateTime startLdt = LocalDateTime.of(2020, 4, 27, 0, 0, 0); // TODO 検索の開始日時を生成
+        LocalDateTime endLdt = LocalDateTime.of(2020, 4, 27, 23, 59, 59); // TODO 検索の終了日時を生成
+        Timestamp startTs = Timestamp.valueOf(startLdt); // LocalDateTime→Timestamp
+        Timestamp endTs = Timestamp.valueOf(endLdt); // LocalDateTime→Timestamp
+        List<DailyPost> todaysPostList = dailyPostMapper.findByDate(startTs, endTs);
         Map<String, DailyScore> resultMap = new HashMap<>();
         DailyScore motivationScore = new DailyScore();
         DailyScore conditionScore = new DailyScore();
