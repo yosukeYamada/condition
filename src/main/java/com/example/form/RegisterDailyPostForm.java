@@ -14,7 +14,7 @@ public class RegisterDailyPostForm {
 	/** 投稿者のuserId */
 	private int userId;
 	/** 登録時間 */  
-	private Date registerDate;
+	private Date date;
 	/** 体調 */  
 	private String conditionName;
 	/** 成果進捗 */  
