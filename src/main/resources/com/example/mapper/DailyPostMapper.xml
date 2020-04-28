@@ -12,7 +12,7 @@
         <result column="version" property="version" />
         <result column="status" property="status" />
     </resultMap>
-    <resultMap id="dailyPostAndPostedMotivation" type="com.example.domain.DailyPost">
+    <resultMap id="dailyPostWithAllChildren" type="com.example.domain.DailyPost">
         <id column="daily_post_id" property="dailyPostId" />
         <result column="user_id" property="userId" />
         <result column="date" property="date" />
@@ -79,10 +79,10 @@
             <result column="pcm_status" property="status" />
         </association>
     </resultMap>
-    <select id="findByDate" parameterType="java.sql.Timestamp" resultMap="onlyDailyPost">
+    <!-- <select id="findByDate" parameterType="java.sql.Timestamp" resultMap="onlyDailyPost">
         SELECT * FROM daily_posts WHERE date = #{ts} ORDER BY daily_post_id
-    </select>
-    <select id="findAll" resultMap="dailyPostAndPostedMotivation">
+    </select> -->
+    <select id="findByDate" parameterType="java.sql.Timestamp" resultMap="dailyPostWithAllChildren">
         SELECT 
         dp.daily_post_id, 
         dp.user_id, 
@@ -143,6 +143,7 @@
         LEFT OUTER JOIN posted_performances AS pp ON dp.daily_post_id = pp.daily_post_id 
         LEFT OUTER JOIN performances AS p ON pp.performance_id = p.performance_id 
         LEFT OUTER JOIN posted_comments AS pcm ON dp.daily_post_id = pcm.daily_post_id 
+        WHERE dp.date = #{ts} 
         ORDER BY dp.daily_post_id;
     </select>
 </mapper>

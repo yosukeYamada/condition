@@ -1,8 +1,8 @@
 package com.example.controller;
 
-import java.util.List;
+import java.util.Map;
 
-import com.example.domain.DailyPost;
+import com.example.domain.DailyScore;
 import com.example.service.ShowAggregateService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class ShowAggregateController {
 
     @ResponseBody
     @RequestMapping("/showAggregate")
-    public List<DailyPost> showAggregate() {
+    public Map<String, DailyScore> showAggregate() {
         return showAggregateService.showAggregate();
     }
 
