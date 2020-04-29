@@ -31,7 +31,12 @@ public class MailService {
 		if(mailName == null) {
 			return null;
 		} else {
-			return mailName;
+			Mail mailObj = new Mail();
+			mailObj.setMailId(mailName.getMailId());
+			
+			System.err.println("オブジェクト : " + mailObj);
+			
+			return mailObj;
 		}
 	}
 }

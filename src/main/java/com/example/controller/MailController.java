@@ -2,6 +2,7 @@ package com.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,7 @@ import com.example.service.MailService;
  *
  */
 @RestController
-@RequestMapping("")
+@RequestMapping("/mail")
 public class MailController {
 
 	@Autowired
@@ -29,12 +30,12 @@ public class MailController {
 	 * @param mail メール
 	 * @return サービスへ遷移
 	 */
-	@CrossOrigin
-	@RequestMapping("/findByMail")
+	@CrossOrigin(origins="http://localhost:8888")
+	@PostMapping("/findByMail")
 	public Mail findByMail(@RequestBody MailForm mailForm) {
 		
-		System.err.println("メール : " + mailForm.getMailName());
+		System.err.println("メール : " + mailForm.getMail());
 		
-		return mailService.findByMail(mailForm.getMailName());
+		return mailService.findByMail(mailForm.getMail());
 	}
 }
