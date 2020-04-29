@@ -16,4 +16,5 @@ public class Mail {
 	private Timestamp updateDate;
 	private Integer version;
 	private Integer status;
+	private User user;
 }

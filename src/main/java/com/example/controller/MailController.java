@@ -31,11 +31,11 @@ public class MailController {
 	 * @return サービスへ遷移
 	 */
 	@CrossOrigin(origins="http://localhost:8888")
-	@PostMapping("/findByMail")
-	public Mail findByMail(@RequestBody MailForm mailForm) {
+	@PostMapping("/findByMailAndAuthority")
+	public Mail findByMailAndAuthority(@RequestBody MailForm mailForm) {
 		
 		System.err.println("メール : " + mailForm.getMail());
 		
-		return mailService.findByMail(mailForm.getMail());
+		return mailService.findByMailAndAuthoriry(mailForm.getMail());
 	}
 }

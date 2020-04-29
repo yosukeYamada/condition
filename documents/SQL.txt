@@ -31,6 +31,7 @@ create table motivations (motivation_id serial primary key,motivation_name text 
 INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカルくん','らくすかるくん',1,'2019-10-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカルちゃん','らくすかるちゃん',1,'2019-10-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカル先輩','らくすかるせんぱい',1,'2019-07-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('いいだ先輩','いいだせんぱい',1,'2019-07-01 00:00:00',2,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO authority_memos(authority_name,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('管理者',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO authority_memos(authority_name,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('利用者',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO status_memos(status_name,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('保留中',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
@@ -53,6 +54,7 @@ INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_i
 INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('rakuskarukaruchan@rakus.co.jp',2,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('rakuskarukarusenpai@rakus.co.jp',3,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('tennis.yahoo@gmail.com',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('shuhei.iida.515@gmail.com',4,4,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO posted_comments(daily_post_id,comment,register_user_id,register_date,update_user_id,update_date,version,status) VALUES(1,'体調良好',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO posted_comments(daily_post_id,comment,register_user_id,register_date,update_user_id,update_date,version,status) VALUES(2,'目標が見えません・・・。',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO posted_comments(daily_post_id,comment,register_user_id,register_date,update_user_id,update_date,version,status) VALUES(3,'やる気満々！',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
