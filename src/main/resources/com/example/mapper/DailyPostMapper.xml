@@ -130,6 +130,6 @@
         LEFT OUTER JOIN performances AS p ON pp.performance_id = p.performance_id 
         LEFT OUTER JOIN posted_comments AS pcm ON dp.daily_post_id = pcm.daily_post_id 
         WHERE dp.date BETWEEN #{startTs} AND #{endTs} 
-        ORDER BY dp.daily_post_id;
+        ORDER BY dp.date;
     </select>
 </mapper>
