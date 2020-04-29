@@ -8,14 +8,6 @@ import com.example.domain.Mail;
 public interface MailMapper {
 
 	/**
-	 * メールアドレスが登録されているかを取得する.
-	 * 
-	 * @param mail メール
-	 * @return メール情報
-	 */
-	public Mail findByMail(String mail);
-
-	/**
 	 * メール情報を登録するMapper.
 	 * 
 	 * @param mail メール情報
