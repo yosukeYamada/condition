@@ -11,13 +11,13 @@
 		<result property="updateDate" column="updateDate"/>
 		<result property="version" column="version"/>
 		<result property="status" column="status"/>
-		<collection property="portfolioList" column="mail_name"
-			javaType="ArrayList" select="findByMail">
-		</collection>
+<!-- 		<collection property="portfolioList" column="mail_name" -->
+<!-- 			javaType="Object" select="findByMail"> -->
+<!-- 		</collection> -->
 	</resultMap>
 	
 	<select id="findByMail" parameterType="String" resultMap="MailResultMap">
-		select * from mails where mail_name = #{mail}
+		select * from mails where mail_name =#{mail}
 	</select>
 	<insert id="insertMailAddress" parameterType="com.example.domain.Mail">
 		insert into mails(mail_name,user_id,register_user_id,register_date,version,status) VALUES(#{mailName},#{userId},#{registerUserId},#{registerDate},#{version},#{status})
