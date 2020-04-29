@@ -11,5 +11,5 @@ import lombok.Data;
 @Data
 public class MailForm {
 
-	private String mailName;
+	private String mail;
 }
