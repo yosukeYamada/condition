@@ -18,11 +18,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 
  * 管理者側の従業員一覧画面のサービス.
  * 
  * @author riho.ikeda
- *
  */
 @Service
 @Transactional
@@ -39,12 +37,12 @@ public class ShowEmployeeListService {
 	 */
 	public List<User> showEmployee(String date) {
 		LocalDateTime arg = stringToLocalDateTime(date); // 引数で受け取ったyyyy/MM/ddをLocalDateTimeに変換
-        LocalDateTime startLdt = LocalDateTime.of(2020, arg.getMonth(), arg.getDayOfMonth(), 0, 0, 0); // 検索の開始日時を生成
-        LocalDateTime endLdt = LocalDateTime.of(2020, arg.getMonth(), arg.getDayOfMonth(), 23, 59, 59); // 検索の終了日時を生成
-        Timestamp startTs = Timestamp.valueOf(startLdt); // LocalDateTime→Timestamp
-        Timestamp endTs = Timestamp.valueOf(endLdt); // LocalDateTime→Timestamp
+		LocalDateTime startLdt = LocalDateTime.of(2020, arg.getMonth(), arg.getDayOfMonth(), 0, 0, 0); // 検索の開始日時を生成
+		LocalDateTime endLdt = LocalDateTime.of(2020, arg.getMonth(), arg.getDayOfMonth(), 23, 59, 59); // 検索の終了日時を生成
+		Timestamp startTs = Timestamp.valueOf(startLdt); // LocalDateTime→Timestamp
+		Timestamp endTs = Timestamp.valueOf(endLdt); // LocalDateTime→Timestamp
 		List<User> findAllList = userMapper.findAllAndDailyPost(); // TODO 日付の引数を渡すように変更する
-		
+
 		// employeeListに従業員一覧画面に必要な、userName,depName,hireDate,condition,motivation,performance,commentをつめる
 		List<User> employeeList = new ArrayList<User>();
 		User user = new User();
