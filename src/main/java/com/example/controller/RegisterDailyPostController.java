@@ -24,6 +24,7 @@ public class RegisterDailyPostController {
 		return new RegisterDailyPostForm();
 	}
 	
+<<<<<<< HEAD
 	/**
 	 * 毎日のコンディション登録を行うメソッド
 	 * 呼び出し方：http://localhost:8080/registerDailyPost
@@ -33,6 +34,16 @@ public class RegisterDailyPostController {
 	@CrossOrigin(origins = "http://localhost:8888")
 	@RequestMapping("/registerDailyPost")
 	public void registerDailyPost(@RequestBody RegisterDailyPostForm form) {
+=======
+	@Autowired
+	private RegisterDailyPostServise registerDailyPostServise;
+	@CrossOrigin(origins="http://localhost:8888")
+	@RequestMapping(value="/registerDailyPost", method = {RequestMethod.POST})
+	public void registerDailyPost(@RequestBody RegisterDailyPostForm form) {	
+		// フォームの値をサービスに渡す
+		System.out.println("動いてる");
+		System.out.println(form);
+>>>>>>> log
 		registerDailyPostServise.registerDailyPost(form);
 	}
 

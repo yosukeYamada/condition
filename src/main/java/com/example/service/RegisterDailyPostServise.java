@@ -29,6 +29,7 @@ public class RegisterDailyPostServise {
 	public void registerDailyPost(RegisterDailyPostForm form) {
 		// 投稿日をString型→Date型→TimeStamp型に変換
 		Timestamp tsDate = Timestamp.valueOf(stringToLocalDateTime(form.getDate()));
+		System.out.println("日付" + tsDate);
 		Integer dailyPostId = null; //serial
 		
 		// conditionのセット
@@ -72,9 +73,10 @@ public class RegisterDailyPostServise {
 		dailyPost.setPostedCondition(pc);
 		dailyPost.setPostedPerformance(pp);
 		dailyPost.setPostedComment(pcomment);
-
+		System.out.println("投稿内容" + dailyPost);
 		//ドメインをマッパーに渡す
 		dailyPostMapper.save(dailyPost);
+		System.out.println("登録完了");
 	}
 	/**
      * 日付をStringからLocalDateTimeに変換するメソッド
