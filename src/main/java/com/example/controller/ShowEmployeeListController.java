@@ -24,9 +24,10 @@ public class ShowEmployeeListController {
 	private ShowEmployeeListService showEmployeeListService;
 
 	/**
-	 * 従業員一覧(ユーザー情報with投稿一覧)を表示するメソッド. 
-	 * 投稿一覧は最新の投稿が先頭に来るように降順に設定
+	 * 従業員一覧(ユーザー情報with投稿一覧)を表示するメソッド.
 	 * 
+	 * @apiNote 投稿一覧は最新の投稿が先頭に来るように降順に設定
+	 * @apiNote 呼び出し方：http://localhost:8080/showEmployeeList
 	 * @return 従業員一覧
 	 */
 	@CrossOrigin(origins = "http://localhost:8888") // TODO URLドメインをデプロイ時に変更

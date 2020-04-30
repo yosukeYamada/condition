@@ -19,18 +19,18 @@ public class RegisterDailyPostController {
 
 	@Autowired
 	private RegisterDailyPostServise registerDailyPostServise;
-	
+
 	public RegisterDailyPostForm setUpForm() {
 		return new RegisterDailyPostForm();
 	}
-	
+
 	/**
 	 * 毎日のコンディション登録を行うメソッド
-	 * 呼び出し方：http://localhost:8080/registerDailyPost
 	 * 
+	 * @apiNote 呼び出し方：http://localhost:8080/registerDailyPost
 	 * @param form 投稿内容
 	 */
-	@CrossOrigin(origins = "http://localhost:8888")
+	@CrossOrigin(origins = "http://localhost:8888") // TODO デプロイ時に変更
 	@RequestMapping("/registerDailyPost")
 	public void registerDailyPost(@RequestBody RegisterDailyPostForm form) {
 		registerDailyPostServise.registerDailyPost(form);

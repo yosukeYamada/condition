@@ -196,16 +196,8 @@
         WHERE dp.user_id = #{userId} 
         ORDER BY dp.date;
     </select>
-    <insert id="save">
-        INSERT INTO daily_posts(user_id, date, register_user_id, update_date, version, status) 
-        VALUES(#{userId}, #{date}, #{registerUserId}, #{updateDate}, #{version}, #{status}) RETURNING id;
- 
-
-        (INSERT INTO posted_conditions(daily_post_id, condition_id, register_user_id, register_date, update_user_id, version, status) 
-        VALUES(dp_id, #{condition_id}, #{registerUserId}, #{updateDate}, #{version}, #{status} )),
-        (INSERT INTO posted_performances(daily_post_id, performance_id, register_user_id, register_date, update_user_id, version, status) 
-        VALUES(dp_id, #{performance_id}, #{registerUserId}, #{updateDate}, #{version}, #{status} )),
-        (INSERT INTO posted_comments(daily_post_id, comment, register_user_id, register_date, update_user_id, version, status) 
-        VALUES(dp_id, #{comment}, #{registerUserId}, #{updateDate}, #{version}, #{status} ));
+    <insert id="save" useGeneratedKeys="true" keyProperty="dailyPostId">
+        INSERT INTO daily_posts(user_id, date, register_user_id, register_date, update_user_id, update_date, version, status) 
+        VALUES(#{userId}, #{date}, #{registerUserId}, #{registerDate}, #{updateUserId}, #{updateDate}, #{version}, #{status});
 	</insert>
 </mapper>
