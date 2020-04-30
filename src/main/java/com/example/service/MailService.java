@@ -36,7 +36,15 @@ public class MailService {
 		Mail mailName = mailAndUserMapper.findByMailAndAuthority(mail);
 		
 		if(mailName == null) {
-			return null;
+			Mail mailObj = new Mail();
+			
+			User user = new User();
+			user.setAuthority(0);
+			
+			mailObj.setUser(user);
+			
+			//nullならauthority番号を0にして返す
+			return mailObj;
 		} else {
 			Mail mailObj = new Mail();
 			mailObj.setMailId(mailName.getMailId());
@@ -45,8 +53,6 @@ public class MailService {
 			user.setAuthority(mailName.getUser().getAuthority());
 			
 			mailObj.setUser(user);
-			
-			System.err.println("オブジェクト : " + mailObj);
 			
 			return mailObj;
 		}
