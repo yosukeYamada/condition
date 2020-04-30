@@ -34,11 +34,7 @@ public class MailService {
 	 */
 	public Mail findByMailAndAuthoriry(String mail) {
 		
-		System.err.println("メール : " + mail);
-		
 		Mail mailName = mailAndUserMapper.findByMailAndAuthority(mail);
-		
-		System.out.println("OBJ : " + mailName);
 		
 		if(mailName == null) {
 			Mail mailObj = new Mail();
