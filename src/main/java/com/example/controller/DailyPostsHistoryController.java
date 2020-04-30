@@ -16,7 +16,7 @@ import com.example.form.showDailyPostListForm;
 public class DailyPostsHistoryController {
 
 	
-	@PostMapping("/showDaylyPostsHistory")
+	@PostMapping("/motibations")
 	public List<DailyPost> showDaylyPostsHistory(@RequestBody showDailyPostListForm form){
 		List<DailyPost> dailyPostList = new ArrayList<>();
 		return dailyPostList;
