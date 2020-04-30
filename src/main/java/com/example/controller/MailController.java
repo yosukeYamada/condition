@@ -33,9 +33,6 @@ public class MailController {
 	@CrossOrigin(origins="http://localhost:8888")
 	@PostMapping("/findByMailAndAuthority")
 	public Mail findByMailAndAuthority(@RequestBody MailForm mailForm) {
-		
-		System.err.println("メール : " + mailForm.getMail());
-		
 		return mailService.findByMailAndAuthoriry(mailForm.getMail());
 	}
 }
