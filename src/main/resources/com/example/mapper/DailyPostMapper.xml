@@ -132,4 +132,69 @@
         WHERE dp.date BETWEEN #{startTs} AND #{endTs} 
         ORDER BY dp.date;
     </select>
+    <select id="findByUserId" parameterType="Integer" resultMap="dailyPostWithAllChildren" >
+        SELECT 
+        dp.daily_post_id, 
+        dp.user_id, 
+        dp.date, 
+        dp.register_user_id, 
+        dp.register_date, 
+        dp.update_user_id, 
+        dp.update_date, 
+        dp.version, 
+        dp.status,
+        pm.posted_motivation_id pm_posted_motivation_id, 
+        pm.daily_post_id pm_daily_post_id, 
+        pm.motivation_id pm_motivation_id, 
+        pm.register_user_id pm_register_user_id,
+        pm.register_date pm_register_date, 
+        pm.update_user_id pm_update_user_id, 
+        pm.update_date pm_update_date, 
+        pm.version pm_version, 
+        pm.status pm_status,
+        m.motivation_id m_motivation_id,
+        m.motivation_name m_motivation_name, 
+        pc.posted_condition_id pc_posted_condition_id, 
+        pc.daily_post_id pc_daily_post_id, 
+        pc.condition_id pc_condition_id, 
+        pc.register_user_id pc_register_user_id,
+        pc.register_date pc_register_date, 
+        pc.update_user_id pc_update_user_id, 
+        pc.update_date pc_update_date, 
+        pc.version pc_version, 
+        pc.status pc_status, 
+        c.condition_id c_condition_id, 
+        c.condition_name c_condition_name,  
+        pp.posted_performance_id pp_posted_performance_id, 
+        pp.daily_post_id pp_daily_post_id, 
+        pp.performance_id pp_performance_id, 
+        pp.register_user_id pp_register_user_id,
+        pp.register_date pp_register_date, 
+        pp.update_user_id pp_update_user_id, 
+        pp.update_date pp_update_date, 
+        pp.version pp_version, 
+        pp.status pp_status, 
+        p.performance_id p_performance_id, 
+        p.performance_name p_performance_name, 
+        pcm.posted_comment_id pcm_posted_comment_id, 
+        pcm.daily_post_id pcm_daily_post_id, 
+        pcm.comment pcm_comment, 
+        pcm.register_user_id pcm_register_user_id,
+        pcm.register_date pcm_register_date, 
+        pcm.update_user_id pcm_update_user_id, 
+        pcm.update_date pcm_update_date, 
+        pcm.version pcm_version, 
+        pcm.status pcm_status 
+        FROM daily_posts AS dp 
+        LEFT OUTER JOIN posted_motivations AS pm ON dp.daily_post_id = pm.daily_post_id 
+        LEFT OUTER JOIN motivations AS m ON pm.motivation_id = m.motivation_id
+        LEFT OUTER JOIN posted_conditions AS pc ON dp.daily_post_id = pc.daily_post_id 
+        LEFT OUTER JOIN conditions AS c ON pc.condition_id = c.condition_id 
+        LEFT OUTER JOIN posted_performances AS pp ON dp.daily_post_id = pp.daily_post_id 
+        LEFT OUTER JOIN performances AS p ON pp.performance_id = p.performance_id 
+        LEFT OUTER JOIN posted_comments AS pcm ON dp.daily_post_id = pcm.daily_post_id 
+        WHERE dp.user_id = #{userId} 
+        ORDER BY dp.date;
+    
+    </select>
 </mapper>

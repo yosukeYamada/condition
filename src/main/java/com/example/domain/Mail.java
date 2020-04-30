@@ -17,4 +17,5 @@ public class Mail {
 	private Integer version;
 	private Integer status;
 	private User user;
+	
 }
