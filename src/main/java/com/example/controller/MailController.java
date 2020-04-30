@@ -1,5 +1,8 @@
 package com.example.controller;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +36,14 @@ public class MailController {
 	@CrossOrigin(origins="http://localhost:8888")
 	@PostMapping("/findByMailAndAuthority")
 	public Mail findByMailAndAuthority(@RequestBody MailForm mailForm) {
-		return mailService.findByMailAndAuthoriry(mailForm.getMail());
+		String check = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@rakus-partners.co.jp";
+		Pattern pattern = Pattern.compile(check);
+		Matcher matcher = pattern.matcher(mailForm.getMail());
+		if(matcher.matches()) {
+			return mailService.findByMailAndAuthoriry(mailForm.getMail());
+		} else {
+			Mail mail = new Mail();
+			return mail;
+		}
 	}
 }

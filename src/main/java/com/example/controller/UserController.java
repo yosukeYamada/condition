@@ -23,8 +23,8 @@ public class UserController {
 	@Autowired
 	private MailService mailService;
 	
-	@CrossOrigin(origins="http://localhost:8888")
 	@PostMapping("/registerUser")
+	@CrossOrigin(origins = "http://localhost:8888")
 	public Integer isterUser(@RequestBody(required = false) RegisterUserForm form) {
 		User user = registerUserService.registerUser(form);
 		String mailAddress = form.getMailAddress();

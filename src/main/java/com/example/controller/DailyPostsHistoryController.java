@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,12 +16,12 @@ import com.example.form.showDailyPostListForm;
 public class DailyPostsHistoryController {
 
 	@CrossOrigin(origins="http://localhost:8888")
-	@PostMapping("/motivations")
+	@RequestMapping("/motivations")
 	public List<DailyPost> showDaylyPostsHistory(@RequestBody showDailyPostListForm form){
+		
+		System.err.println("ユーザーID : " + form.getUserId());
+		
 		List<DailyPost> dailyPostList = new ArrayList<>();
 		return dailyPostList;
 	}
-	
-	
-	
 }
