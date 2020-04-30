@@ -1,6 +1,5 @@
 package com.example.form;
 
-import java.util.Date;
 
 import lombok.Data;
 
@@ -14,7 +13,7 @@ public class RegisterDailyPostForm {
 	/** 投稿者のuserId */
 	private String userId;
 	/** 登録時間 */  
-	private Date date;
+	private String date;
 	/** 体調 */  
 	private String conditionName;
 	/** 成果進捗 */  
