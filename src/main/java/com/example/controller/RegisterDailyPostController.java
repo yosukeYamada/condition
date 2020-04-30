@@ -24,6 +24,7 @@ public class RegisterDailyPostController {
 	public void registerDailyPost(@RequestBody RegisterDailyPostForm form) {	
 		// フォームの値をサービスに渡す
 		System.out.println("動いてる");
+		System.out.println(form);
 		registerDailyPostServise.registerDailyPost(form);
 	}
 	
