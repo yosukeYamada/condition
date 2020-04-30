@@ -48,6 +48,7 @@ public class RegisterUserServiceImpl implements RegisterUserService {
 		Integer registerUserId = userMapper.insertUser(user);
 		userMapper.updateRegisterUserId(registerUserId);
 		user.setUserId(registerUserId);
+		user.setRegisterUserId(registerUserId);
 		return user;
 	}
 

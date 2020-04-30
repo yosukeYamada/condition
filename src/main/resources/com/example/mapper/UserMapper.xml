@@ -22,7 +22,7 @@
 	</select>
 	<select id="insertUser" resultType="Integer">
 		INSERT INTO
-		users(user_name,user_name_kana,dep_id,hire_date,register_date,version,ststus)
+		users(user_name,user_name_kana,dep_id,hire_date,register_date,version,status)
 		VALUES(#{userName},#{userNameKana},#{depId},#{hireDate},#{registerDate},#{version},#{status})
 		returning user_id
 	</select>
@@ -214,7 +214,7 @@
 	</select>
 	<update id="updateRegisterUserId" parameterType="Integer">
 		UPDATE users
-		SET(register_user_id = #{registerUserId}) WHERE user_id =
+		SET register_user_id = #{registerUserId} WHERE user_id =
 		#{registerUserId}
 	</update>
 

@@ -11,7 +11,7 @@ import com.example.form.TestMessageForm;
 public class RestController {
 
 //	@CrossOrigin
-	@RequestMapping("/api/test")
+	@RequestMapping("/test")
 	@CrossOrigin
 	public String test(@RequestBody TestMessageForm form) {
 		System.out.println(form);
