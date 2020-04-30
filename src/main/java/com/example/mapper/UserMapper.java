@@ -39,4 +39,19 @@ public interface UserMapper {
 	 */
 	public void updateRegisterUserId(Integer userId);
 	
+	
+	 /**
+	 * User情報に基いた投稿も全件取得できるメソッド.
+	 * 
+	 * @return ユーザー情報と投稿一覧
+	 */
+	public List<User> findAllAndDailyPost() ;
+	
+	
+	
+	 
+
+	
+	
+	
 }
