@@ -19,12 +19,12 @@ import com.example.domain.PostedMotivation;
 import com.example.domain.PostedPerformance;
 import com.example.domain.Status;
 import com.example.form.RegisterDailyPostForm;
-import com.example.mapper.RegisterDailyPostMapper;
+import com.example.mapper.DailyPostMapper;
 
 @Service
 public class RegisterDailyPostServise {
 	@Autowired
-	private RegisterDailyPostMapper registerDailyPostMapper;
+	private DailyPostMapper dailyPostMapper;
 	
 	public void registerDailyPost(RegisterDailyPostForm form) {
 		// 投稿日をString型→Date型→TimeStamp型に変換
@@ -74,7 +74,7 @@ public class RegisterDailyPostServise {
 		dailyPost.setPostedComment(pcomment);
 
 		//ドメインをマッパーに渡す
-		registerDailyPostMapper.insertDailyPost(dailyPost);
+		dailyPostMapper.save(dailyPost);
 	}
 	/**
      * 日付をStringからLocalDateTimeに変換するメソッド
