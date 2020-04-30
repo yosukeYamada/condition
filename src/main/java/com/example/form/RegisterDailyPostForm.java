@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 public class RegisterDailyPostForm {
 	/** 投稿者のuserId */
-	private int userId;
+	private String userId;
 	/** 登録時間 */  
 	private Date date;
 	/** 体調 */  
@@ -23,4 +23,8 @@ public class RegisterDailyPostForm {
 	private String motivationName;
 	/** その他コメント */  
 	private String comment;
+	
+	public Integer getIntUserId() {
+		return Integer.parseInt(userId);
+	}
 }
