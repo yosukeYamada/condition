@@ -147,7 +147,7 @@
 	    u.update_user_id,
 	    u.update_date,
 	    u.version,
-	    u.status
+	    u.status,
 	    de.dep_id de_dep_id, 
 	    de.dep_id de_dep_id,
 	    de.dep_name de_dep_name,
