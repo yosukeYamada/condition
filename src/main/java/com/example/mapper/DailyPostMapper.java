@@ -21,5 +21,14 @@ public interface DailyPostMapper {
      * @return 引数で受け取った年月日に合致する投稿一覧
      */
     public List<DailyPost> findByDate(Timestamp startTs, Timestamp endTs);
+    
+    
+    /**
+     * ユーザIDで検索して投稿を取得するメソッド.
+     * 
+     * @param userId ユーザID
+     * @return ユーザIDに紐づく投稿内容
+     */
+    public List<DailyPost> findByUserId(Integer userId);
 
 }
