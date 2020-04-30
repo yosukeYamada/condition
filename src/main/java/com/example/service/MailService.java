@@ -50,6 +50,7 @@ public class MailService {
 			mailObj.setMailId(mailName.getMailId());
 			
 			User user = new User();
+			user.setUserId(mailName.getUser().getUserId());
 			user.setAuthority(mailName.getUser().getAuthority());
 			
 			mailObj.setUser(user);
