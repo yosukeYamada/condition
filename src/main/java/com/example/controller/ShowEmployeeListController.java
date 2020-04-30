@@ -24,15 +24,16 @@ public class ShowEmployeeListController {
 	private ShowEmployeeListService showEmployeeListService;
 
 	/**
+	 * 従業員一覧(ユーザー情報with投稿一覧)を表示するメソッド. 
+	 * 投稿一覧は最新の投稿が先頭に来るように降順に設定
 	 * 
 	 * @return 従業員一覧
 	 */
-	@CrossOrigin(origins="http://localhost:8888") // TODO URLドメインをデプロイ時に変更
+	@CrossOrigin(origins = "http://localhost:8888") // TODO URLドメインをデプロイ時に変更
 	@ResponseBody
 	@RequestMapping("/showEmployeeList")
 	public List<User> showEmployeeList() {
-		String date = "2020/04/27";
-		return showEmployeeListService.showEmployee(date);
+		return showEmployeeListService.showEmployee();
 	}
 
 }

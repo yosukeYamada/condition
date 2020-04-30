@@ -1,6 +1,5 @@
 package com.example.mapper;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import com.example.domain.User;
@@ -40,12 +39,10 @@ public interface UserMapper {
 	public void updateRegisterUserId(Integer userId);
 
 	/**
-	 * 全ユーザー情報とそのユーザーの引数で指定した期間の投稿を取得するメソッド.
+	 * 全ユーザー情報とそのユーザーの投稿一覧を取得するメソッド.
 	 * 
-	 * @param startTs 検索開始期間
-	 * @param endTs   検索終了期間
 	 * @return 全ユーザー情報とその投稿の一覧
 	 */
-	public List<User> findAllAndDailyPost(Timestamp startTs, Timestamp endTs);
+	public List<User> findAllAndDailyPost();
 
 }

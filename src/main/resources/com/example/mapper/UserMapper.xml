@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.UserMapper">
 	<resultMap type="com.example.domain.User" id="UserResultMap">
@@ -27,8 +27,7 @@
 		returning user_id
 	</select>
 
-	<resultMap type="com.example.domain.User"
-		id="UserAndDailyPostMap">
+	<resultMap type="com.example.domain.User" id="UserAndDailyPostMap">
 		<id property="userId" column="user_id" />
 		<result property="userName" column="user_name" />
 		<result property="userNameKana" column="user_name_kana" />
@@ -42,8 +41,7 @@
 		<result property="version" column="version" />
 		<result property="status" column="status" />
 
-		<association property="dep"
-			javaType="com.example.domain.Dep">
+		<association property="dep" javaType="com.example.domain.Dep">
 			<id property="depId" column="de_dep_id" />
 			<result property="depName" column="de_dep_name" />
 			<result property="registerUserId" column="de_register_user_id" />
@@ -54,8 +52,7 @@
 			<result property="status" column="de_status" />
 		</association>
 
-		<collection property="dailyPost"
-			ofType="com.example.domain.DailyPost">
+		<collection property="dailyPost" ofType="com.example.domain.DailyPost">
 			<id column="d_daily_post_id" property="dailyPostId" />
 			<result column="d_user_id" property="userId" />
 			<result column="d_date" property="date" />
@@ -65,70 +62,56 @@
 			<result column="d_update_date" property="updateDate" />
 			<result column="d_version" property="version" />
 			<result column="d_status" property="status" />
-			<association property="postedMotivation"
-				javaType="com.example.domain.PostedMotivation">
-				<id column="pm_posted_motivation_id"
-					property="postedMotivationId" />
+			<association property="postedMotivation" javaType="com.example.domain.PostedMotivation">
+				<id column="pm_posted_motivation_id" property="postedMotivationId" />
 				<result column="pm_daily_post_id" property="dailyPostId" />
 				<result column="pm_motivation_id" property="motivationId" />
-				<result column="pm_register_user_id"
-					property="registerUserId" />
+				<result column="pm_register_user_id" property="registerUserId" />
 				<result column="pm_register_date" property="registerDate" />
 				<result column="pm_update_user_id" property="updateUserId" />
 				<result column="pm_update_date" property="updateDate" />
 				<result column="pm_version" property="version" />
 				<result column="pm_status" property="status" />
-				<association property="motivation"
-					javaType="com.example.domain.Motivation">
+				<association property="motivation" javaType="com.example.domain.Motivation">
 					<id column="m_motivation_id" property="motivationId" />
 					<result column="m_motivation_name" property="motivationName" />
 				</association>
 			</association>
-			<association property="postedCondition"
-				javaType="com.example.domain.PostedCondition">
+			<association property="postedCondition" javaType="com.example.domain.PostedCondition">
 				<id column="pc_posted_condition_id" property="postedConditionId" />
 				<result column="pc_daily_post_id" property="dailyPostId" />
 				<result column="pc_condition_id" property="conditionId" />
-				<result column="pc_register_user_id"
-					property="registerUserId" />
+				<result column="pc_register_user_id" property="registerUserId" />
 				<result column="pc_register_date" property="registerDate" />
 				<result column="pc_update_user_id" property="updateUserId" />
 				<result column="pc_update_date" property="updateDate" />
 				<result column="pc_version" property="version" />
 				<result column="pc_status" property="status" />
-				<association property="condition"
-					javaType="com.example.domain.Condition">
+				<association property="condition" javaType="com.example.domain.Condition">
 					<id column="c_condition_id" property="conditionId" />
 					<result column="c_condition_name" property="conditionName" />
 				</association>
 			</association>
-			<association property="postedPerformance"
-				javaType="com.example.domain.PostedPerformance">
-				<id column="pp_posted_performance_id"
-					property="postedPerformanceId" />
+			<association property="postedPerformance" javaType="com.example.domain.PostedPerformance">
+				<id column="pp_posted_performance_id" property="postedPerformanceId" />
 				<result column="pp_daily_post_id" property="dailyPostId" />
 				<result column="pp_performance_id" property="performanceId" />
-				<result column="pp_register_user_id"
-					property="registerUserId" />
+				<result column="pp_register_user_id" property="registerUserId" />
 				<result column="pp_register_date" property="registerDate" />
 				<result column="pp_update_user_id" property="updateUserId" />
 				<result column="pp_update_date" property="updateDate" />
 				<result column="pp_version" property="version" />
 				<result column="pp_status" property="status" />
-				<association property="performance"
-					javaType="com.example.domain.Performance">
+				<association property="performance" javaType="com.example.domain.Performance">
 					<id column="p_performance_id" property="performanceId" />
-					<result column="p_performance_name"
-						property="performanceName" />
+					<result column="p_performance_name" property="performanceName" />
 				</association>
 			</association>
-			<association property="postedComment"
-				javaType="com.example.domain.PostedComment">
+			<association property="postedComment" javaType="com.example.domain.PostedComment">
 				<id column="pcm_posted_comment_id" property="postedCommentId" />
 				<result column="pcm_daily_post_id" property="dailyPostId" />
 				<result column="pcm_comment" property="comment" />
-				<result column="pcm_register_user_id"
-					property="registerUserId" />
+				<result column="pcm_register_user_id" property="registerUserId" />
 				<result column="pcm_register_date" property="registerDate" />
 				<result column="pcm_update_user_id" property="updateUserId" />
 				<result column="pcm_update_date" property="updateDate" />
@@ -222,12 +205,12 @@
 		pc.daily_post_id
 		LEFT OUTER JOIN conditions AS c ON pc.condition_id = c.condition_id
 		LEFT OUTER JOIN posted_performances AS pp ON d.daily_post_id =
-		pp.daily_post_id
-		LEFT OUTER JOIN performances AS p ON pp.performance_id = p.performance_id
+		pp.daily_post_id 
+		LEFT OUTER JOIN performances AS p ON pp.performance_id = p.performance_id 
 		LEFT OUTER JOIN posted_comments AS pcm ON d.daily_post_id =
-		pcm.daily_post_id
-		LEFT OUTER JOIN deps AS de ON u.dep_id = de.dep_id
-		ORDER BY u.hire_date;
+		pcm.daily_post_id 
+		LEFT OUTER JOIN deps AS de ON u.dep_id = de.dep_id 
+		ORDER BY u.hire_date, d.date DESC;
 	</select>
 	<update id="updateRegisterUserId" parameterType="Integer">
 		UPDATE users
