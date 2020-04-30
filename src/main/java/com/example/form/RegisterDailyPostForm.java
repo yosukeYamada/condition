@@ -1,7 +1,5 @@
 package com.example.form;
 
-import java.util.Date;
-
 import lombok.Data;
 
 /**
@@ -12,9 +10,9 @@ import lombok.Data;
 @Data
 public class RegisterDailyPostForm {
 	/** 投稿者のuserId */
-	private int userId;
+	private String userId;
 	/** 登録時間 */  
-	private Date date;
+	private String date;
 	/** 体調 */  
 	private String conditionName;
 	/** 成果進捗 */  
@@ -23,4 +21,8 @@ public class RegisterDailyPostForm {
 	private String motivationName;
 	/** その他コメント */  
 	private String comment;
+	
+	public Integer getIntUserId() {
+		return Integer.parseInt(userId);
+	}
 }
