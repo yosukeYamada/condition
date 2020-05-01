@@ -1,6 +1,10 @@
 package com.example.domain.response;
 
 import java.sql.Timestamp;
+import java.util.List;
+
+import com.example.domain.DailyPost;
+import com.example.domain.Dep;
 
 import lombok.Data;
 
@@ -20,5 +24,7 @@ public class ResponseUser {
 	private Integer version;
 	private Integer status;
 	private String mailAddress;
+	private Dep dep;
+	private List<DailyPost> dailyPost;
 	
 }
