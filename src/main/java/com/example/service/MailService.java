@@ -52,7 +52,19 @@ public class MailService {
 			
 			User user = new User();
 			user.setUserId(mailName.getUser().getUserId());
+			user.setUserName(mailName.getUser().getUserName());
+			user.setUserNameKana(mailName.getUser().getUserNameKana());
+			user.setDepId(mailName.getUser().getDepId());
+			user.setHireDate(mailName.getUser().getHireDate());
 			user.setAuthority(mailName.getUser().getAuthority());
+			user.setRegisterUserId(mailName.getUser().getRegisterUserId());
+			user.setRegisterDate(mailName.getUser().getRegisterDate());
+			user.setUpdateUserId(mailName.getUser().getUpdateUserId());
+			user.setUpdateDate(mailName.getUser().getUpdateDate());
+			user.setVersion(mailName.getUser().getVersion());
+			user.setStatus(mailName.getUser().getStatus());
+			user.setDep(mailName.getUser().getDep());
+			user.setDailyPost(mailName.getUser().getDailyPost());
 			
 			mailObj.setUser(user);
 			

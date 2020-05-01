@@ -29,7 +29,7 @@ public class DailyPostsHistoryController {
 	@RequestMapping("/motivations")
 	public List<DailyPost> showDaylyPostsHistory(@RequestBody showDailyPostListForm form){
 		
-		System.err.println("ユーザーID : " + form.getUserId());
+		System.err.println("ユーザーID : " + form);
 		
 		List<DailyPost> dailyPostList = dailyPostService.getDailyPostList(form);
 		return dailyPostList;
