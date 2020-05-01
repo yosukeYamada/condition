@@ -33,10 +33,6 @@ public class RegisterUserForm {
 	@NotBlank
 	private String mailAddress;
 	@NotBlank
-	private String password;
-	@NotBlank
-	private String confirmationPassword;
-	@NotBlank
 	@Pattern(regexp="\\d{1}")
 	private String authorityId;
 

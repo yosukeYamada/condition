@@ -34,8 +34,6 @@ public class UserController {
 	@PostMapping("/registerUser")
 	@CrossOrigin(origins = "http://localhost:8888")
 	public Integer reisterUser(@RequestBody(required = false) @Valid RegisterUserForm form) {
-		if(!(form.getPassword().equals(form.getConfirmationPassword()))) {
-		}
 		User user = registerUserService.registerUser(form);
 		String mailAddress = form.getMailAddress();
 		mailService.registerMail(user,mailAddress);
