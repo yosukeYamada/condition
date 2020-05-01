@@ -34,8 +34,6 @@ public class UserController {
 	@PostMapping("/registerUser")
 	@CrossOrigin(origins = "http://localhost:8888")
 	public Integer reisterUser(@RequestBody(required = false) @Valid RegisterUserForm form) {
-		if(!(form.getPassword().equals(form.getConfirmationPassword()))) {
-		}
 		User user = registerUserService.registerUser(form);
 		String mailAddress = form.getMailAddress();
 		mailService.registerMail(user,mailAddress);
@@ -43,10 +41,13 @@ public class UserController {
 		return userId;
 	}
 
-	@ExceptionHandler(Exception.class)
-	public String exception(Exception e){
-//		System.out.println("test");
-		return e.toString();
-	}
-	
+//	@ExceptionHandler(Exception.class)
+//	public String exception(Exception e){
+////		System.out.println("test");
+//		System.out.println(e);
+//		System.out.println("aaaa");
+//		System.out.println(e.toString());
+//		return e.toString();
+//	}
+//	
 }
