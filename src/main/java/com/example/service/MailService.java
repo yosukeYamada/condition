@@ -49,6 +49,14 @@ public class MailService {
 		} else {
 			Mail mailObj = new Mail();
 			mailObj.setMailId(mailName.getMailId());
+			mailObj.setMailName(mailName.getMailName());
+			mailObj.setUserId(mailName.getUserId());
+			mailObj.setRegisterUserId(mailName.getRegisterUserId());
+			mailObj.setRegisterDate(mailName.getRegisterDate());
+			mailObj.setUpdateUserId(mailName.getUpdateUserId());
+			mailObj.setUpdateDate(mailName.getUpdateDate());
+			mailObj.setVersion(mailName.getVersion());
+			mailObj.setStatus(mailName.getStatus());
 			
 			User user = new User();
 			user.setUserId(mailName.getUser().getUserId());
