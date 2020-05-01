@@ -42,7 +42,6 @@ public class MailController {
 		Pattern pattern = Pattern.compile(check);
 		Matcher matcher = pattern.matcher(mailForm.getMail());
 		if(matcher.matches()) {
-			
 			return mailService.findByMailAndAuthoriry(mailForm.getMail());
 		} else {
 			Mail mail = new Mail();
