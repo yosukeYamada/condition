@@ -1,8 +1,11 @@
 package com.example.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +28,9 @@ public class UserController {
 	
 	@CrossOrigin(origins="http://localhost:8888")
 	@PostMapping("/registerUser")
-	public Integer isterUser(@RequestBody(required = false) RegisterUserForm form) {
+	public Integer isterUser(@RequestBody(required = false) @Valid RegisterUserForm form) {
+		if(!(form.getPassword().equals(form.getConfirmationPassword()))) {
+		}
 		User user = registerUserService.registerUser(form);
 		String mailAddress = form.getMailAddress();
 		mailService.registerMail(user,mailAddress);
@@ -33,10 +38,10 @@ public class UserController {
 		return userId;
 	}
 
-//	@ExceptionHandler(Exception.class)
-//	public String exception(Exception e){
+	@ExceptionHandler(Exception.class)
+	public String exception(Exception e){
 //		System.out.println("test");
-//		return e.toString();
-//	}
-//	
+		return e.toString();
+	}
+	
 }
