@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.User;
+import com.example.domain.response.ResponseUser;
 import com.example.form.RegisterUserForm;
 import com.example.service.MailService;
 import com.example.service.RegisterUserServiceImpl;
@@ -38,6 +39,8 @@ public class UserController {
 		String mailAddress = form.getMailAddress();
 		mailService.registerMail(user,mailAddress);
 		Integer userId = user.getUserId();
+		ResponseUser resUser = new ResponseUser();
+		
 		return userId;
 	}
 
