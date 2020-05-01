@@ -41,10 +41,13 @@ public class UserController {
 		return userId;
 	}
 
-	@ExceptionHandler(Exception.class)
-	public String exception(Exception e){
-//		System.out.println("test");
-		return e.toString();
-	}
-	
+//	@ExceptionHandler(Exception.class)
+//	public String exception(Exception e){
+////		System.out.println("test");
+//		System.out.println(e);
+//		System.out.println("aaaa");
+//		System.out.println(e.toString());
+//		return e.toString();
+//	}
+//	
 }
