@@ -6,6 +6,12 @@ import javax.validation.constraints.Pattern;
 
 import lombok.Data;
 
+/**
+ * 新規登録するユーザフォーム.
+ * 
+ * @author yosuke.yamada
+ *
+ */
 @Data
 public class RegisterUserForm {
 

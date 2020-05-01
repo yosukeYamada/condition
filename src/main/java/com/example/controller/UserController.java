@@ -25,6 +25,12 @@ public class UserController {
 	@Autowired
 	private MailService mailService;
 	
+	/**
+	 * ユーザ登録を行うメソッド.
+	 * 
+	 * @param form ユーザ情報
+	 * @return 新規登録したユーザID
+	 */
 	@PostMapping("/registerUser")
 	@CrossOrigin(origins = "http://localhost:8888")
 	public Integer reisterUser(@RequestBody(required = false) @Valid RegisterUserForm form) {
