@@ -36,17 +36,16 @@ public class MailService {
 		
 		Mail mailObj = responseUserMapper.findUserInfo(mail);
 		
-		System.err.println("ユーザー情報 : " + mailObj);
-		
 		if(mailObj == null) {
 			Mail mailObject = new Mail();
+			mailObject.setMailName(mail);
 			
 			User user = new User();
 			user.setAuthority(0);
 			
 			mailObject.setUser(user);
 			
-			//nullならauthority番号を0にして返す
+			//nullならauthority番号が0のものと、mailAddressをつめたユーザー情報を返す
 			return mailObject;
 		} else {
 			
