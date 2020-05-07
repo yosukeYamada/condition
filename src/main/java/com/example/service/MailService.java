@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.Mail;
 import com.example.domain.User;
-import com.example.mapper.MailAndUserMapper;
 import com.example.mapper.MailMapper;
+import com.example.mapper.ResponseUserMapper;
 
 /**
  * メールを管理するサービス.
@@ -24,7 +24,7 @@ public class MailService {
 	private MailMapper mailMapper;
 	
 	@Autowired
-	private MailAndUserMapper mailAndUserMapper;
+	private ResponseUserMapper responseUserMapper;
 	
 	/**
 	 * メールアドレスからメール情報を取得する.
@@ -34,48 +34,22 @@ public class MailService {
 	 */
 	public Mail findByMailAndAuthoriry(String mail) {
 		
-		Mail mailName = mailAndUserMapper.findByMailAndAuthority(mail);
+		Mail mailObj = responseUserMapper.findUserInfo(mail);
 		
-		if(mailName == null) {
-			Mail mailObj = new Mail();
+		if(mailObj == null) {
+			Mail mailObject = new Mail();
+			mailObject.setMailName(mail);
 			
 			User user = new User();
 			user.setAuthority(0);
 			
-			mailObj.setUser(user);
+			mailObject.setUser(user);
 			
-			//nullならauthority番号を0にして返す
-			return mailObj;
+			//nullならauthority番号が0のものと、mailAddressをつめたユーザー情報を返す
+			return mailObject;
 		} else {
-			Mail mailObj = new Mail();
-			mailObj.setMailId(mailName.getMailId());
-			mailObj.setMailName(mailName.getMailName());
-			mailObj.setUserId(mailName.getUserId());
-			mailObj.setRegisterUserId(mailName.getRegisterUserId());
-			mailObj.setRegisterDate(mailName.getRegisterDate());
-			mailObj.setUpdateUserId(mailName.getUpdateUserId());
-			mailObj.setUpdateDate(mailName.getUpdateDate());
-			mailObj.setVersion(mailName.getVersion());
-			mailObj.setStatus(mailName.getStatus());
 			
-			User user = new User();
-			user.setUserId(mailName.getUser().getUserId());
-			user.setUserName(mailName.getUser().getUserName());
-			user.setUserNameKana(mailName.getUser().getUserNameKana());
-			user.setDepId(mailName.getUser().getDepId());
-			user.setHireDate(mailName.getUser().getHireDate());
-			user.setAuthority(mailName.getUser().getAuthority());
-			user.setRegisterUserId(mailName.getUser().getRegisterUserId());
-			user.setRegisterDate(mailName.getUser().getRegisterDate());
-			user.setUpdateUserId(mailName.getUser().getUpdateUserId());
-			user.setUpdateDate(mailName.getUser().getUpdateDate());
-			user.setVersion(mailName.getUser().getVersion());
-			user.setStatus(mailName.getUser().getStatus());
-			user.setDep(mailName.getUser().getDep());
-			user.setDailyPost(mailName.getUser().getDailyPost());
-			
-			mailObj.setUser(user);
-			
+			//nullじゃなければすべて詰まった情報を返す
 			return mailObj;
 		}
 	}

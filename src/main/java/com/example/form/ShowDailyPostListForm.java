@@ -3,9 +3,8 @@ package com.example.form;
 import lombok.Data;
 
 @Data
-public class showDailyPostListForm {
+public class ShowDailyPostListForm {
 
 	private String userId;
-	
-	
+		
 }
