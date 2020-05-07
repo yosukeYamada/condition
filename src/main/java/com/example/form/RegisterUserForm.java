@@ -18,7 +18,8 @@ public class RegisterUserForm {
 	@NotBlank
 	@Pattern(regexp="^[^ -~｡-ﾟ]{1,20}+$")
 	private String userName;
-	@Pattern(regexp="^[｡-ﾟ+]{1,20}+$")
+	@NotBlank
+	@Pattern(regexp="^[ぁ-んー]{1,20}+$")
 	private String userNameKana;
 	@NotBlank
 	@Pattern(regexp="^[0-9]+$")

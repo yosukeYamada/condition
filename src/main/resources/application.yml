@@ -9,3 +9,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/conditions
     username: postgres
     password: postgres
+
+# ローカル環境での起動ポート番号の設定
+server:
+  port: 8080
