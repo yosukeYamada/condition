@@ -41,7 +41,7 @@ public interface DailyPostMapper {
     public List<DailyPost> findByUserId(Integer userId);
     
     
-    Timestamp tsDate = new Timestamp(System.currentTimeMillis());
+    
     /**
      * １日１回しか投稿不可にするために取得するメソッド.
      * 
@@ -49,6 +49,7 @@ public interface DailyPostMapper {
      * @param tsDate　現在日時
      * @return
      */
+    Timestamp tsDate  = new Timestamp(System.currentTimeMillis());
     public Integer findByUserIdAndDate(@Param("userId") Integer userId,@Param ("tsDate") Timestamp tsDate);
 
 }
