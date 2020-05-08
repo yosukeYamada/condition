@@ -6,7 +6,6 @@ import com.example.domain.User;
 import com.example.service.ShowEmployeeListService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +29,6 @@ public class ShowEmployeeListController {
 	 * @apiNote 呼び出し方：http://localhost:8080/showEmployeeList
 	 * @return 従業員一覧
 	 */
-	@CrossOrigin(origins = "http://localhost:8888") // TODO URLドメインをデプロイ時に変更
 	@ResponseBody
 	@RequestMapping("/showEmployeeList")
 	public List<User> showEmployeeList() {
