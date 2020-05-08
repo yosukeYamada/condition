@@ -22,8 +22,8 @@
 	</select>
 	<select id="insertUser" resultType="Integer">
 		INSERT INTO
-		users(user_name,user_name_kana,dep_id,hire_date,register_date,version,status)
-		VALUES(#{userName},#{userNameKana},#{depId},#{hireDate},#{registerDate},#{version},#{status})
+		users(user_name,user_name_kana,dep_id,hire_date,register_date,authority,version,status)
+		VALUES(#{userName},#{userNameKana},#{depId},#{hireDate},#{registerDate},#{authority},#{version},#{status})
 		returning user_id
 	</select>
 

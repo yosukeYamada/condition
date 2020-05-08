@@ -105,6 +105,3 @@ INSERT INTO motivations(motivation_name,register_user_id,register_date,update_us
 INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('曇',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('雨',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('嵐',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
-
-
-
