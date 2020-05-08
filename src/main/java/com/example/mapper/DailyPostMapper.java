@@ -6,6 +6,7 @@ import java.util.List;
 import com.example.domain.DailyPost;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * daily_postsテーブルを操作するマッパー
@@ -38,5 +39,16 @@ public interface DailyPostMapper {
      * @return ユーザIDに紐づく投稿内容
      */
     public List<DailyPost> findByUserId(Integer userId);
+    
+    
+    Timestamp tsDate = new Timestamp(System.currentTimeMillis());
+    /**
+     * １日１回しか投稿不可にするために取得するメソッド.
+     * 
+     * @param userId ユーザーID
+     * @param tsDate　現在日時
+     * @return
+     */
+    public Integer findByUserIdAndDate(@Param("userId") Integer userId,@Param ("tsDate") Timestamp tsDate);
 
 }
