@@ -90,6 +90,12 @@ INSERT INTO posted_motivations(daily_post_id,motivation_id,register_user_id,regi
 INSERT INTO posted_motivations(daily_post_id,motivation_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES(7,5,3,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO posted_motivations(daily_post_id,motivation_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES(8,5,3,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO posted_motivations(daily_post_id,motivation_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES(9,5,3,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+
+
+
+
+
+
 INSERT INTO conditions(condition_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('快晴',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO conditions(condition_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('晴',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO conditions(condition_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('曇',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
@@ -105,3 +111,6 @@ INSERT INTO motivations(motivation_name,register_user_id,register_date,update_us
 INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('曇',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('雨',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('嵐',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+
+
+
