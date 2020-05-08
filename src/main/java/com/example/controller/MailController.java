@@ -3,17 +3,16 @@ package com.example.controller;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.example.domain.Mail;
 import com.example.domain.User;
 import com.example.form.MailForm;
 import com.example.service.MailService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * メールを管理するコントローラー.
@@ -34,7 +33,6 @@ public class MailController {
 	 * @param mail メール
 	 * @return サービスへ遷移
 	 */
-	@CrossOrigin(origins="http://localhost:8888")
 	@PostMapping("/findByMailAndAuthority")
 	public Mail findByMailAndAuthority(@RequestBody MailForm mailForm) {
 		

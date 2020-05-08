@@ -4,7 +4,6 @@ import com.example.form.RegisterDailyPostForm;
 import com.example.service.RegisterDailyPostServise;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +29,6 @@ public class RegisterDailyPostController {
 	 * @apiNote 呼び出し方：http://localhost:8080/registerDailyPost
 	 * @param form 投稿内容
 	 */
-	@CrossOrigin(origins = "http://localhost:8888") // TODO デプロイ時に変更
 	@RequestMapping("/registerDailyPost")
 	public void registerDailyPost(@RequestBody RegisterDailyPostForm form) {
 		registerDailyPostServise.registerDailyPost(form);
