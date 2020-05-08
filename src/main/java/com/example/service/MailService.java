@@ -54,10 +54,11 @@ public class MailService {
 		}
 	}
 	
-	public void registerMail(User user,String mailAddress) {
+	public Mail registerMail(User user,String mailAddress) {
 		Mail mail = new Mail();
 		BeanUtils.copyProperties(user, mail);
 		mail.setMailName(mailAddress);
-		mailMapper.insertMailAddress(mail);
+		Mail reMail = mailMapper.insertMailAddress(mail);
+		return reMail;
 	}
 }
