@@ -3,10 +3,10 @@ package com.example.mapper;
 import java.sql.Timestamp;
 import java.util.List;
 
-import com.example.domain.DailyPost;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import com.example.domain.DailyPost;
 
 /**
  * daily_postsテーブルを操作するマッパー
@@ -49,7 +49,6 @@ public interface DailyPostMapper {
      * @param tsDate　現在日時
      * @return
      */
-    Timestamp tsDate  = new Timestamp(System.currentTimeMillis());
-    public Integer findByUserIdAndDate(@Param("userId") Integer userId,@Param ("tsDate") Timestamp tsDate);
+    public DailyPost findByUserIdAndDate(@Param("userId") Integer userId,@Param ("tsDate") String date);
 
 }

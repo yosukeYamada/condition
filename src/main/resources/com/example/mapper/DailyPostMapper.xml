@@ -226,7 +226,6 @@
 	</insert>
 	<select id="findByUserIdAndDate"
 		resultMap="dailyPostWithAllChildren">
-		SELECT dp.daily_post_id FROM daily_posts AS dp WHERE dp.user_id = #{userId}
-		And to_char(dp.date,'YYYY/MM/DD') =#{tsDate};
+		SELECT * FROM daily_posts AS dp WHERE dp.user_id = #{userId} And to_char(dp.date,'YYYY/MM/DD') =#{tsDate};
 	</select>
 </mapper>

@@ -1,15 +1,15 @@
 package com.example.controller;
 
-
 import java.sql.Timestamp;
-
+import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.domain.DailyPost;
+import com.example.form.RegisterOnlyOnceForm;
 import com.example.service.RegisterOnlyOnceService;
 
 /**
@@ -19,18 +19,17 @@ import com.example.service.RegisterOnlyOnceService;
  *
  */
 @RestController
+@RequestMapping("")
 public class RegisterOnlyOnceController {
 
 	@Autowired
 	private RegisterOnlyOnceService registerOnlyOnceService;
 
-	
-	@CrossOrigin(origins = "http://localhost:8888")
 	@RequestMapping("/registerLimit")
-	public Integer registerLimit(@RequestBody Integer userId) {
-		Timestamp tsDate  = new Timestamp(System.currentTimeMillis());
-		System.out.println(userId);
-		return registerOnlyOnceService.registerLimit(userId, tsDate);
+	public DailyPost registerLimit(@RequestBody RegisterOnlyOnceForm form) {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        String date = sdf.format(timestamp);
+		return registerOnlyOnceService.registerLimit(form.getUserId(), date);
 	}
-
 }

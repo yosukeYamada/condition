@@ -1,11 +1,10 @@
 package com.example.service;
 
-import java.sql.Timestamp;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.domain.DailyPost;
 import com.example.mapper.DailyPostMapper;
 
 /**
@@ -29,9 +28,15 @@ public class RegisterOnlyOnceService {
 	 * @param tsDate 現在の日付
 	 * @return 投稿ID
 	 */
-	public Integer registerLimit(Integer userId, Timestamp tsDate) {
-		return dailyPostMapper.findByUserIdAndDate(userId, tsDate);
-
+	public DailyPost registerLimit(Integer userId, String date) {
+		DailyPost dailyPost = dailyPostMapper.findByUserIdAndDate(userId, date);
+		
+		System.out.println("オブジェクト情報 : " + dailyPost);
+		
+		if(dailyPost != null) {
+			return dailyPost;
+		} else {
+			return dailyPost;
+		}
 	}
-
 }
