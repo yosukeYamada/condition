@@ -7,4 +7,5 @@ public class Motivation {
 
 	private Integer motivationId;
 	private String motivationName;
+	
 }

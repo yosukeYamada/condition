@@ -7,4 +7,5 @@ public class Condition {
 
 	private Integer conditionId;
 	private String conditionName;
+	
 }
