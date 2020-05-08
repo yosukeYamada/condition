@@ -9,6 +9,12 @@ spring:
     url: jdbc:postgresql://localhost:5432/conditions
     username: postgres
     password: postgres
+  # DBの設定(デプロイ環境)
+#  datasource:
+#    driverClassName: org.postgresql.Driver
+#    url: jdbc:postgresql://fwkeyoimbfhnmi:802f27f88d33eb7e6db7802702696c1617983e629b27739878f7191c145dcdb6@ec2-34-197-212-240.compute-1.amazonaws.com:5432/d75mhop209mu35
+#    username: fwkeyoimbfhnmi
+#    password: 802f27f88d33eb7e6db7802702696c1617983e629b27739878f7191c145dcdb6
 
 # ローカル環境での起動ポート番号の設定
 server:
@@ -17,4 +23,4 @@ server:
 # 環境変数(デプロイ時に変更)
 environments:
   originUrl: http://localhost:8888
-# originUrl: https://xxxxxxx.firebaseapp.com
+#  originUrl: https://condition-meter.firebaseapp.com.firebaseapp.com
