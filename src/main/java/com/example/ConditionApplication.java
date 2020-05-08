@@ -10,4 +10,9 @@ public class ConditionApplication {
 		SpringApplication.run(ConditionApplication.class, args);
 	}
 
+//	@Bean
+//	PasswordEncoder passwordEncoder() {
+//		return new BCryptPasswordEncoder();
+//	}
+
 }
