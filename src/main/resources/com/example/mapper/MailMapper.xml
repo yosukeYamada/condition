@@ -14,6 +14,6 @@
 	</resultMap>
 	
 	<select id="insertMailAddress" parameterType="com.example.domain.Mail" resultMap="MailResultMap">
-		insert into mails(mail_name,user_id,register_user_id,register_date,version,status) VALUES(#{mailName},#{userId},#{registerUserId},#{registerDate},#{version},#{status}) returning maik_id,mail_name,user_id,register_user_id,register_date,version,status
+		insert into mails(mail_name,user_id,register_user_id,register_date,version,status) VALUES(#{mailName},#{userId},#{registerUserId},#{registerDate},#{version},#{status}) returning mail_id,mail_name,user_id,register_user_id,register_date,version,status
 	</select>
 </mapper>
