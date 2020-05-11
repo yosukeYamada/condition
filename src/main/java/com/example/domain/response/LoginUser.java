@@ -1,12 +1,16 @@
-package com.example.domain;
+package com.example.domain.response;
 
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.example.domain.DailyPost;
+import com.example.domain.Dep;
+import com.example.domain.Mail;
+
 import lombok.Data;
 
 @Data
-public class User {
+public class LoginUser {
 
 	private Integer userId;
 	private String userName;
@@ -23,5 +27,5 @@ public class User {
 	private Dep dep;
 	private List<DailyPost> dailyPost;
 	private List<Mail> mailList;
-	
+	private List<Dep> depList;
 }

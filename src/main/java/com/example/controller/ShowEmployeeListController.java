@@ -34,5 +34,4 @@ public class ShowEmployeeListController {
 	public List<User> showEmployeeList() {
 		return showEmployeeListService.showEmployee();
 	}
-
 }
