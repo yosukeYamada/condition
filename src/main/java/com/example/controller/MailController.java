@@ -37,9 +37,12 @@ public class MailController {
 	public Mail findByMailAndAuthority(@RequestBody MailForm mailForm) {
 		
 		String check = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@rakus-partners.co.jp";
+		String check2 = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@rakus.co.jp";
 		Pattern pattern = Pattern.compile(check);
+		Pattern pattern2 = Pattern.compile(check2);
 		Matcher matcher = pattern.matcher(mailForm.getMail());
-		if(matcher.matches()) {
+		Matcher matcher2 = pattern2.matcher(mailForm.getMail());
+		if(matcher.matches() || matcher2.matches()) {
 			return mailService.findByMailAndAuthoriry(mailForm.getMail());
 		} else {
 			Mail mail = new Mail();
