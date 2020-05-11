@@ -19,6 +19,7 @@ public class DailyPostsHistoryController {
 	@CrossOrigin(origins="http://localhost:8888")
 	@PostMapping("/motivations")
 	public List<DailyPost> showDaylyPostsHistory(@RequestBody showDailyPostListForm form){
+		System.out.println(form.getUserId());
 		List<DailyPost> dailyPostList = new ArrayList<>();
 		return dailyPostList;
 	}
