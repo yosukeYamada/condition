@@ -24,7 +24,7 @@ public class ChangeAuthorityController {
 
     /**
      * ユーザー権限の変更を行うメソッド
-     * TODO 管理者権限の付与・削除それぞれ動作未確認
+     * 
      * @param param メールアドレス、変更するユーザー権限、更新ユーザーのID
      * @return 変更したユーザーのメールアドレスと名前
      */
@@ -36,7 +36,6 @@ public class ChangeAuthorityController {
         Map<String, String> resultMap = new HashMap<>();
         resultMap.put("email", param.get("email"));
         resultMap.put("name", name);
-        System.out.println("返却するmap:" + resultMap);
         return resultMap;
     }
 
