@@ -38,7 +38,7 @@ public class UserController {
 	/**
 	 * メールアドレスからメール情報を取得.
 	 * 
-	 * @param mail メール
+	 * @param mail メールアドレス
 	 * @return サービスへ遷移
 	 */
 	@PostMapping("/findByMailAndAuthority")
