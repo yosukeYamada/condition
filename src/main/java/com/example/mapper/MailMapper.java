@@ -24,9 +24,12 @@ public interface MailMapper {
 	/**
 	 * メールアドレスで検索したユーザーのユーザー権限を変更するメソッド.
 	 * 
-	 * @param email       メールアドレス
-	 * @param authorityId 変更する権限
+	 * @param email        メールアドレス
+	 * @param authority    変更する権限
+	 * @param updateUserId 更新するユーザーのID
+	 * @param updateDate   更新日
+	 * @return 更新されたユーザーの名前
 	 */
-	public String updateAuthorityByEmail(String email, Integer authorityId, Integer updateUserId, Timestamp updateDate);
+	public String updateAuthorityByEmail(String email, Integer authority, Integer updateUserId, Timestamp updateDate);
 
 }
