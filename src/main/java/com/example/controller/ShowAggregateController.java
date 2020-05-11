@@ -35,7 +35,9 @@ public class ShowAggregateController {
      */
     @ResponseBody
     @RequestMapping("/getAggregateByDay")
-    public Map<String, DailyScore> getAggregateByDay(@RequestBody @RequestParam("date") String date) {
+    public Map<String, DailyScore> getAggregateByDay(@RequestBody Map<String,String> param) {
+        String date = param.get("date").replace("-", "/");
+        System.out.println(date);
         return aggregateByDayService.aggregateByDay(date);
     }
 
