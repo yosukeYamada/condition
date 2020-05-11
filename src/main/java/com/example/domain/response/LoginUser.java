@@ -27,5 +27,6 @@ public class LoginUser {
 	private Dep dep;
 	private List<DailyPost> dailyPost;
 	private List<Mail> mailList;
+	private List<Dep> depList;
 	
 }

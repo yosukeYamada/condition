@@ -33,5 +33,4 @@ public class RegisterDailyPostController {
 	public void registerDailyPost(@RequestBody RegisterDailyPostForm form) {
 		registerDailyPostServise.registerDailyPost(form);
 	}
-
 }

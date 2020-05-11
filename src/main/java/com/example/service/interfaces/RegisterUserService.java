@@ -31,6 +31,4 @@ public interface RegisterUserService {
 	 */
 	public List<User> findAll();
 	
-
-
 }

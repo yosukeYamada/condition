@@ -30,9 +30,6 @@ public class RegisterOnlyOnceService {
 	 */
 	public DailyPost registerLimit(Integer userId, String date) {
 		DailyPost dailyPost = dailyPostMapper.findByUserIdAndDate(userId, date);
-		
-		System.out.println("オブジェクト情報 : " + dailyPost);
-		
 		if(dailyPost != null) {
 			return dailyPost;
 		} else {

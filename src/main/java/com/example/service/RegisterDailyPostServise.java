@@ -42,7 +42,6 @@ public class RegisterDailyPostServise {
 	 */
 	public void registerDailyPost(RegisterDailyPostForm form) {
 		Timestamp tsDate = new Timestamp(System.currentTimeMillis()); // 現在時刻を生成
-		;
 		Integer userId = form.getUserId();
 		DailyPost dailyPost = new DailyPost();
 		dailyPost.setUserId(userId);
@@ -100,5 +99,4 @@ public class RegisterDailyPostServise {
 		postedComment.setStatus(1);
 		postedCommentMapper.save(postedComment); // posted_commentsテーブルに挿入
 	}
-
 }

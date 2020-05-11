@@ -22,5 +22,6 @@ public class User {
 	private Integer status;
 	private Dep dep;
 	private List<DailyPost> dailyPost;
+	private List<Mail> mailList;
 	
 }
