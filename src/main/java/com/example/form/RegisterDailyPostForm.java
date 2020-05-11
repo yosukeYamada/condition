@@ -3,26 +3,22 @@ package com.example.form;
 import lombok.Data;
 
 /**
- * 投稿内容を受け取るフォームクラス
+ * 毎日のコンディション投稿内容を受け取るフォームクラス
+ * 
  * @author suzukiryouhei
  *
  */
 @Data
 public class RegisterDailyPostForm {
 	/** 投稿者のuserId */
-	private String userId;
-	/** 登録時間 */  
-	private String date;
-	/** 体調 */  
-	private String conditionName;
-	/** 成果進捗 */  
-	private String performanceName;
-	/** やる気 */  
-	private String motivationName;
-	/** その他コメント */  
+	private Integer userId;
+	/** やる気 */
+	private Integer motivationId;
+	/** 体調 */
+	private Integer conditionId;
+	/** 成果進捗 */
+	private Integer performanceId;
+	/** その他コメント */
 	private String comment;
-	
-	public Integer getIntUserId() {
-		return Integer.parseInt(userId);
-	}
+
 }

@@ -4,6 +4,11 @@ import java.sql.Timestamp;
 
 import lombok.Data;
 
+/**
+ * 毎日のコンディション情報のドメインクラス
+ * 
+ * @author yuichiyasui
+ */
 @Data
 public class DailyPost {
 

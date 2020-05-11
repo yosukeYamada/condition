@@ -12,6 +12,6 @@ public interface MailMapper {
 	 * 
 	 * @param mail メール情報
 	 */
-	public void insertMailAddress(Mail mail);
+	public Mail insertMailAddress(Mail mail);
 	
 }

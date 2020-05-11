@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.Mail;
 import com.example.domain.User;
-import com.example.mapper.MailAndUserMapper;
 import com.example.mapper.MailMapper;
+import com.example.mapper.ResponseUserMapper;
 
 /**
  * メールを管理するサービス.
@@ -24,7 +24,7 @@ public class MailService {
 	private MailMapper mailMapper;
 	
 	@Autowired
-	private MailAndUserMapper mailAndUserMapper;
+	private ResponseUserMapper responseUserMapper;
 	
 	/**
 	 * メールアドレスからメール情報を取得する.
@@ -33,36 +33,32 @@ public class MailService {
 	 * @return メール情報
 	 */
 	public Mail findByMailAndAuthoriry(String mail) {
-		Mail mailName = mailAndUserMapper.findByMailAndAuthority(mail);
 		
-		if(mailName == null) {
-			Mail mailObj = new Mail();
+		Mail mailObj = responseUserMapper.findUserInfo(mail);
+		
+		if(mailObj == null) {
+			Mail mailObject = new Mail();
+			mailObject.setMailName(mail);
 			
 			User user = new User();
 			user.setAuthority(0);
 			
-			mailObj.setUser(user);
+			mailObject.setUser(user);
 			
-			//nullならauthority番号を0にして返す
-			return mailObj;
+			//nullならauthority番号が0のものと、mailAddressをつめたユーザー情報を返す
+			return mailObject;
 		} else {
-			Mail mailObj = new Mail();
-			mailObj.setMailId(mailName.getMailId());
 			
-			User user = new User();
-			user.setUserId(mailName.getUser().getUserId());
-			user.setAuthority(mailName.getUser().getAuthority());
-			
-			mailObj.setUser(user);
-			
+			//nullじゃなければすべて詰まった情報を返す
 			return mailObj;
 		}
 	}
 	
-	public void registerMail(User user,String mailAddress) {
+	public Mail registerMail(User user,String mailAddress) {
 		Mail mail = new Mail();
 		BeanUtils.copyProperties(user, mail);
 		mail.setMailName(mailAddress);
-		mailMapper.insertMailAddress(mail);
+		Mail reMail = mailMapper.insertMailAddress(mail);
+		return reMail;
 	}
 }

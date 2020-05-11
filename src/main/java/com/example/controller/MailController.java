@@ -1,15 +1,18 @@
 package com.example.controller;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.example.domain.Mail;
+import com.example.domain.User;
+import com.example.form.MailForm;
+import com.example.service.MailService;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.domain.Mail;
-import com.example.form.MailForm;
-import com.example.service.MailService;
 
 /**
  * メールを管理するコントローラー.
@@ -30,9 +33,24 @@ public class MailController {
 	 * @param mail メール
 	 * @return サービスへ遷移
 	 */
-	@CrossOrigin(origins="http://localhost:8888")
 	@PostMapping("/findByMailAndAuthority")
 	public Mail findByMailAndAuthority(@RequestBody MailForm mailForm) {
-		return mailService.findByMailAndAuthoriry(mailForm.getMail());
+		
+		String check = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@rakus-partners.co.jp";
+		String check2 = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@rakus.co.jp";
+		Pattern pattern = Pattern.compile(check);
+		Pattern pattern2 = Pattern.compile(check2);
+		Matcher matcher = pattern.matcher(mailForm.getMail());
+		Matcher matcher2 = pattern2.matcher(mailForm.getMail());
+		if(matcher.matches() || matcher2.matches()) {
+			return mailService.findByMailAndAuthoriry(mailForm.getMail());
+		} else {
+			Mail mail = new Mail();
+			User user = new User();
+			user.setAuthority(3);
+			mail.setUser(user);
+			
+			return mail;
+		}
 	}
 }
