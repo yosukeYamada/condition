@@ -13,8 +13,9 @@
 		<result property="status" column="status" />
 	</resultMap>
 
-	<select id="" resultMap="DepResultMap">
-
+	<select id="findAll" resultMap="DepResultMap">
+		SELECT dep_id, dep_name, register_user_id, register_date, update_user_id, update_date, version, status
+		FROM deps
 	</select>
 
 </mapper>

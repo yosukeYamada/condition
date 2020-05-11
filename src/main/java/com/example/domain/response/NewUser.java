@@ -1,6 +1,8 @@
-package com.example.domain;
+package com.example.domain.response;
 
 import java.util.List;
+
+import com.example.domain.Dep;
 
 import lombok.Data;
 

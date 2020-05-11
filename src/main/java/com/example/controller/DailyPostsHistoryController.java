@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.DailyPost;
-import com.example.form.showDailyPostListForm;
+import com.example.form.ShowDailyPostListForm;
 import com.example.service.DailyPostServiceImpl;
 
 @RestController
@@ -26,7 +26,7 @@ public class DailyPostsHistoryController {
 	 * @return 投稿履歴リスト
 	 */
 	@RequestMapping("/motivations")
-	public List<DailyPost> showDaylyPostsHistory(@RequestBody showDailyPostListForm form){
+	public List<DailyPost> showDaylyPostsHistory(@RequestBody ShowDailyPostListForm form){
 		List<DailyPost> dailyPostList = dailyPostService.getDailyPostList(form);
 		return dailyPostList;
 	}
