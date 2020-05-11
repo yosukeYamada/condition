@@ -1,6 +1,7 @@
 package com.example.service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import com.example.domain.DailyPost;
 import com.example.domain.PostedComment;
@@ -40,7 +41,7 @@ public class RegisterDailyPostServise {
 	 * 
 	 * @param form 投稿内容
 	 */
-	public void registerDailyPost(RegisterDailyPostForm form) {
+	public List<DailyPost> registerDailyPost(RegisterDailyPostForm form) {
 		Timestamp tsDate = new Timestamp(System.currentTimeMillis()); // 現在時刻を生成
 		Integer userId = form.getUserId();
 		DailyPost dailyPost = new DailyPost();
@@ -98,5 +99,9 @@ public class RegisterDailyPostServise {
 		postedComment.setVersion(1);
 		postedComment.setStatus(1);
 		postedCommentMapper.save(postedComment); // posted_commentsテーブルに挿入
+
+		List<DailyPost> DailyPostList = dailyPostMapper.findByUserId(userId);
+		return DailyPostList;
+
 	}
 }

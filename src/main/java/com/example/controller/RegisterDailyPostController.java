@@ -1,7 +1,10 @@
 package com.example.controller;
 
+import com.example.domain.DailyPost;
 import com.example.form.RegisterDailyPostForm;
 import com.example.service.RegisterDailyPostServise;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,7 +33,7 @@ public class RegisterDailyPostController {
 	 * @param form 投稿内容
 	 */
 	@RequestMapping("/registerDailyPost")
-	public void registerDailyPost(@RequestBody RegisterDailyPostForm form) {
-		registerDailyPostServise.registerDailyPost(form);
+	public List<DailyPost> registerDailyPost(@RequestBody RegisterDailyPostForm form) {
+		return registerDailyPostServise.registerDailyPost(form);
 	}
 }
