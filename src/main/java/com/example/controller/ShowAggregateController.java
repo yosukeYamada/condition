@@ -51,5 +51,4 @@ public class ShowAggregateController {
     public Map<String, Map<String, DailyScore>> getAggregateByMonth(@RequestBody @RequestParam("date") String date) {
         return aggregateByMonthService.aggregateByMonth(date);
     }
-
 }

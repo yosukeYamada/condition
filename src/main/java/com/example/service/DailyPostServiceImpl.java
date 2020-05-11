@@ -20,6 +20,5 @@ public class DailyPostServiceImpl implements DailyPostService {
 		Integer userId = Integer.parseInt(form.getUserId());
 		List<DailyPost> dailyPostList = dailyPostMapper.findByUserId(userId);
 		return dailyPostList;
-	}
-	
+	}	
 }

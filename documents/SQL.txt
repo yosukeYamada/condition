@@ -39,9 +39,11 @@ INSERT INTO status_memos(status_name,register_user_id,register_date,update_user_
 INSERT INTO status_memos(status_name,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('公開',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO status_memos(status_name,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('停止',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO status_memos(status_id,status_name,register_user_id,register_date,update_user_id,update_date,version,status)VALUES(9,'削除',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+
 INSERT INTO deps(dep_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('管理部',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO deps(dep_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('営業部',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO deps(dep_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('開発部',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
+
 INSERT INTO daily_posts(user_id,date,register_user_id,register_date,update_user_id,update_date,version,status) VALUES(1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO daily_posts(user_id,date,register_user_id,register_date,update_user_id,update_date,version,status) VALUES(1,'2020-04-28 09:00:00',1,'2020-04-28 09:00:00',1,'2020-04-28 09:00:00',1,1);
 INSERT INTO daily_posts(user_id,date,register_user_id,register_date,update_user_id,update_date,version,status) VALUES(1,'2020-04-29 09:00:00',1,'2020-04-29 09:00:00',1,'2020-04-29 09:00:00',1,1);
