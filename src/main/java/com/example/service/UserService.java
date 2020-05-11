@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.domain.Dep;
 import com.example.domain.Mail;
 import com.example.domain.response.LoginUser;
 import com.example.mapper.DepMapper;
@@ -45,7 +46,9 @@ public class UserService {
 			newUser.setDepList(depMapper.findAll());
 			return newUser;
 		} else {
-			//nullじゃなければすべて詰まった情報を返す
+			//nullじゃなければすべて詰まった情報を返す		
+			List<Dep> depList = depMapper.findAll();
+			loginUser.setDepList(depList);
 			return loginUser;
 		}
 	}

@@ -43,7 +43,6 @@ public class UserController {
 	 */
 	@PostMapping("/findByMailAndAuthority")
 	public LoginUser findByMailAndAuthority(@RequestBody MailForm mailForm) {
-		
 		String check = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@rakus-partners.co.jp";
 		String check2 = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@rakus.co.jp";
 		Pattern pattern = Pattern.compile(check);
