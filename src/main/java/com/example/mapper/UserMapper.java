@@ -52,5 +52,13 @@ public interface UserMapper {
 	 * @return ユーザー情報
 	 */
 	public LoginUser findByMailAndAuthority(String mail);
+	
+	/**
+	 * メールアドレスからユーザー情報を取得する.
+	 * 
+	 * @param email メール
+	 * @return ユーザー情報
+	 */
+	public User findUserByMail(String email);
 
 }
