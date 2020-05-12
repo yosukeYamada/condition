@@ -29,28 +29,26 @@ public class ShowAggregateController {
     /**
      * 日別グラフの集計結果を返すメソッド.
      * 
-     * @apiNote 呼び出し方：http://localhost:8080/getAggregateByDay?date=2020/04/27
      * @param date 日付('yyyy/MM/dd')
      * @return 引数で受け取った日の集計結果
      */
     @ResponseBody
     @RequestMapping("/getAggregateByDay")
-    public Map<String, DailyScore> getAggregateByDay(@RequestBody Map<String,String> param) {
+    public Map<String, DailyScore> getAggregateByDay(@RequestBody Map<String, String> param) {
         String date = param.get("date").replace("-", "/");
-        System.out.println(date);
         return aggregateByDayService.aggregateByDay(date);
     }
 
     /**
      * 月別グラフの集計結果を返すメソッド
      * 
-     * @apiNode 呼び出し方：http://localhost:8080/getAggregateByMonth?date=2020/04/27
      * @param date 日付('yyyy/MM/dd')
      * @return 引数で受け取った日付の月の集計結果
      */
     @ResponseBody
     @RequestMapping("/getAggregateByMonth")
-    public Map<String, Map<String, DailyScore>> getAggregateByMonth(@RequestBody @RequestParam("date") String date) {
+    public Map<String, Map<String, DailyScore>> getAggregateByMonth(@RequestBody Map<String, String> param) {
+        String date = param.get("date").replace("-", "/");
         return aggregateByMonthService.aggregateByMonth(date);
     }
 }
