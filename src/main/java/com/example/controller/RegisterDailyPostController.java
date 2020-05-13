@@ -35,7 +35,6 @@ public class RegisterDailyPostController {
 	@RequestMapping("/registerDailyPost")
 	public List<DailyPost> registerDailyPost(@RequestBody RegisterDailyPostForm form) {
 		List<DailyPost> DailyPostList= registerDailyPostServise.registerDailyPost(form);
-		System.err.println(DailyPostList);
 		return  DailyPostList;
 	}
 }
