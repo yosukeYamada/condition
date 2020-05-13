@@ -1,10 +1,13 @@
 package com.example.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.domain.PostedNews;
 import com.example.form.PostedNewsForm;
 import com.example.service.PostedNewsService;
 
@@ -18,9 +21,20 @@ public class NewsController {
 	@Autowired
 	private PostedNewsService postedNewsService;
 	
-	@RequestMapping("/News")
-	public void postedNews(@RequestBody PostedNewsForm form) {
-		postedNewsService.PostedNews(form);
+	public PostedNewsForm setUpForm() {
+		return new PostedNewsForm();
+	}
+	
+	/**
+	 * お知らせ投稿を行うメソッド.
+	 * 
+	 * @param form
+	 * @return
+	 */
+	@RequestMapping("/news")
+	public List<PostedNews> postedNews(@RequestBody PostedNewsForm form) {
+		List<PostedNews> PostedNewsList = postedNewsService.PostedNews(form);
+		return PostedNewsList;
 	}
 	
 }
