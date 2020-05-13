@@ -42,11 +42,27 @@ public class ChangeAuthorityController {
     		return resultMap;
     		
     	} else {
-    		String name = changeAuthorityService.changeAuthority(param.get("email"),
-    				Integer.parseInt(param.get("authority")), Integer.parseInt(param.get("updateUserId")));
-    		resultMap.put("email", param.get("email"));
-    		resultMap.put("name", name);
-    		return resultMap;
+    		
+    		//DBにあるuserのversion番号を取得.
+    		Integer version = user.getVersion();
+    		
+    		System.err.println("DBのversion番号 : " + version);
+    		System.err.println("送られてきたversion番号 : " + Integer.parseInt(param.get("version")));
+    		
+    		
+    		//DBにあるuserのversion番号とフロントから送られてきたversion番号を確認.
+    		if(version != Integer.parseInt(param.get("version"))) {
+    			resultMap.put("version", "null");
+    			return resultMap;
+    			
+    		} else {
+    			
+	    		String name = changeAuthorityService.changeAuthority(param.get("email"),
+	    				Integer.parseInt(param.get("authority")), Integer.parseInt(param.get("updateUserId")));
+	    		resultMap.put("email", param.get("email"));
+	    		resultMap.put("name", name);
+	    		return resultMap;
+    		}
     	}
     }
 }
