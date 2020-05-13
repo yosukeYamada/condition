@@ -58,20 +58,42 @@ public class UserController {
 		}
 	}
 	
+
 	/**
-	 * ユーザ登録、メール登録を行うメソッド.
+	 * ユーザ登録とメール登録を行うメソッド.
 	 * 
-	 * @param form ユーザ情報
-	 * @return 新規登録したユーザ
+	 * @param form ユーザ登録フォーム
+	 * @return ユーザ情報
 	 */
 	@PostMapping("/registerUser")
 	public User reisterUser(@RequestBody(required = false) @Valid RegisterUserForm form) {
-		User user = registerUserService.registerUser(form);
+		RegisterUserForm registerUserform = reMakeUserName(form); 
+		User user = registerUserService.registerUser(registerUserform);
 		String mailAddress = form.getMailAddress();
 		Mail mail =  mailService.registerMail(user,mailAddress);
 		List<Mail> mailList = new ArrayList<>();
 		mailList.add(mail);
 		user.setMailList(mailList);
 		return user;
+	}
+	
+	/**
+	 * ユーザフォームの名前とふりがなからスペースを取り除くメソッド.
+	 * 
+	 * @param form ユーザフォーム
+	 * @return 編集したユーザフォーム
+	 */
+	public RegisterUserForm reMakeUserName(RegisterUserForm form) {
+		String userName = form.getUserName();
+		String userNameKana = form.getUserNameKana();
+		if(userName.contains(" ")) {
+			userName.replace(" ", "");
+			form.setUserName(userName);
+		}
+		if(userNameKana.contains(" ")) {
+			userNameKana.replace(" ","");
+			form.setUserNameKana(userNameKana);
+		}
+		return form;
 	}
 }

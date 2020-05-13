@@ -28,6 +28,62 @@
 		VALUES(#{userName},#{userNameKana},#{depId},#{hireDate},#{registerDate},#{authority},#{version},#{status})
 		returning user_id
 	</select>
+	
+	
+	<!-- Userオブジェクト + MailList -->
+	<resultMap type="com.example.domain.User" id="UserResult">
+		<id property="userId" column="u_user_id" />
+		<result property="userName" column="u_user_name" />
+		<result property="userNameKana" column="u_user_name_kana" />
+		<result property="depId" column="u_dep_id" />
+		<result property="hireDate" column="u_hire_date" />
+		<result property="authority" column="u_authority" />
+		<result property="registerUserId" column="u_register_user_id" />
+		<result property="registerDate" column="u_register_date" />
+		<result property="updateUserId" column="u_update_user_id" />
+		<result property="updateDate" column="u_update_date" />
+		<result property="version" column="u_version" />
+		<result property="status" column="u_status" />
+		
+		<collection property="mailList" ofType="com.example.domain.Mail">
+			<id property="mailId" column="m_mail_id" />
+			<result property="mailName" column="m_mail_name"/>
+			<result property="userId" column="m_user_id"/>
+			<result property="registerUserId" column="m_register_user_id"/>
+			<result property="registerDate" column="m_register_date"/>
+			<result property="updateUserId" column="m_update_user_id"/>
+			<result property="updateDate" column="m_updateDate"/>
+			<result property="version" column="m_version"/>
+			<result property="status" column="m_status"/>
+		</collection>
+	</resultMap>
+	<select id="findUserByMail" resultMap="UserResult">
+		SELECT
+		u.user_id u_user_id,
+		u.user_name u_user_name,
+		u.user_name_kana u_user_name_kana,
+		u.dep_id u_dep_id,
+		u.hire_date u_hire_date,
+		u.authority u_authority,
+		u.register_user_id u_register_user_id,
+		u.register_date u_register_date,
+		u.update_user_id u_update_user_id,
+		u.update_date u_update_date,
+		u.version u_version,
+		u.status u_status,
+		m.mail_id m_mail_id,
+		m.mail_name m_mail_name,
+		m.user_id m_user_id,
+		m.register_user_id m_register_user_id,
+		m.register_date m_register_date,
+		m.update_user_id m_update_user_id,
+		m.update_date m_update_date,
+		m.version m_version,
+		m.status m_status
+		FROM users as u
+		LEFT OUTER JOIN mails as m on u.user_id = m.user_id
+		WHERE m.mail_name =#{mail}
+	</select>
 
 
 	<!-- Mailオブジェクトを除いたUserオブジェクト＋α -->	

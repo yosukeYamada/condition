@@ -2,11 +2,13 @@ package com.example.service;
 
 import java.sql.Timestamp;
 
-import com.example.mapper.MailMapper;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.example.domain.User;
+import com.example.mapper.MailMapper;
+import com.example.mapper.UserMapper;
 
 /**
  * ユーザー権限の変更を行うサービスクラス
@@ -19,6 +21,23 @@ public class ChangeAuthorityService {
 
     @Autowired
     private MailMapper mailMapper;
+    
+    @Autowired
+    private UserMapper userMapper;
+    
+    public User findUserByMail(String email) {
+    	
+    	User user = userMapper.findUserByMail(email);
+    	 
+    	if(user == null) {
+    		User noUser = new User();
+    		noUser.setAuthority(3);
+    		return noUser;
+    		
+    	} else {
+    		return user;
+    	}
+    }
 
     /**
      * ユーザー権限の変更を行うメソッド
@@ -33,5 +52,4 @@ public class ChangeAuthorityService {
         String name = mailMapper.updateAuthorityByEmail(email, authority, updateUserId, updateDate);
         return name;
     }
-
 }
