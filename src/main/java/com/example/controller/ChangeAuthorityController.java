@@ -38,6 +38,7 @@ public class ChangeAuthorityController {
     	User user = changeAuthorityService.findUserByMail(param.get("email"));
     	
     	if(user.getAuthority() == 3) {
+    		
     		resultMap.put("email", "null");
     		return resultMap;
     		
