@@ -13,10 +13,30 @@
 		<result property="status" column="status" />
 	</resultMap>
 
-	<select id="insertMailAddress" parameterType="com.example.domain.Mail" resultMap="MailResultMap">
-		insert into mails(mail_name,user_id,register_user_id,register_date,version,status) VALUES(#{mailName},#{userId},#{registerUserId},#{registerDate},#{version},#{status}) returning mail_id,mail_name,user_id,register_user_id,register_date,version,status
+	<select id="insertMailAddress"
+		parameterType="com.example.domain.Mail" resultMap="MailResultMap">
+		insert into
+		mails(mail_name,user_id,register_user_id,register_date,version,status)
+		VALUES(#{mailName},#{userId},#{registerUserId},#{registerDate},#{version},#{status})
+		returning
+		mail_id,mail_name,user_id,register_user_id,register_date,version,status
 	</select>
 	<select id="updateAuthorityByEmail" resultType="string">
-		UPDATE users SET authority = #{authority}, update_user_id = #{updateUserId}, update_date = #{updateDate}, version = version+1 WHERE user_id = (SELECT user_id FROM mails WHERE mail_name = #{email} ) RETURNING user_name;
+		UPDATE users SET
+		authority = #{authority}, update_user_id = #{updateUserId},
+		update_date = #{updateDate}, version = version+1 WHERE user_id =
+		(SELECT user_id FROM mails WHERE mail_name = #{email} ) RETURNING
+		user_name;
 	</select>
+
+	<update id="updateMail">
+		UPDATE
+		mails
+		SET
+		mail_name = #{mailName},
+		update_user_id = #{updateUserId},
+		updateDate = #{updateDate},
+		WHERE
+		user_id= #{userId};
+	</update>
 </mapper>
