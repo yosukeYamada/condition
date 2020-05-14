@@ -15,11 +15,17 @@ import com.example.domain.Dep;
 @Mapper
 public interface DepMapper {
 
-	
 	/**
 	 * 全検索するマッパー.
 	 * 
 	 * @return 部署リストの全件取得
 	 */
 	public List<Dep> findAll();
+
+	public Integer save();
+
+	public Integer updateDepName();
+
+	public Integer deleteByDepId();
+
 }
