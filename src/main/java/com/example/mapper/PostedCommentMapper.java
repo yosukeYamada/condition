@@ -2,6 +2,8 @@ package com.example.mapper;
 
 import com.example.domain.PostedComment;
 
+import java.sql.Timestamp;
+
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -18,5 +20,7 @@ public interface PostedCommentMapper {
      * @param postedComment 投稿されたコメント
      */
     public void save(PostedComment postedComment);
+    
+    public void update(Integer dailyPostId,Integer updateUserId,String comment,Timestamp updateDate);
 
 }
