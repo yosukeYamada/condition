@@ -36,19 +36,26 @@ public class UserService {
 		
 		//nullならauthority番号が0のものと、mailAddress、depListをつめたユーザー情報を返す
 		if(loginUser == null) {
-			LoginUser newUser = new LoginUser();
+			
 			List<Mail> mailList = new ArrayList<>();
 			Mail newMail = new Mail();
 			newMail.setMailName(mail);
 			mailList.add(newMail);
+			
+			LoginUser newUser = new LoginUser();
 			newUser.setMailList(mailList);
 			newUser.setAuthority(0);
 			newUser.setDepList(depMapper.findAll());
+			
 			return newUser;
+			
+			
+		//nullじゃなければすべて詰まった情報を返す		
 		} else {
-			//nullじゃなければすべて詰まった情報を返す		
+			
 			List<Dep> depList = depMapper.findAll();
 			loginUser.setDepList(depList);
+			
 			return loginUser;
 		}
 	}
