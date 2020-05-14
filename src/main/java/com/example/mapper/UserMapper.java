@@ -45,14 +45,14 @@ public interface UserMapper {
 	 * @return 全ユーザー情報とその投稿の一覧
 	 */
 	public List<User> findAllAndDailyPost();
-	
+
 	/**
 	 * メールからユーザー情報を検索する.
 	 * 
 	 * @return ユーザー情報
 	 */
 	public LoginUser findByMailAndAuthority(String mail);
-	
+
 	/**
 	 * メールアドレスからユーザー情報を取得する.
 	 * 
@@ -60,12 +60,20 @@ public interface UserMapper {
 	 * @return ユーザー情報
 	 */
 	public User findUserByMail(String email);
-	
+
 	/**
 	 * ユーザー登録を更新する
 	 * 
-	 * @param user　ユーザー情報
+	 * @param user ユーザー情報
 	 */
 	public void updateUser(User user);
+
+	/**
+	 * 部署IDで該当の部署に所属している人数を取得するメソッド
+	 * 
+	 * @param depId 部署ID
+	 * @return 所属人数
+	 */
+	public Integer countByDepId(Integer depId);
 
 }
