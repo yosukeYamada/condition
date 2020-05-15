@@ -16,5 +16,10 @@ public interface InformationMapper {
 	 */
 	public List<Information> findAll();
 	
+	/**
+	 * トップページのNews投稿.
+	 * 
+	 */
+	public void insert(Information information);
 	
 }
