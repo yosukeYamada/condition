@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.Dep;
 import com.example.domain.Mail;
+import com.example.domain.PostedNews;
 import com.example.domain.response.LoginUser;
 import com.example.mapper.DepMapper;
+import com.example.mapper.PostedNewsMapper;
 import com.example.mapper.UserMapper;
 
 @Service
@@ -22,6 +24,9 @@ public class UserService {
 	
 	@Autowired
 	private DepMapper depMapper;
+	
+	@Autowired
+	private PostedNewsMapper postedNewsMapper;
 	
 
 	/**
@@ -53,6 +58,8 @@ public class UserService {
 		//nullじゃなければすべて詰まった情報を返す		
 		} else {
 			
+			List<PostedNews> postedNewsList = postedNewsMapper.findAll();
+			loginUser.setPostedNewsList(postedNewsList);
 			List<Dep> depList = depMapper.findAll();
 			loginUser.setDepList(depList);
 			
