@@ -2,12 +2,12 @@ package com.example.service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.domain.PostedNews;
-import com.example.domain.User;
 import com.example.form.PostedNewsForm;
 import com.example.mapper.PostedNewsMapper;
 
@@ -45,10 +45,24 @@ public class PostedNewsService {
 	
 	
 	/**
+	 * お知らせ全件取得を行う
+	 * 
 	 * @return
 	 */
 	public List<PostedNews> showNewsPostList() {
 		List<PostedNews> PostedNewsList = postedNewsMapper.findAll();
 		return PostedNewsList;
 	}
+	
+	/**
+	 * お知らせの削除を行う
+	 * 
+	 * @param form お知らせID
+	 */
+	public void deleteNews(PostedNewsForm form) {
+		PostedNews postedNews = new PostedNews();
+		postedNews.setNewsId(form.getNewsId());
+		postedNewsMapper.deleteByNewsId(postedNews);
+	}
+	
 }

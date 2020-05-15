@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.Mail;
+import com.example.domain.PostedNews;
 import com.example.domain.User;
 import com.example.domain.response.LoginUser;
 import com.example.form.MailForm;
 import com.example.form.RegisterUserForm;
 import com.example.service.MailService;
+import com.example.service.PostedNewsService;
 import com.example.service.RegisterUserServiceImpl;
 import com.example.service.UserService;
 
@@ -34,6 +36,9 @@ public class UserController {
 	
 	@Autowired
 	private MailService mailService;
+
+	@Autowired
+	private PostedNewsService postedNewsService;
 	
 	/**
 	 * メールアドレスからメール情報を取得.
@@ -74,6 +79,11 @@ public class UserController {
 		List<Mail> mailList = new ArrayList<>();
 		mailList.add(mail);
 		user.setMailList(mailList);
+		
+		//	お知らせ一覧の取得、表示
+		List<PostedNews> postedNewsList = postedNewsService.showNewsPostList();
+		user.setPostedNewsList(postedNewsList);
+		
 		return user;
 	}
 	

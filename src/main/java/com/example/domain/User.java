@@ -23,5 +23,6 @@ public class User {
 	private Dep dep;
 	private List<DailyPost> dailyPost;
 	private List<Mail> mailList;
+	private List<PostedNews> postedNewsList;
 	
 }
