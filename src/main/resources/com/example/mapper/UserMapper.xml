@@ -817,6 +817,9 @@
 		ORDER BY u.hire_date, d.date
 		DESC;
 	</select>
+	<select id ="updateUserStatus">
+		Update users SET update_user_id = #{updateUserId},status = #{status},update_date =#{updateDate},version =#{version} WHERE user_id = #{userId} returning version
+	</select>
 
 
 </mapper>

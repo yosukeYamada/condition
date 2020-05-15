@@ -38,6 +38,14 @@ public interface MailMapper {
 	 * @param mail メール情報
 	 */
 	public void updateMail(Mail mail);
+	
+	/**
+	 * メールの
+	 * 
+	 * @param mail
+	 * @return
+	 */
+	public Integer updateMailStatus(Mail mail);
 		
 		
 	

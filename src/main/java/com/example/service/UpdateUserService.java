@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.Mail;
 import com.example.domain.User;
+import com.example.domain.error.ExclusiveException;
 import com.example.form.UpdateUserForm;
+import com.example.form.UpdateUserStatusForm;
 import com.example.mapper.MailMapper;
 import com.example.mapper.UserMapper;
 
@@ -70,6 +72,35 @@ public class UpdateUserService {
 		List<User> employeeList = userMapper.findAllAndDailyPost();
 		return employeeList;
 
+	}
+
+	public Integer updateUserStatus(UpdateUserStatusForm form) {
+		Integer updateUserId = Integer.parseInt(form.getUpdateUserId());
+		Integer userId = Integer.parseInt(form.getUserId());
+		Integer updateStatus = Integer.parseInt(form.getUpdateUserStatus());
+		Integer userVarsion = Integer.parseInt(form.getUserVersion());
+		Timestamp updateDate = new Timestamp(System.currentTimeMillis());
+		Integer latestUserVersion = userMapper.findByUserId(userId).getVersion();
+		if(userVarsion != latestUserVersion) {
+			throw new ExclusiveException("不正なパラメータです");
+		}
+		userVarsion+=1;
+		User user = new User();
+		user.setUpdateUserId(updateUserId);
+		user.setUserId(userId);
+		user.setStatus(updateStatus);
+		user.setVersion(userVarsion);
+		user.setUpdateDate(updateDate);
+		Integer varsion = userMapper.updateUserStatus(user);
+		if(user.getStatus() == 9) {
+			
+		}
+		return varsion;
+		
+	}
+	
+	public void updateRelatedUsers(User user) {
+		
 	}
 
 }
