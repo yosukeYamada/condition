@@ -3,13 +3,13 @@ package com.example.service;
 import java.sql.Timestamp;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.example.domain.PostedNews;
-import com.example.domain.User;
+import com.example.domain.Status;
 import com.example.form.PostedNewsForm;
 import com.example.mapper.PostedNewsMapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author sakai
@@ -36,7 +36,7 @@ public class PostedNewsService {
 		postedNews.setRegisterUserId(userId);
 		postedNews.setRegisterDate(tsDate);
 		postedNews.setVersion(1);
-		postedNews.setStatus(1);
+		postedNews.setStatus(Status.AVAILABLE.getStatusId());
 		postedNewsMapper.save(postedNews); // posted_newsテーブルに挿入
 		
 		List<PostedNews> PostedNewsList = postedNewsMapper.findAll();

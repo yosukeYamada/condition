@@ -8,6 +8,7 @@ import com.example.domain.PostedComment;
 import com.example.domain.PostedCondition;
 import com.example.domain.PostedMotivation;
 import com.example.domain.PostedPerformance;
+import com.example.domain.Status;
 import com.example.form.RegisterDailyPostForm;
 import com.example.mapper.DailyPostMapper;
 import com.example.mapper.PostedCommentMapper;
@@ -52,7 +53,7 @@ public class RegisterDailyPostServise {
 		dailyPost.setUpdateUserId(userId);
 		dailyPost.setUpdateDate(tsDate);
 		dailyPost.setVersion(1);
-		dailyPost.setStatus(1);
+		dailyPost.setStatus(Status.AVAILABLE.getStatusId());
 		dailyPostMapper.save(dailyPost); // daily_postsテーブルに挿入
 		Integer dailyPostId = dailyPost.getDailyPostId(); // 自動採番されたIDが取得できる
 
@@ -64,7 +65,7 @@ public class RegisterDailyPostServise {
 		postedMotivation.setUpdateUserId(userId);
 		postedMotivation.setUpdateDate(tsDate);
 		postedMotivation.setVersion(1);
-		postedMotivation.setStatus(1);
+		postedMotivation.setStatus(Status.AVAILABLE.getStatusId());
 		postedMotivationMapper.save(postedMotivation); // posted_motivationsテーブルに挿入
 
 		PostedCondition postedCondition = new PostedCondition();
@@ -75,7 +76,7 @@ public class RegisterDailyPostServise {
 		postedCondition.setUpdateUserId(userId);
 		postedCondition.setUpdateDate(tsDate);
 		postedCondition.setVersion(1);
-		postedCondition.setStatus(1);
+		postedCondition.setStatus(Status.AVAILABLE.getStatusId());
 		postedConditionMapper.save(postedCondition); // posted_conditionsテーブルに挿入
 
 		PostedPerformance postedPerformance = new PostedPerformance();
@@ -86,7 +87,7 @@ public class RegisterDailyPostServise {
 		postedPerformance.setUpdateUserId(userId);
 		postedPerformance.setUpdateDate(tsDate);
 		postedPerformance.setVersion(1);
-		postedPerformance.setStatus(1);
+		postedPerformance.setStatus(Status.AVAILABLE.getStatusId());
 		postedPerformanceMapper.save(postedPerformance); // posted_performancesテーブルに挿入
 
 		PostedComment postedComment = new PostedComment();
@@ -97,7 +98,7 @@ public class RegisterDailyPostServise {
 		postedComment.setUpdateUserId(userId);
 		postedComment.setUpdateDate(tsDate);
 		postedComment.setVersion(1);
-		postedComment.setStatus(1);
+		postedComment.setStatus(Status.AVAILABLE.getStatusId());
 		postedCommentMapper.save(postedComment); // posted_commentsテーブルに挿入
 
 		List<DailyPost> DailyPostList = dailyPostMapper.findByUserId(userId);

@@ -3,23 +3,22 @@ package com.example.controller;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+import com.example.domain.DailyPost;
+import com.example.form.RegisterOnlyOnceForm;
+import com.example.service.RegisterOnlyOnceService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.domain.DailyPost;
-import com.example.form.RegisterOnlyOnceForm;
-import com.example.service.RegisterOnlyOnceService;
-
 /**
- * 投稿回数を１日1回に制限するコントローラー.
+ * 投稿回数を1日1回に制限するコントローラー.
  * 
  * @author riho.ikeda
  *
  */
 @RestController
-@RequestMapping("")
 public class RegisterOnlyOnceController {
 
 	@Autowired

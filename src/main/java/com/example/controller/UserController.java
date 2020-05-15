@@ -7,27 +7,28 @@ import java.util.regex.Pattern;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import com.example.domain.Authority;
 import com.example.domain.Mail;
 import com.example.domain.User;
 import com.example.domain.response.LoginUser;
 import com.example.form.MailForm;
 import com.example.form.RegisterUserForm;
 import com.example.service.MailService;
-import com.example.service.RegisterUserServiceImpl;
+import com.example.service.RegisterUserService;
 import com.example.service.UserService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
 	
 	@Autowired
-	private RegisterUserServiceImpl registerUserService;
+	private RegisterUserService registerUserService;
 	
 	@Autowired
 	private UserService userService;
@@ -53,7 +54,7 @@ public class UserController {
 			return userService.findByMailAndAuthoriry(mailForm.getMail());
 		} else {
 			LoginUser loginUser = new LoginUser();
-			loginUser.setAuthority(3);
+			loginUser.setAuthority(Authority.OUTSIDER.getAuthorityId());
 			return loginUser;
 		}
 	}

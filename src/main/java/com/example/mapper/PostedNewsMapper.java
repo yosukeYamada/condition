@@ -2,10 +2,9 @@ package com.example.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-
-import com.example.domain.DailyPost;
 import com.example.domain.PostedNews;
+
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * posted_newsテーブルを操作するマッパー.
