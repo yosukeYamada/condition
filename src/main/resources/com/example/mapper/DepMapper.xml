@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.DepMapper">
 
@@ -17,5 +17,19 @@
 		SELECT dep_id, dep_name, register_user_id, register_date, update_user_id, update_date, version, status
 		FROM deps
 	</select>
+	<select id="save" resultType="int">
+		INSERT INTO deps(dep_name, register_user_id, register_date, update_user_id, update_date, version, status) 
+				  VALUES(#{depName}, #{registerUserId}, #{registerDate}, #{updateUserId}, #{updateDate}, #{version}, #{status}) 
+				  RETURNING dep_id 
+	</select>
+	<select id="updateDepName" resultType="int">
+		UPDATE deps SET dep_name = #{depName}, update_user_id = #{updateUserId}, update_date = #{updateDate}, version = version+1 WHERE dep_id = #{depId} RETURNING version
+	</select>
+	<select id="findVersionByDepId" resultType="int">
+		SELECT version FROM deps WHERE dep_id = #{depId}
+	</select>
+	<update id="deleteByDepId">
+		UPDATE deps SET update_user_id = #{updateUserId}, update_date = #{updateDate}, version = version+1, status = #{status} WHERE dep_id = #{depId}
+	</update>
 
 </mapper>

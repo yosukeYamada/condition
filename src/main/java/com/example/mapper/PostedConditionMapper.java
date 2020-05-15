@@ -2,6 +2,8 @@ package com.example.mapper;
 
 import com.example.domain.PostedCondition;
 
+import java.sql.Timestamp;
+
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -18,5 +20,7 @@ public interface PostedConditionMapper {
      * @param postedCondition 投稿された体調情報
      */
     public void save(PostedCondition postedCondition);
+    
+    public void update(Integer dailyPostId,Integer updateUserId,Integer conditionId,Timestamp updateDate);
 
 }
