@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,5 +49,16 @@ public class NewsController {
 	public List<PostedNews> showNewsPostList() {
 		return postedNewsService.showNewsPostList();
 	}
+	
+    /**
+     * お知らせの削除を行うメソッド
+     * 
+     * @param form お知らせID
+     */
+	@ResponseBody
+    @RequestMapping("/deleteNews")
+    public void deleteNews(@RequestBody PostedNewsForm form) {
+    	postedNewsService.deleteNews(form);
+    }
 	
 }

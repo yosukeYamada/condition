@@ -35,5 +35,9 @@
 		FROM posted_news
 		ORDER BY news_date DESC;
 	</select>
+	
+	<delete id="deleteByNewsId">
+		DELETE FROM posted_news WHERE news_id = #{newsId};
+	</delete>
 
 </mapper>
