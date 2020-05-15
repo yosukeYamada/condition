@@ -33,7 +33,9 @@ public class UpdateUserController {
 	@RequestMapping("")
 	public List<User> updateUser(@RequestBody UpdateUserForm form) {
 		UpdateUserForm updateUserForm = reMakeUserName(form);
-		return updateUserService.updateUser(updateUserForm);
+		
+		List<User> EmployeeList= updateUserService.updateUser(updateUserForm);
+		return EmployeeList;
 
 	}
 
