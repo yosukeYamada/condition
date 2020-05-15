@@ -31,4 +31,12 @@ public interface PostedNewsMapper {
      */
     public List<PostedNews> findAll();
 	
+    
+    /**
+     * お知らせを削除するメソッド
+     * 
+     * @param postedNews お知らせID
+     */
+    public void deleteByNewsId(PostedNews postedNews);
+    
 }

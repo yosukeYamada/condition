@@ -38,17 +38,30 @@ public class PostedNewsService {
 		postedNews.setVersion(1);
 		postedNews.setStatus(Status.AVAILABLE.getStatusId());
 		postedNewsMapper.save(postedNews); // posted_newsテーブルに挿入
-		
 		List<PostedNews> PostedNewsList = postedNewsMapper.findAll();
 		return PostedNewsList;
 	}
 	
 	
 	/**
+	 * お知らせ全件取得を行う
+	 * 
 	 * @return
 	 */
 	public List<PostedNews> showNewsPostList() {
 		List<PostedNews> PostedNewsList = postedNewsMapper.findAll();
 		return PostedNewsList;
 	}
+	
+	/**
+	 * お知らせの削除を行う
+	 * 
+	 * @param form お知らせID
+	 */
+	public void deleteNews(PostedNewsForm form) {
+		PostedNews postedNews = new PostedNews();
+		postedNews.setNewsId(form.getNewsId());
+		postedNewsMapper.deleteByNewsId(postedNews);
+	}
+	
 }
