@@ -36,8 +36,30 @@
 			version,
 			status
 			FROM information
-			order by information_date
+			order by information_date desc
 		</select>
+		
+		
+		<insert id="insert">
+			INSERT INTO information
+			(information_date,
+			information_title,
+			information_content,
+			category_id,
+			register_user_id,
+			register_date,
+			version,
+			status)
+			VALUES
+			(#{informationDate},
+			#{informationTitle},
+			#{informationContent},
+			#{categoryId},
+			#{registerUserId},
+			#{registerDate},
+			#{version},
+			#{status})
+		</insert>
 	
 	
 </mapper>
