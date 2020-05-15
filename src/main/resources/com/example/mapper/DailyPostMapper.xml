@@ -134,11 +134,12 @@
 		pcm.version pcm_version,
 		pcm.status pcm_status
 		FROM daily_posts AS dp
-		LEFT OUTER JOIN posted_motivations AS pm ON dp.daily_post_id =
-		pm.daily_post_id
-		LEFT OUTER JOIN motivations AS m ON pm.motivation_id = m.motivation_id
-		LEFT OUTER JOIN posted_conditions AS pc ON dp.daily_post_id =
-		pc.daily_post_id
+		LEFT OUTER JOIN posted_motivations AS pm 
+		ON dp.daily_post_id = pm.daily_post_id
+		LEFT OUTER JOIN motivations AS m 
+		ON pm.motivation_id = m.motivation_id
+		LEFT OUTER JOIN posted_conditions AS pc 
+		ON dp.daily_post_id = pc.daily_post_id
 		LEFT OUTER JOIN conditions AS c ON pc.condition_id = c.condition_id
 		LEFT OUTER JOIN posted_performances AS pp ON dp.daily_post_id =
 		pp.daily_post_id
