@@ -37,8 +37,8 @@
 		dep_id=#{depId},
 		hire_date=#{hireDate},
 		update_user_id=#{updateUserId},
-		update_date=#{updateDate},
-		WHERE
+		update_date=#{updateDate}
+		WHERE 
 		user_id=#{userId};
 	</update>
 
