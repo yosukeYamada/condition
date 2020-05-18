@@ -45,6 +45,5 @@ public class User {
 	 */
 	private List<Mail> mailList;
 	private Dep dep;
-	private List<PostedNews> postedNewsList;
 
 }
