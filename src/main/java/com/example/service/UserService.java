@@ -11,6 +11,7 @@ import com.example.domain.Authority;
 import com.example.domain.Dep;
 import com.example.domain.Mail;
 import com.example.domain.PostedNews;
+import com.example.domain.Status;
 import com.example.domain.response.LoginUser;
 import com.example.mapper.DepMapper;
 import com.example.mapper.PostedNewsMapper;
@@ -46,13 +47,13 @@ public class UserService {
 			LoginUser newUser = new LoginUser();
 			newUser.setMailList(mailList);
 			newUser.setAuthority(Authority.UNREGISTERED.getAuthorityId());
-			newUser.setDepList(depMapper.findAll());
+			newUser.setDepList(depMapper.findByStatus(Status.AVAILABLE.getStatusId()));
 			return newUser;
 			// nullじゃなければすべて詰まった情報を返す
 		} else {
 			List<PostedNews> postedNewsList = postedNewsMapper.findAll();
 			loginUser.setPostedNewsList(postedNewsList);
-			List<Dep> depList = depMapper.findAll();
+			List<Dep> depList = depMapper.findByStatus(Status.AVAILABLE.getStatusId());
 			loginUser.setDepList(depList);
 			return loginUser;
 		}

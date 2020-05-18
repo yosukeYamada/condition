@@ -15,11 +15,12 @@ import org.apache.ibatis.annotations.Mapper;
 public interface DepMapper {
 
 	/**
-	 * 全件検索するメソッド.
+	 * 引数で受け取ったステータスの部署情報を取得するメソッド
 	 * 
+	 * @param status ステータス
 	 * @return 部署リストの全件取得
 	 */
-	public List<Dep> findAll();
+	public List<Dep> findByStatus(Integer status);
 
 	/**
 	 * 部署情報の挿入を行うメソッド
