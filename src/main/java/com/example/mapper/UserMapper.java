@@ -60,5 +60,12 @@ public interface UserMapper {
 	 * @return ユーザー情報
 	 */
 	public User findUserByMail(String email);
+	
+	/**
+	 * ユーザー登録を更新する
+	 * 
+	 * @param user　ユーザー情報
+	 */
+	public void updateUser(User user);
 
 }

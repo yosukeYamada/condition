@@ -32,4 +32,14 @@ public interface MailMapper {
 	 */
 	public String updateAuthorityByEmail(String email, Integer authority, Integer updateUserId, Timestamp updateDate);
 
+	/**
+	 * ユーザー情報更新時にメールアドレスを変更するメソッド.
+	 * 
+	 * @param mail メール情報
+	 */
+	public void updateMail(Mail mail);
+		
+		
+	
+	
 }

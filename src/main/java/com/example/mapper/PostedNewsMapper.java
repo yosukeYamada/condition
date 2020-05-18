@@ -1,7 +1,10 @@
 package com.example.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.domain.DailyPost;
 import com.example.domain.PostedNews;
 
 /**
@@ -19,5 +22,14 @@ public interface PostedNewsMapper {
 	 * @param postedNews 投稿されたお知らせ
 	 */
 	public void save(PostedNews postedNews);
+	
+	
+    /**
+     * お知らせIDで検索して投稿を取得するメソッド.
+     * 
+     * @param newsId お知らせID
+     * @return お知らせIDに紐づく投稿内容
+     */
+    public List<PostedNews> findAll();
 	
 }

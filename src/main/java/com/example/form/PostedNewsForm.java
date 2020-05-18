@@ -9,8 +9,10 @@ import lombok.Data;
 @Data
 public class PostedNewsForm {
 
-	/** 投稿者のuserId */
+	/** ユーザーID */
 	private Integer userId;
+	/** お知らせID */
+	private Integer newsId;
 	/** お知らせ投稿内容 */
 	private String newsComment;
 	

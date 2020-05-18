@@ -27,6 +27,8 @@ drop table if exists performances;
 create table performances (performance_id serial primary key,performance_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
 drop table if exists motivations;
 create table motivations (motivation_id serial primary key,motivation_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
+drop table if exists posted_news;
+create table posted_news(news_id serial primary key,news_date timestamp not null,news_comment text not null,user_id Integer not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp, version Integer not null,status Integer not null);
 
 
 INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカルくん','らくすかるくん',1,'2019-10-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
@@ -64,5 +66,11 @@ INSERT INTO motivations(motivation_name,register_user_id,register_date,update_us
 INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('雨',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('嵐',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 
+<<<<<<< HEAD
 
 
+=======
+INSERT INTO posted_news(news_date,news_comment,user_id, register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-01 09:00:00','お知らせ1',1,1,'2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,1);
+INSERT INTO posted_news(news_date,news_comment,user_id, register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-02 09:00:00','お知らせ2',1,1,'2020-05-02 09:00:00',1,'2020-05-02 09:00:00',1,1);
+INSERT INTO posted_news(news_date,news_comment,user_id, register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-03 09:00:00','お知らせ3',1,1,'2020-05-03 09:00:00',1,'2020-05-03 09:00:00',1,1);
+>>>>>>> b31866765ae58c261d6fe12921a74efc51a68d40

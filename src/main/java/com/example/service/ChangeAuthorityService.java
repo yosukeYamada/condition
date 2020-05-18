@@ -25,6 +25,12 @@ public class ChangeAuthorityService {
     @Autowired
     private UserMapper userMapper;
     
+    /**
+     * メールからユーザー情報を取得する.
+     * 
+     * @param email メール
+     * @return ユーザー情報
+     */
     public User findUserByMail(String email) {
     	
     	User user = userMapper.findUserByMail(email);

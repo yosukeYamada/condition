@@ -19,6 +19,8 @@ public class PostedNews {
 	private Timestamp newsDate;
 	/** お知らせ内容 */
 	private String newsComment;
+	/** ユーザーID */
+	private Integer userId;
 	/** 登録ユーザーID */
 	private Integer registerUserId;
 	/** 登録日時 */
