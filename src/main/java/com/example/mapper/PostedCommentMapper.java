@@ -22,5 +22,9 @@ public interface PostedCommentMapper {
     public void save(PostedComment postedComment);
     
     public void update(Integer dailyPostId,Integer updateUserId,String comment,Timestamp updateDate);
+    
+    
+    //テスト用
+    public void insertPostedComment();
 
 }

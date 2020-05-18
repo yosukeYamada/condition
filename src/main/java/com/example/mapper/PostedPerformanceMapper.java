@@ -22,5 +22,9 @@ public interface PostedPerformanceMapper {
     public void save(PostedPerformance postedPerformance);
     
     public void update(Integer dailyPostId,Integer updateUserId,Integer performanceId,Timestamp updateDate);
+    
+    
+    //テスト用
+    public void insertPostedPerformance();
 
 }

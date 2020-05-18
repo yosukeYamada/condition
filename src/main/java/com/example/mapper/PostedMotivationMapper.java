@@ -21,4 +21,8 @@ public interface PostedMotivationMapper {
     public void save(PostedMotivation postedMotivation);
     
     public void update(Integer dailyPostId,Integer updateUserId,Integer motivationId,Timestamp updateDate);
+    
+    
+    //テスト用
+    public void insertPostedMotivation();
 }

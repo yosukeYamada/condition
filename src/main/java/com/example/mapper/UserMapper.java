@@ -75,5 +75,9 @@ public interface UserMapper {
 	 * @return 所属人数
 	 */
 	public Integer countByDepId(Integer depId);
+	
+	
+	//テスト用
+	public void insertUsers();
 
 }

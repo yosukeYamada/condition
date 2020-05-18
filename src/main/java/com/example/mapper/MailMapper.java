@@ -39,7 +39,8 @@ public interface MailMapper {
 	 */
 	public void updateMail(Mail mail);
 		
-		
 	
+	//テスト用
+	public void insertMails();
 	
 }

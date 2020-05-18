@@ -22,5 +22,9 @@ public interface PostedConditionMapper {
     public void save(PostedCondition postedCondition);
     
     public void update(Integer dailyPostId,Integer updateUserId,Integer conditionId,Timestamp updateDate);
+    
+    
+    //テスト用
+    public void insertPostedCondition();
 
 }

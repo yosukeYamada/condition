@@ -73,5 +73,9 @@ public interface DailyPostMapper {
      * @param dailyPost 毎日の投稿.
      */
     public void update(Integer dailyPostId,Integer updateUserId,Timestamp updateDate);
+    
+    
+    //テスト用
+    public void insertDailyPost(Integer userId);
 
 }

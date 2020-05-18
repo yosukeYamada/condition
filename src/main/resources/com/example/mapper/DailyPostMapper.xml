@@ -311,4 +311,13 @@
 		version=version + 1
 		where daily_post_id = #{dailyPostId}
 	</update>
+	
+	
+	<!-- テスト用 100件挿入-->
+	<select id="insertDailyPost" resultType="Integer">
+		INSERT INTO daily_posts(user_id, date, register_user_id, register_date,update_user_id, update_date, version, status)
+		select #{userId},CURRENT_DATE + CAST( i || 'days' AS interval),1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1
+		from generate_series(1,100) as i;
+	</select>
+	
 </mapper>
