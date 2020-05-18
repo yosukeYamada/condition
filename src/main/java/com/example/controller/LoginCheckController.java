@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 
 import com.example.domain.Authority;
 import com.example.domain.User;
-import com.example.domain.response.LoginUser;
 import com.example.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
