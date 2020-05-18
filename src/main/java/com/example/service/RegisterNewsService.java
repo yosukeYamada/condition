@@ -46,13 +46,4 @@ public class RegisterNewsService {
 		return PostedNewsList;
 	}
 
-	/**
-	 * お知らせ投稿一覧を取得する.
-	 * 
-	 * @return お知らせ投稿一覧
-	 */
-	public List<PostedNews> showNewsPostList() {
-		return postedNewsMapper.findAll();
-	}
-
 }
