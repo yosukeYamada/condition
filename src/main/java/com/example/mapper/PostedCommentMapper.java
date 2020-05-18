@@ -14,13 +14,15 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface PostedCommentMapper {
 
-    /**
-     * コメントの挿入を行うメソッド
-     * 
-     * @param postedComment 投稿されたコメント
-     */
-    public void save(PostedComment postedComment);
-    
-    public void update(Integer dailyPostId,Integer updateUserId,String comment,Timestamp updateDate);
+	/**
+	 * コメントの挿入を行うメソッド
+	 * 
+	 * @param postedComment 投稿されたコメント
+	 */
+	public void save(PostedComment postedComment);
+
+	public void update(Integer dailyPostId, Integer updateUserId, String comment, Timestamp updateDate);
+
+	public Integer updateStatus(PostedComment postedComment);
 
 }

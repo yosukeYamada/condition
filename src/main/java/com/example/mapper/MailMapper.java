@@ -40,10 +40,10 @@ public interface MailMapper {
 	public void updateMail(Mail mail);
 	
 	/**
-	 * メールの
+	 * メールアドレスで検索したユーザのステータスを変更するメソッド.
 	 * 
-	 * @param mail
-	 * @return
+	 * @param mail メール情報
+	 * @return　最新のメールVersion
 	 */
 	public Integer updateMailStatus(Mail mail);
 		

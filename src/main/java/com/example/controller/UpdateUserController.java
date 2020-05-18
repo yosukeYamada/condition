@@ -58,10 +58,9 @@ public class UpdateUserController {
 	}
 
 	@RequestMapping("/status")
-	public String updateUserStatus(UpdateUserStatusForm form) {
-
-		String userVersion = "1";
-		return userVersion;
+	public Integer updateUserStatus(@RequestBody UpdateUserStatusForm form) {
+		Integer latestUserVersion = updateUserService.updateUserStatus(form);
+		return latestUserVersion;
 	}
 
 }

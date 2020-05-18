@@ -2,22 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.PostedMotivationMapper">
 
-   
-    <insert id="save">
-    INSERT INTO posted_motivations(daily_post_id, motivation_id, register_user_id, register_date, update_user_id, update_date, version, status) 
-        VALUES(#{dailyPostId}, #{motivationId}, #{registerUserId}, #{registerDate}, #{updateUserId}, #{updateDate}, #{version}, #{status} );
-    </insert>
+	<resultMap type="com.example.domain.PostedMotivation"
+		id="PostedMotivationResultMap">
+		<id property="postedMotivationId" column="posted_Motivation_id" />
+		<result property="dailyPostId" column="daily_post_id" />
+		<result property="motivationId" column="motivation_id" />
+		<result property="registerUserId" column="register_user_id" />
+		<result property="registerDate" column="register_date" />
+		<result property="updateUserId" column="update_user_id" />
+		<result property="updateDate" column="update_date" />
+		<result property="version" column="version" />
+		<result property="status" column="status" />
 
-	
+	</resultMap>
+
+
+
+
+	<insert id="save">
+		INSERT INTO posted_motivations(daily_post_id,
+		motivation_id,
+		register_user_id, register_date, update_user_id,
+		update_date, version,
+		status)
+		VALUES(#{dailyPostId}, #{motivationId},
+		#{registerUserId}, #{registerDate}, #{updateUserId},
+		#{updateDate},
+		#{version}, #{status} );
+	</insert>
+
+
 	<update id="update">
-    	UPDATE posted_motivations
-    	SET
-    	motivation_id = #{motivationId},
-    	update_user_id = #{updateUserId},
-    	update_date = #{updateDate},
-    	version = version + 1
-    	where daily_post_id = #{dailyPostId}
-    </update>
-    
+		UPDATE posted_motivations
+		SET
+		motivation_id =
+		#{motivationId},
+		update_user_id = #{updateUserId},
+		update_date =
+		#{updateDate},
+		version = version + 1
+		where daily_post_id =
+		#{dailyPostId}
+	</update>
+	<select id="updateStatus" resultType="Integer">
+		UPDATE posted_motivations
+		SET
+		update_user_id=#{updateUserId},
+		update_date=#{updateDate},
+		version=#{version},
+		status = #{status}
+		WHERE daily_post_id=#{dailyPostId}
+	</select>
+
 
 </mapper>
