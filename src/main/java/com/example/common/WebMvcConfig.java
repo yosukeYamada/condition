@@ -1,6 +1,4 @@
-package com.example;
-
-import com.example.common.EnvironmentsConfiguration;
+package com.example.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
