@@ -3,29 +3,33 @@ package com.example.service;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.example.domain.PostedNews;
 import com.example.domain.Status;
 import com.example.form.PostedNewsForm;
 import com.example.mapper.PostedNewsMapper;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 /**
+ * お知らせ投稿の登録を行うサービスクラス
+ * 
  * @author sakai
  *
  */
 @Service
-public class PostedNewsService {
+public class RegisterNewsService {
 
 	@Autowired
 	private PostedNewsMapper postedNewsMapper;
-	
+
 	/**
-	 * @param form
-	 * @return
+	 * お知らせの投稿を行う
+	 * 
+	 * @param form 投稿内容
+	 * @return お知らせ投稿一覧
 	 */
-	public List<PostedNews> PostedNews(PostedNewsForm form){
+	public List<PostedNews> PostedNews(PostedNewsForm form) {
 		Timestamp tsDate = new Timestamp(System.currentTimeMillis()); // 現在時刻を生成
 		Integer userId = form.getUserId();
 		String newsComment = form.getNewsComment();
@@ -41,27 +45,9 @@ public class PostedNewsService {
 		List<PostedNews> PostedNewsList = postedNewsMapper.findAll();
 		return PostedNewsList;
 	}
-	
-	
-	/**
-	 * お知らせ全件取得を行う
-	 * 
-	 * @return
-	 */
-	public List<PostedNews> showNewsPostList() {
-		List<PostedNews> PostedNewsList = postedNewsMapper.findAll();
-		return PostedNewsList;
-	}
-	
-	/**
-	 * お知らせの削除を行う
-	 * 
-	 * @param form お知らせID
-	 */
-	public void deleteNews(PostedNewsForm form) {
-		PostedNews postedNews = new PostedNews();
-		postedNews.setNewsId(form.getNewsId());
-		postedNewsMapper.deleteByNewsId(postedNews);
+
+	public List<PostedNews> showNewsPostList(){
+		return postedNewsMapper.findAll();
 	}
 	
 }

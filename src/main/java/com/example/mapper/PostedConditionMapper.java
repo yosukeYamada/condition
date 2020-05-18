@@ -22,5 +22,13 @@ public interface PostedConditionMapper {
     public void save(PostedCondition postedCondition);
     
     public void update(Integer dailyPostId,Integer updateUserId,Integer conditionId,Timestamp updateDate);
+    
+    /**
+     * statusを更新するメソッド
+     * 
+     * @param postedCondition 更新情報
+     * @return 最新のバージョン番号
+     */
+    public Integer updateStatus(PostedCondition postedCondition);
 
 }

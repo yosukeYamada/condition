@@ -38,6 +38,14 @@ public interface MailMapper {
 	 * @param mail メール情報
 	 */
 	public void updateMail(Mail mail);
+	
+	/**
+	 * メールアドレスで検索したユーザのステータスを変更するメソッド.
+	 * 
+	 * @param mail メール情報
+	 * @return　最新のメールVersion
+	 */
+	public Integer updateMailStatus(Mail mail);
 		
 		
 	

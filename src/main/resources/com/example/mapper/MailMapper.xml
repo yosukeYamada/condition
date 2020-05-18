@@ -39,4 +39,16 @@
 		WHERE
 		user_id= #{userId};
 	</update>
+	<select id="updateMailStatus" resultType="Integer">
+		UPDATE
+		mails
+		SET
+		update_user_id = #{updateUserId},
+		update_date = #{updateDate},
+		status =
+		#{status},
+		version=#{version}
+		WHERE
+		user_id= #{userId};
+	</select>
 </mapper>

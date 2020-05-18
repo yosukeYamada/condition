@@ -66,6 +66,22 @@ public interface UserMapper {
 	 * @param user ユーザー情報
 	 */
 	public void updateUser(User user);
+	
+	/**
+	 * ユーザーstatusを更新するメソッド.
+	 * 
+	 * @param updateUserId ユーザID
+	 * @param updateUserStatus ユーザstatus
+	 */
+	public Integer updateUserStatus(User user);
+	
+	/**
+	 * ユーザIDでユーザを検索するメソッド.
+	 * 
+	 * @param userId ユーザID
+	 * @return ユーザID
+	 */
+	public User findByUserId(Integer userId);
 
 	/**
 	 * 部署IDで該当の部署に所属している人数を取得するメソッド

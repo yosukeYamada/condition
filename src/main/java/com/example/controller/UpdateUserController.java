@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.User;
+import com.example.form.UpdateUserStatusForm;
 import com.example.form.UpdateUserForm;
 import com.example.service.UpdateUserService;
 
@@ -55,4 +56,11 @@ public class UpdateUserController {
 		}
 		return form;
 	}
+
+	@RequestMapping("/status")
+	public Integer updateUserStatus(@RequestBody UpdateUserStatusForm form) {
+		Integer latestUserVersion = updateUserService.updateUserStatus(form);
+		return latestUserVersion;
+	}
+
 }
