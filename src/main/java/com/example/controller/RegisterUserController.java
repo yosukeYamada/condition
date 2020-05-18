@@ -5,18 +5,18 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.example.domain.Mail;
 import com.example.domain.PostedNews;
 import com.example.domain.User;
 import com.example.form.RegisterUserForm;
 import com.example.service.MailService;
-import com.example.service.PostedNewsService;
+import com.example.service.RegisterNewsService;
 import com.example.service.RegisterUserService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * ユーザー登録処理を行うコントローラークラス
@@ -26,54 +26,54 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RegisterUserController {
 
-    @Autowired
-    private RegisterUserService registerUserService;
-    @Autowired
-    private MailService mailService;
-    @Autowired
-    private PostedNewsService postedNewsService;
+	@Autowired
+	private RegisterUserService registerUserService;
+	@Autowired
+	private MailService mailService;
+	@Autowired
+	private RegisterNewsService registerNewsService;
 
-    /**
-     * ユーザ登録とメール登録を行うメソッド.
-     * 
-     * @param form ユーザ登録フォーム
-     * @return ユーザ情報
-     */
-    @PostMapping("/registerUser")
-    public User reisterUser(@RequestBody(required = false) @Valid RegisterUserForm form) {
-        RegisterUserForm registerUserform = reMakeUserName(form);
-        User user = registerUserService.registerUser(registerUserform);
-        String mailAddress = form.getMailAddress();
-        Mail mail = mailService.registerMail(user, mailAddress);
-        List<Mail> mailList = new ArrayList<>();
-        mailList.add(mail);
-        user.setMailList(mailList);
+	/**
+	 * ユーザ登録とメール登録を行うメソッド.
+	 * 
+	 * @param form ユーザ登録フォーム
+	 * @return ユーザ情報
+	 */
+	@PostMapping("/registerUser")
+	public User reisterUser(@RequestBody(required = false) @Valid RegisterUserForm form) {
+		RegisterUserForm registerUserform = reMakeUserName(form);
+		User user = registerUserService.registerUser(registerUserform);
+		String mailAddress = form.getMailAddress();
+		Mail mail = mailService.registerMail(user, mailAddress);
+		List<Mail> mailList = new ArrayList<>();
+		mailList.add(mail);
+		user.setMailList(mailList);
 
-        // お知らせ一覧の取得、表示 TODO 別でメソッドを切り出す
-        List<PostedNews> postedNewsList = postedNewsService.showNewsPostList();
-        user.setPostedNewsList(postedNewsList);
+		// お知らせ一覧の取得、表示 TODO 別でメソッドを切り出す
+		List<PostedNews> postedNewsList = registerNewsService.showNewsPostList();
+		user.setPostedNewsList(postedNewsList);
 
-        return user;
-    }
+		return user;
+	}
 
-    /**
-     * ユーザフォームの名前とふりがなからスペースを取り除くメソッド.
-     * 
-     * @param form ユーザフォーム
-     * @return 編集したユーザフォーム
-     */
-    public RegisterUserForm reMakeUserName(RegisterUserForm form) {
-        String userName = form.getUserName();
-        String userNameKana = form.getUserNameKana();
-        if (userName.contains(" ")) {
-            userName.replace(" ", "");
-            form.setUserName(userName);
-        }
-        if (userNameKana.contains(" ")) {
-            userNameKana.replace(" ", "");
-            form.setUserNameKana(userNameKana);
-        }
-        return form;
-    }
+	/**
+	 * ユーザフォームの名前とふりがなからスペースを取り除くメソッド.
+	 * 
+	 * @param form ユーザフォーム
+	 * @return 編集したユーザフォーム
+	 */
+	public RegisterUserForm reMakeUserName(RegisterUserForm form) {
+		String userName = form.getUserName();
+		String userNameKana = form.getUserNameKana();
+		if (userName.contains(" ")) {
+			userName.replace(" ", "");
+			form.setUserName(userName);
+		}
+		if (userNameKana.contains(" ")) {
+			userNameKana.replace(" ", "");
+			form.setUserNameKana(userNameKana);
+		}
+		return form;
+	}
 
 }
