@@ -35,7 +35,7 @@
 		SET
 		mail_name = #{mailName},
 		update_user_id = #{updateUserId},
-		updateDate = #{updateDate},
+		update_date = #{updateDate}
 		WHERE
 		user_id= #{userId};
 	</update>

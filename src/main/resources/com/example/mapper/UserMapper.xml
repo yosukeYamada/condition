@@ -37,8 +37,8 @@
 		dep_id=#{depId},
 		hire_date=#{hireDate},
 		update_user_id=#{updateUserId},
-		update_date=#{updateDate},
-		WHERE
+		update_date=#{updateDate}
+		WHERE 
 		user_id=#{userId};
 	</update>
 
@@ -439,6 +439,7 @@
 				<result column="pcm_status" property="status" />
 			</association>
 		</collection>
+
 	</resultMap>
 	<select id="findByMailAndAuthority" resultMap="userInfo"
 		parameterType="String">
@@ -541,28 +542,37 @@
 		pcm.update_date pcm_update_date,
 		pcm.version pcm_version,
 		pcm.status
-		pcm_status
-		FROM users as u
+		FROM users as
+		u
 		LEFT OUTER JOIN mails as m on u.user_id =
 		m.user_id
-		LEFT OUTER JOIN daily_posts AS d ON u.user_id = d.user_id
-		LEFT OUTER JOIN posted_motivations AS pm ON d.daily_post_id =
+		LEFT OUTER JOIN
+		daily_posts AS d ON u.user_id = d.user_id
+		LEFT OUTER JOIN
+		posted_motivations AS pm ON d.daily_post_id =
 		pm.daily_post_id
-		LEFT OUTER JOIN motivations AS mo ON pm.motivation_id
+		LEFT
+		OUTER JOIN motivations AS mo ON pm.motivation_id
 		= mo.motivation_id
 		LEFT OUTER JOIN posted_conditions AS pc ON
-		d.daily_post_id = pc.daily_post_id
+		d.daily_post_id =
+		pc.daily_post_id
 		LEFT OUTER JOIN conditions AS c ON
-		pc.condition_id = c.condition_id
+		pc.condition_id =
+		c.condition_id
 		LEFT OUTER JOIN posted_performances AS
-		pp ON d.daily_post_id = pp.daily_post_id
+		pp ON
+		d.daily_post_id = pp.daily_post_id
 		LEFT OUTER JOIN performances
-		AS p ON pp.performance_id = p.performance_id
+		AS p ON
+		pp.performance_id = p.performance_id
 		LEFT OUTER JOIN
-		posted_comments AS pcm ON d.daily_post_id =
+		posted_comments AS
+		pcm ON d.daily_post_id =
 		pcm.daily_post_id
 		LEFT OUTER
-		JOIN deps AS de ON u.dep_id = de.dep_id
+		JOIN deps AS de ON
+		u.dep_id = de.dep_id
 		where m.mail_name =#{mail}
 	</select>
 

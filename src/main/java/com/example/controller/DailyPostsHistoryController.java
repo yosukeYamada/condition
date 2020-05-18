@@ -9,15 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.DailyPost;
 import com.example.form.ShowDailyPostListForm;
-import com.example.service.DailyPostServiceImpl;
+import com.example.service.DailyPostService;
 
 @RestController
 @RequestMapping("")
 public class DailyPostsHistoryController {
 	
 	@Autowired
-	private DailyPostServiceImpl dailyPostService;
-
+	private DailyPostService dailyPostService;
 
 	/**
 	 * ユーザの投稿履歴を取得するメソッド.
