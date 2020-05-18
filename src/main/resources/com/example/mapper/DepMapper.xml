@@ -13,9 +13,9 @@
 		<result property="status" column="status" />
 	</resultMap>
 
-	<select id="findAll" resultMap="DepResultMap">
+	<select id="findByStatus" parameterType="int" resultMap="DepResultMap">
 		SELECT dep_id, dep_name, register_user_id, register_date, update_user_id, update_date, version, status
-		FROM deps
+		FROM deps WHERE status = #{status}
 	</select>
 	<select id="save" resultType="int">
 		INSERT INTO deps(dep_name, register_user_id, register_date, update_user_id, update_date, version, status) 
