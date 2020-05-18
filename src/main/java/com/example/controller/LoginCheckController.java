@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.example.domain.Authority;
+import com.example.domain.User;
 import com.example.domain.response.LoginUser;
 import com.example.service.UserService;
 
@@ -31,7 +32,7 @@ public class LoginCheckController {
 	 * @return ログインユーザー情報
 	 */
 	@PostMapping("/loginCheck")
-	public LoginUser loginCheck(@RequestBody Map<String, String> param) {
+	public User loginCheck(@RequestBody Map<String, String> param) {
 		String check = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@rakus-partners.co.jp";
 		String check2 = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@rakus.co.jp";
 		Pattern pattern = Pattern.compile(check);
@@ -42,9 +43,9 @@ public class LoginCheckController {
 			return userService.findByMailAndAuthoriry(param.get("mail"));
 		} else {
 			/** 組織外ユーザーによるログインであった場合 */
-			LoginUser loginUser = new LoginUser();
-			loginUser.setAuthority(Authority.OUTSIDER.getAuthorityId());
-			return loginUser;
+			User user = new User();
+			user.setAuthority(Authority.OUTSIDER.getAuthorityId());
+			return user;
 		}
 	}
 
