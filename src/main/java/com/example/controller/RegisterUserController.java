@@ -10,7 +10,7 @@ import com.example.domain.PostedNews;
 import com.example.domain.User;
 import com.example.form.RegisterUserForm;
 import com.example.service.MailService;
-import com.example.service.PostedNewsService;
+import com.example.service.RegisterNewsService;
 import com.example.service.RegisterUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class RegisterUserController {
     @Autowired
     private MailService mailService;
     @Autowired
-    private PostedNewsService postedNewsService;
+    private RegisterNewsService registerNewsService;
 
     /**
      * ユーザ登録とメール登録を行うメソッド.
@@ -50,7 +50,7 @@ public class RegisterUserController {
         user.setMailList(mailList);
 
         // お知らせ一覧の取得、表示 TODO 別でメソッドを切り出す
-        List<PostedNews> postedNewsList = postedNewsService.showNewsPostList();
+        List<PostedNews> postedNewsList = registerNewsService.showNewsPostList();
         user.setPostedNewsList(postedNewsList);
 
         return user;
