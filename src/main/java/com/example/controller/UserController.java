@@ -7,33 +7,39 @@ import java.util.regex.Pattern;
 
 import javax.validation.Valid;
 
+import com.example.domain.Authority;
+import com.example.domain.Mail;
+import com.example.domain.PostedNews;
+import com.example.domain.User;
+import com.example.domain.response.LoginUser;
+import com.example.form.MailForm;
+import com.example.form.RegisterUserForm;
+import com.example.service.MailService;
+import com.example.service.PostedNewsService;
+import com.example.service.RegisterUserService;
+import com.example.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.domain.Mail;
-import com.example.domain.User;
-import com.example.domain.response.LoginUser;
-import com.example.form.MailForm;
-import com.example.form.RegisterUserForm;
-import com.example.service.MailService;
-import com.example.service.RegisterUserServiceImpl;
-import com.example.service.UserService;
-
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
 	
 	@Autowired
-	private RegisterUserServiceImpl registerUserService;
+	private RegisterUserService registerUserService;
 	
 	@Autowired
 	private UserService userService;
 	
 	@Autowired
 	private MailService mailService;
+
+	@Autowired
+	private PostedNewsService postedNewsService;
 	
 	/**
 	 * メールアドレスからメール情報を取得.
@@ -53,7 +59,7 @@ public class UserController {
 			return userService.findByMailAndAuthoriry(mailForm.getMail());
 		} else {
 			LoginUser loginUser = new LoginUser();
-			loginUser.setAuthority(3);
+			loginUser.setAuthority(Authority.OUTSIDER.getAuthorityId());
 			return loginUser;
 		}
 	}
@@ -74,6 +80,11 @@ public class UserController {
 		List<Mail> mailList = new ArrayList<>();
 		mailList.add(mail);
 		user.setMailList(mailList);
+		
+		//	お知らせ一覧の取得、表示
+		List<PostedNews> postedNewsList = postedNewsService.showNewsPostList();
+		user.setPostedNewsList(postedNewsList);
+		
 		return user;
 	}
 	

@@ -7,7 +7,7 @@ package com.example.domain;
  * @apiNote 呼び出し方の例：Authority.ADMIN.getAuthorityId()
  */
 public enum Authority {
-	ADMIN(1, "管理者"), USER(2, "利用者");
+	UNREGISTERED(0, "未登録ユーザー"), ADMIN(1, "管理者"), USER(2, "利用者"), OUTSIDER(3, "組織外ユーザー");
 
 	/** 権限ID */
 	private final Integer authorityId;

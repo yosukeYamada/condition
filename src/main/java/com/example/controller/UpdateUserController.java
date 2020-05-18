@@ -19,7 +19,6 @@ import com.example.service.UpdateUserService;
  *
  */
 @RestController
-@RequestMapping("/updateUser")
 public class UpdateUserController {
 
 	@Autowired
@@ -31,11 +30,11 @@ public class UpdateUserController {
 	 * @param form 更新後のユーザー情報
 	 * @return 全従業員のユーザー情報
 	 */
-	@RequestMapping("")
+	@RequestMapping("/updateUser")
 	public List<User> updateUser(@RequestBody UpdateUserForm form) {
 		UpdateUserForm updateUserForm = reMakeUserName(form);
-		return updateUserService.updateUser(updateUserForm);
-
+		List<User> EmployeeList = updateUserService.updateUser(updateUserForm);
+		return EmployeeList;
 	}
 
 	/**
@@ -57,13 +56,11 @@ public class UpdateUserController {
 		}
 		return form;
 	}
-	
+
 	@RequestMapping("/status")
 	public Integer updateUserStatus(UpdateUserStatusForm form) {
 		Integer latestUserVersion = updateUserService.updateUserStatus(form);
 		return latestUserVersion;
 	}
-	
-	
 
 }

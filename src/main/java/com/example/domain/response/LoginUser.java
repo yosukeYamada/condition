@@ -6,6 +6,7 @@ import java.util.List;
 import com.example.domain.DailyPost;
 import com.example.domain.Dep;
 import com.example.domain.Mail;
+import com.example.domain.PostedNews;
 
 import lombok.Data;
 
@@ -28,5 +29,6 @@ public class LoginUser {
 	private List<DailyPost> dailyPost;
 	private List<Mail> mailList;
 	private List<Dep> depList;
+	private List<PostedNews> postedNewsList;
 	
 }
