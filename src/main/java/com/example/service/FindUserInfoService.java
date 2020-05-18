@@ -12,9 +12,15 @@ import com.example.domain.Mail;
 import com.example.domain.User;
 import com.example.mapper.UserMapper;
 
+/**
+ * ユーザー情報を取得するサービス.
+ * 
+ * @author iidashuhei
+ *
+ */
 @Service
 @Transactional
-public class UserService {
+public class FindUserInfoService {
 
 	@Autowired
 	private UserMapper userMapper;
@@ -37,6 +43,8 @@ public class UserService {
 			newUser.setMailList(mailList);
 			newUser.setAuthority(Authority.UNREGISTERED.getAuthorityId());
 			return newUser;
+			
+		// nullじゃなければすべて詰まった情報を返す
 		} else {
 			/** nullじゃなければすべて詰まった情報を返す */
 			return loginUser;

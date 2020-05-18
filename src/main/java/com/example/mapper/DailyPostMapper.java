@@ -84,5 +84,9 @@ public interface DailyPostMapper {
      */
     public Integer updateDailyPostStatus(DailyPost dailyPost);
     
+    
+    
+    //テスト用
+    public void insertDailyPost(Integer userId);
 
 }

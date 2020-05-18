@@ -17,7 +17,7 @@ import com.example.mapper.MailMapper;
  */
 @Service
 @Transactional
-public class MailService {
+public class RegisterMailService {
 
 	@Autowired
 	private MailMapper mailMapper;
