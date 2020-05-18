@@ -142,10 +142,9 @@ public class UpdateUserService {
 	 * @param user
 	 */
 	public void updateRelatedUsers(User latestUser, User user) {
-		user.setStatus(null);
 		Mail mail = new Mail();
 		BeanUtils.copyProperties(user, mail);
-		List<Mail> latestMailList = user.getMailList();
+		List<Mail> latestMailList = latestUser.getMailList();
 		for(Mail latestMail:latestMailList) {
 			Integer latestMailVersion = latestMail.getVersion();
 			latestMailVersion+=1;
@@ -163,35 +162,45 @@ public class UpdateUserService {
 		PostedComment postedComment = new PostedComment();
 		BeanUtils.copyProperties(user, postedComment);
 		List<DailyPost> latestDailyPostList = latestUser.getDailyPost();
-		// DailyPost下位テーブルをすべて削除
+		// daily_post下位テーブルをすべて削除
 		for (DailyPost latestDailyPost : latestDailyPostList) {
 			// パフォーマンスを更新
+			Integer latestDailyPostId = latestDailyPost.getDailyPostId();
 			PostedPerformance latestPostedPerformance = latestDailyPost.getPostedPerformance();
 			Integer latestPostedPerformanceVersion = latestPostedPerformance.getVersion();
 			latestPostedPerformanceVersion += 1;
+			postedPerformance.setDailyPostId(latestDailyPostId);
 			postedPerformance.setVersion(latestPostedPerformanceVersion);
 			postedPerformanceMapper.updateStatus(postedPerformance);
 
+			// コンディションを更新
 			PostedCondition latestPostedCondition = latestDailyPost.getPostedCondition();
 			Integer latestPostedConditionVersion = latestPostedCondition.getVersion();
 			latestPostedConditionVersion += 1;
+			postedCondition.setDailyPostId(latestDailyPostId);
 			postedCondition.setVersion(latestPostedConditionVersion);
 			postedConditionMapper.updateStatus(postedCondition);
 
+			// モチベーションを更新
 			PostedMotivation latestPostedMotivation = latestDailyPost.getPostedMotivation();
 			Integer latestPostedMotivationVersion = latestPostedMotivation.getVersion();
 			latestPostedMotivationVersion += 1;
+			postedMotivation.setDailyPostId(latestDailyPostId);
 			postedMotivation.setVersion(latestPostedMotivationVersion);
 			postedMotivationMapper.updateStatus(postedMotivation);
 
+			// コメントを更新
 			PostedComment latestPostedComment = latestDailyPost.getPostedComment();
 			Integer latestPostedCommentVersion = latestPostedComment.getVersion();
 			latestPostedCommentVersion += 1;
+			postedComment.setDailyPostId(latestDailyPostId);
 			postedComment.setVersion(latestPostedCommentVersion);
 			postedCommentMapper.updateStatus(postedComment);
 
+			// daily_postを更新
 			Integer latestDailyPostVersion = latestDailyPost.getVersion();
 			latestDailyPostVersion += 1;
+			dailyPost.setDailyPostId(latestDailyPostId);
 			dailyPost.setVersion(latestDailyPostVersion);
 			dailyPostMapper.updateDailyPostStatus(dailyPost);
 		}

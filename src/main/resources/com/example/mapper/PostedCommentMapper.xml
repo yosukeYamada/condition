@@ -23,7 +23,7 @@
     	SET
     	update_user_id = #{updateUserId},
     	update_date = #{updateDate},
-    	version = #{version}
+    	version = #{version},
     	status=#{status}
     	where daily_post_id = #{dailyPostId}
     </select>

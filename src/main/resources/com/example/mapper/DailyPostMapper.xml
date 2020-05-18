@@ -311,7 +311,7 @@
 		version=version + 1
 		where daily_post_id = #{dailyPostId}
 	</update>
-	<select id="updateDailyPostStatus">
+	<select id="updateDailyPostStatus" resultType="Integer">
 		UPDATE daily_posts SET update_user_id =
 		#{updateUserId},status = #{status},update_date =#{updateDate},version
 		=#{version} WHERE user_id = #{userId} returning version

@@ -58,7 +58,7 @@ public class UpdateUserController {
 	}
 
 	@RequestMapping("/status")
-	public Integer updateUserStatus(UpdateUserStatusForm form) {
+	public Integer updateUserStatus(@RequestBody UpdateUserStatusForm form) {
 		Integer latestUserVersion = updateUserService.updateUserStatus(form);
 		return latestUserVersion;
 	}

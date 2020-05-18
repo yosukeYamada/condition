@@ -44,7 +44,7 @@
 		mails
 		SET
 		update_user_id = #{updateUserId},
-		updateDate = #{updateDate},
+		update_date = #{updateDate},
 		status =
 		#{status},
 		version=#{version}

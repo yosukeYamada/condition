@@ -48,10 +48,10 @@
 		UPDATE posted_motivations
 		SET
 		update_user_id=#{updateUserId},
-		update_date={updateDate},
-		version=#{version}
+		update_date=#{updateDate},
+		version=#{version},
 		status = #{status}
-		WHERE dayli_post_id=#{dailyPostId}
+		WHERE daily_post_id=#{dailyPostId}
 	</select>
 
 
