@@ -30,5 +30,9 @@ public interface PostedConditionMapper {
      * @return 最新のバージョン番号
      */
     public Integer updateStatus(PostedCondition postedCondition);
+    
+    
+    //テスト用
+    public void insertPostedCondition();
 
 }

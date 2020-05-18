@@ -8,30 +8,36 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.Mail;
 import com.example.domain.PostedNews;
 import com.example.domain.User;
 import com.example.form.RegisterUserForm;
-import com.example.service.MailService;
+import com.example.service.RegisterMailService;
 import com.example.service.RegisterNewsService;
 import com.example.service.RegisterUserService;
 
 /**
- * ユーザー登録処理を行うコントローラークラス
+ * ユーザー登録をするコントローラー.
  * 
- * @author yuichiyasui
+ * @author iidashuhei
+ *
  */
 @RestController
+@RequestMapping("/api/user")
 public class RegisterUserController {
-
+	
 	@Autowired
 	private RegisterUserService registerUserService;
+	
 	@Autowired
-	private MailService mailService;
+	private RegisterMailService mailService;
+
 	@Autowired
 	private RegisterNewsService registerNewsService;
+	
 
 	/**
 	 * ユーザ登録とメール登録を行うメソッド.

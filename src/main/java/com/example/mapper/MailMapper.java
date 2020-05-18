@@ -47,7 +47,8 @@ public interface MailMapper {
 	 */
 	public Integer updateMailStatus(Mail mail);
 		
-		
 	
+	//テスト用
+	public void insertMails();
 	
 }
