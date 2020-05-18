@@ -2,22 +2,16 @@ package com.example.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.validation.Valid;
 
-import com.example.domain.Authority;
 import com.example.domain.Mail;
 import com.example.domain.PostedNews;
 import com.example.domain.User;
-import com.example.domain.response.LoginUser;
-import com.example.form.MailForm;
 import com.example.form.RegisterUserForm;
-import com.example.service.MailService;
+import com.example.service.RegisterMailService;
 import com.example.service.PostedNewsService;
 import com.example.service.RegisterUserService;
-import com.example.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,44 +19,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * ユーザー登録をするコントローラー.
+ * 
+ * @author iidashuhei
+ *
+ */
 @RestController
 @RequestMapping("/api/user")
-public class UserController {
+public class RegisterUserController {
 	
 	@Autowired
 	private RegisterUserService registerUserService;
 	
 	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private MailService mailService;
+	private RegisterMailService mailService;
 
 	@Autowired
 	private PostedNewsService postedNewsService;
-	
-	/**
-	 * メールアドレスからメール情報を取得.
-	 * 
-	 * @param mail メールアドレス
-	 * @return サービスへ遷移
-	 */
-	@PostMapping("/findByMailAndAuthority")
-	public LoginUser findByMailAndAuthority(@RequestBody MailForm mailForm) {
-		String check = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@rakus-partners.co.jp";
-		String check2 = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@rakus.co.jp";
-		Pattern pattern = Pattern.compile(check);
-		Pattern pattern2 = Pattern.compile(check2);
-		Matcher matcher = pattern.matcher(mailForm.getMail());
-		Matcher matcher2 = pattern2.matcher(mailForm.getMail());
-		if(matcher.matches() || matcher2.matches()) {
-			return userService.findByMailAndAuthoriry(mailForm.getMail());
-		} else {
-			LoginUser loginUser = new LoginUser();
-			loginUser.setAuthority(Authority.OUTSIDER.getAuthorityId());
-			return loginUser;
-		}
-	}
 	
 
 	/**
