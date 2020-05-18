@@ -15,7 +15,7 @@ import com.example.domain.response.LoginUser;
 import com.example.form.MailForm;
 import com.example.form.RegisterUserForm;
 import com.example.service.MailService;
-import com.example.service.PostedNewsService;
+import com.example.service.RegisterNewsService;
 import com.example.service.RegisterUserService;
 import com.example.service.UserService;
 
@@ -39,7 +39,7 @@ public class UserController {
 	private MailService mailService;
 
 	@Autowired
-	private PostedNewsService postedNewsService;
+	private RegisterNewsService postedNewsService;
 	
 	/**
 	 * メールアドレスからメール情報を取得.

@@ -11,22 +11,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.PostedNews;
 import com.example.form.PostedNewsForm;
-import com.example.service.PostedNewsService;
+import com.example.service.RegisterNewsService;
 
 /**
+ * お知らせ投稿の登録を行うコントローラー.
+ * 
  * @author sakai
  *
  */
 @RestController
-public class NewsController {
+public class RegisterNewsController {
 
 	@Autowired
-	private PostedNewsService postedNewsService;
-	
+	private RegisterNewsService registerNewsService;
+
 	public PostedNewsForm setUpForm() {
 		return new PostedNewsForm();
 	}
-	
+
 	/**
 	 * お知らせ投稿を行うメソッド.
 	 * 
@@ -35,30 +37,8 @@ public class NewsController {
 	 */
 	@RequestMapping("/news")
 	public List<PostedNews> postedNews(@RequestBody PostedNewsForm form) {
-		List<PostedNews> PostedNewsList = postedNewsService.PostedNews(form);
+		List<PostedNews> PostedNewsList = registerNewsService.PostedNews(form);
 		return PostedNewsList;
 	}
-	
-	/**
-	 * お知らせ投稿一覧を表示するメソッド.
-	 * 
-	 * @return お知らせ投稿一覧
-	 */
-	@ResponseBody
-	@RequestMapping("/showNewsPostList")
-	public List<PostedNews> showNewsPostList() {
-		return postedNewsService.showNewsPostList();
-	}
-	
-    /**
-     * お知らせの削除を行うメソッド
-     * 
-     * @param form お知らせID
-     */
-	@ResponseBody
-    @RequestMapping("/deleteNews")
-    public void deleteNews(@RequestBody PostedNewsForm form) {
-    	postedNewsService.deleteNews(form);
-    }
-	
+
 }
