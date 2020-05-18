@@ -7,20 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.domain.PostedNews;
+import com.example.domain.Status;
 import com.example.form.PostedNewsForm;
 import com.example.mapper.PostedNewsMapper;
 
 /**
+ * お知らせ投稿の登録を行うサービスクラス
+ * 
  * @author sakai
  *
  */
 @Service
-public class PostedNewsService {
+public class RegisterNewsService {
 
 	@Autowired
 	private PostedNewsMapper postedNewsMapper;
-	
-	public List<PostedNews> PostedNews(PostedNewsForm form){
+
+	/**
+	 * お知らせの投稿を行う
+	 * 
+	 * @param form 投稿内容
+	 * @return お知らせ投稿一覧
+	 */
+	public List<PostedNews> PostedNews(PostedNewsForm form) {
 		Timestamp tsDate = new Timestamp(System.currentTimeMillis()); // 現在時刻を生成
 		Integer userId = form.getUserId();
 		String newsComment = form.getNewsComment();
@@ -31,10 +40,19 @@ public class PostedNewsService {
 		postedNews.setRegisterUserId(userId);
 		postedNews.setRegisterDate(tsDate);
 		postedNews.setVersion(1);
-		postedNews.setStatus(1);
+		postedNews.setStatus(Status.AVAILABLE.getStatusId());
 		postedNewsMapper.save(postedNews); // posted_newsテーブルに挿入
-		
 		List<PostedNews> PostedNewsList = postedNewsMapper.findAll();
 		return PostedNewsList;
 	}
+
+	/**
+	 * お知らせ投稿一覧を取得する.
+	 * 
+	 * @return お知らせ投稿一覧
+	 */
+	public List<PostedNews> showNewsPostList() {
+		return postedNewsMapper.findAll();
+	}
+
 }

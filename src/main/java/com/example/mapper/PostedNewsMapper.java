@@ -2,10 +2,9 @@ package com.example.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-
-import com.example.domain.DailyPost;
 import com.example.domain.PostedNews;
+
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * posted_newsテーブルを操作するマッパー.
@@ -32,4 +31,12 @@ public interface PostedNewsMapper {
      */
     public List<PostedNews> findAll();
 	
+    
+    /**
+     * お知らせを削除するメソッド
+     * 
+     * @param postedNews お知らせID
+     */
+    public void deleteByNewsId(PostedNews postedNews);
+    
 }

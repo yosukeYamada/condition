@@ -2,6 +2,8 @@ package com.example.mapper;
 
 import com.example.domain.PostedMotivation;
 
+import java.sql.Timestamp;
+
 import org.apache.ibatis.annotations.Mapper;
 /**
  * posted_motivationsテーブルを操作するマッパー
@@ -17,4 +19,8 @@ public interface PostedMotivationMapper {
      * @param postedMotivation 投稿されたモチベーション情報
      */
     public void save(PostedMotivation postedMotivation);
+    
+    public void update(Integer dailyPostId,Integer updateUserId,Integer motivationId,Timestamp updateDate);
+    
+    public Integer updateStatus(PostedMotivation postedMotivation);
 }

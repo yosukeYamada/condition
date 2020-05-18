@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.User;
+import com.example.form.UpdateUserStatusForm;
 import com.example.form.UpdateUserForm;
 import com.example.service.UpdateUserService;
 
@@ -18,7 +19,6 @@ import com.example.service.UpdateUserService;
  *
  */
 @RestController
-@RequestMapping("/updateUser")
 public class UpdateUserController {
 
 	@Autowired
@@ -30,11 +30,11 @@ public class UpdateUserController {
 	 * @param form 更新後のユーザー情報
 	 * @return 全従業員のユーザー情報
 	 */
-	@RequestMapping("")
+	@RequestMapping("/updateUser")
 	public List<User> updateUser(@RequestBody UpdateUserForm form) {
 		UpdateUserForm updateUserForm = reMakeUserName(form);
-		return updateUserService.updateUser(updateUserForm);
-
+		List<User> EmployeeList = updateUserService.updateUser(updateUserForm);
+		return EmployeeList;
 	}
 
 	/**
@@ -55,6 +55,12 @@ public class UpdateUserController {
 			form.setUserNameKana(userNameKana);
 		}
 		return form;
+	}
+
+	@RequestMapping("/status")
+	public Integer updateUserStatus(@RequestBody UpdateUserStatusForm form) {
+		Integer latestUserVersion = updateUserService.updateUserStatus(form);
+		return latestUserVersion;
 	}
 
 }

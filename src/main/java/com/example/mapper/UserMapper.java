@@ -2,10 +2,9 @@ package com.example.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.example.domain.User;
-import com.example.domain.response.LoginUser;
+
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * ユーザーマッパー.
@@ -45,27 +44,51 @@ public interface UserMapper {
 	 * @return 全ユーザー情報とその投稿の一覧
 	 */
 	public List<User> findAllAndDailyPost();
-	
+
 	/**
 	 * メールからユーザー情報を検索する.
 	 * 
-	 * @return ユーザー情報
+	 * @return ユーザー情報(ユーザードメインのプロパティ全て)
 	 */
-	public LoginUser findByMailAndAuthority(String mail);
-	
+	public User findByMail(String mail);
+
 	/**
 	 * メールアドレスからユーザー情報を取得する.
 	 * 
 	 * @param email メール
-	 * @return ユーザー情報
+	 * @return ユーザー情報(dep, mailなし)
 	 */
 	public User findUserByMail(String email);
-	
+
 	/**
 	 * ユーザー登録を更新する
 	 * 
-	 * @param user　ユーザー情報
+	 * @param user ユーザー情報
 	 */
 	public void updateUser(User user);
+	
+	/**
+	 * ユーザーstatusを更新するメソッド.
+	 * 
+	 * @param updateUserId ユーザID
+	 * @param updateUserStatus ユーザstatus
+	 */
+	public Integer updateUserStatus(User user);
+	
+	/**
+	 * ユーザIDでユーザを検索するメソッド.
+	 * 
+	 * @param userId ユーザID
+	 * @return ユーザID
+	 */
+	public User findByUserId(Integer userId);
+
+	/**
+	 * 部署IDで該当の部署に所属している人数を取得するメソッド
+	 * 
+	 * @param depId 部署ID
+	 * @return 所属人数
+	 */
+	public Integer countByDepId(Integer depId);
 
 }

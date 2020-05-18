@@ -9,15 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.DailyPost;
 import com.example.form.ShowDailyPostListForm;
-import com.example.service.DailyPostServiceImpl;
+import com.example.service.DailyPostService;
 
+/**
+ * 投稿したコンディション一覧を表示するコントローラークラス
+ * 
+ * @yuichiyasui
+ */
 @RestController
-@RequestMapping("")
 public class DailyPostsHistoryController {
-	
-	@Autowired
-	private DailyPostServiceImpl dailyPostService;
 
+	@Autowired
+	private DailyPostService dailyPostService;
 
 	/**
 	 * ユーザの投稿履歴を取得するメソッド.
@@ -25,8 +28,8 @@ public class DailyPostsHistoryController {
 	 * @param form ユーザIDのリクエストパラメータ
 	 * @return 投稿履歴リスト
 	 */
-	@RequestMapping("/motivations")
-	public List<DailyPost> showDaylyPostsHistory(@RequestBody ShowDailyPostListForm form){
+	@RequestMapping("/motivations") // TODO メソッド名とパスを一致させる 
+	public List<DailyPost> showDailyPostsHistory(@RequestBody ShowDailyPostListForm form) {
 		List<DailyPost> dailyPostList = dailyPostService.getDailyPostList(form);
 		return dailyPostList;
 	}

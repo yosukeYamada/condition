@@ -1,14 +1,13 @@
 drop database if exists conditions;
 create database conditions;
 
+drop table if exists authority_memos;
+drop table if exists status_memos;
+
 drop table if exists users;
 create table users (user_id serial primary key,user_name text not null, user_name_kana text not null, dep_id Integer not null,hire_date timestamp not null,authority Integer, register_user_id Integer,register_date Timestamp not null,update_user_id Integer,update_date timestamp,version Integer not null,status Integer not null);
 drop table if exists mails;
 create table mails(mail_id serial primary key, mail_name text not null,user_id Integer not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
-drop table if exists authority_memos;
-create table authority_memos(authority_id serial primary key,authority_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
-drop table if exists status_memos;
-create table status_memos(status_id serial primary key,status_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
 drop table if exists deps;
 create table deps(dep_id serial primary key,dep_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp,version Integer not null,status Integer not null);
 drop table if exists daily_posts;
@@ -29,8 +28,64 @@ drop table if exists motivations;
 create table motivations (motivation_id serial primary key,motivation_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
 drop table if exists posted_news;
 create table posted_news(news_id serial primary key,news_date timestamp not null,news_comment text not null,user_id Integer not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp, version Integer not null,status Integer not null);
+drop table if exists information;
+create table information(information_id serial primary key,information_date timestamp not null,information_title text not null,information_content text not null,category_id Integer not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp, version Integer not null,status Integer not null);
+drop table if exists categories;
+create table categories(category_id serial primary key,category_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp, version Integer not null,status Integer not null);
 
 
+
+INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカルくん','らくすかるくん',1,'2019-10-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカルちゃん','らくすかるちゃん',1,'2019-10-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカル先輩','らくすかるせんぱい',1,'2019-07-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('いいだ先輩','いいだせんぱい',2,'2019-07-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+
+
+
+
+INSERT INTO deps(dep_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('アプリエンジニア',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO deps(dep_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('クラウドエンジニア',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO deps(dep_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('機械学習エンジニア',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO deps(dep_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('内勤',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+
+INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('rakuskarukaru@rakus.co.jp',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('rakuskarukaruchan@rakus.co.jp',2,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('rakuskarukarusenpai@rakus.co.jp',3,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('shuhei.iida@rakus-partners.co.jp',4,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+
+INSERT INTO conditions(condition_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('快晴',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO conditions(condition_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('晴',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO conditions(condition_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('曇',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO conditions(condition_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('雨',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO conditions(condition_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('嵐',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO performances(performance_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('快晴',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO performances(performance_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('晴',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO performances(performance_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('曇',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO performances(performance_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('雨',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO performances(performance_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('嵐',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('快晴',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('晴',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('曇',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('雨',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('嵐',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+
+
+INSERT INTO posted_news(news_date,news_comment,user_id, register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-01 09:00:00','お知らせ1',1,1,'2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
+INSERT INTO posted_news(news_date,news_comment,user_id, register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-02 09:00:00','お知らせ2',1,1,'2020-05-02 09:00:00',1,'2020-05-02 09:00:00',1,2);
+INSERT INTO posted_news(news_date,news_comment,user_id, register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-03 09:00:00','お知らせ3',1,1,'2020-05-03 09:00:00',1,'2020-05-03 09:00:00',1,2);
+
+
+INSERT INTO information(information_date,information_title,information_content,category_id,register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-01 09:00:00','ラクスカルくん逮捕','刑務所にいたラクスカルくんが逮捕されました',1,1,'2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
+INSERT INTO information(information_date,information_title,information_content,category_id,register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-01 09:00:00','ラクスカルくん脱獄','刑務所にいたラクスカルくんが脱獄しました',2,1,'2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
+INSERT INTO information(information_date,information_title,information_content,category_id,register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-01 09:00:00','ラクスカルくん再逮捕','刑務所にいたラクスカルくんが再逮捕されました',3,1,'2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
+
+
+INSERT INTO categories(category_name,register_user_id, register_date,update_user_id,update_date,version,status) VALUES('お知らせ','1','2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
+INSERT INTO categories(category_name,register_user_id, register_date,update_user_id,update_date,version,status) VALUES('プレスリリース','1','2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
+INSERT INTO categories(category_name,register_user_id, register_date,update_user_id,update_date,version,status) VALUES('訂正とお詫び','1','2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
+
+
+<<<<<<< HEAD
 INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカルくん','らくすかるくん',1,'2019-10-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカルちゃん','らくすかるちゃん',1,'2019-10-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカル先輩','らくすかるせんぱい',1,'2019-07-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
@@ -65,12 +120,7 @@ INSERT INTO motivations(motivation_name,register_user_id,register_date,update_us
 INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('曇',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('雨',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO motivations(motivation_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES ('嵐',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
-
-<<<<<<< HEAD
-
-
-=======
 INSERT INTO posted_news(news_date,news_comment,user_id, register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-01 09:00:00','お知らせ1',1,1,'2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,1);
 INSERT INTO posted_news(news_date,news_comment,user_id, register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-02 09:00:00','お知らせ2',1,1,'2020-05-02 09:00:00',1,'2020-05-02 09:00:00',1,1);
 INSERT INTO posted_news(news_date,news_comment,user_id, register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-03 09:00:00','お知らせ3',1,1,'2020-05-03 09:00:00',1,'2020-05-03 09:00:00',1,1);
->>>>>>> b31866765ae58c261d6fe12921a74efc51a68d40
+

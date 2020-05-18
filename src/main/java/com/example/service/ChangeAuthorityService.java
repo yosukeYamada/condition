@@ -32,14 +32,11 @@ public class ChangeAuthorityService {
      * @return ユーザー情報
      */
     public User findUserByMail(String email) {
-    	
     	User user = userMapper.findUserByMail(email);
-    	 
     	if(user == null) {
     		User noUser = new User();
-    		noUser.setAuthority(3);
+    		noUser.setAuthority(3); // TODO
     		return noUser;
-    		
     	} else {
     		return user;
     	}

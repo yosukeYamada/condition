@@ -1,10 +1,30 @@
 package com.example.domain;
 
-import lombok.Data;
+/**
+ * ユーザー権限を表す列挙型
+ * 
+ * @author yuichiyasui
+ * @apiNote 呼び出し方の例：Authority.ADMIN.getAuthorityId()
+ */
+public enum Authority {
+	UNREGISTERED(0, "未登録ユーザー"), ADMIN(1, "管理者"), USER(2, "利用者"), OUTSIDER(3, "組織外ユーザー");
 
-@Data
-public class Authority {
+	/** 権限ID */
+	private final Integer authorityId;
+	/** 権限名 */
+	private final String authorityName;
 
-	private Integer authorityId;
-	private String authorityName;
+	private Authority(final Integer authorityId, final String authorityName) {
+		this.authorityId = authorityId;
+		this.authorityName = authorityName;
+	}
+
+	public Integer getAuthorityId() {
+		return authorityId;
+	}
+
+	public String getAuthorityName() {
+		return authorityName;
+	}
+
 }

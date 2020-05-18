@@ -9,32 +9,34 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.PostedNews;
 import com.example.form.PostedNewsForm;
-import com.example.service.PostedNewsService;
+import com.example.service.RegisterNewsService;
 
 /**
+ * お知らせ投稿の登録を行うコントローラー.
+ * 
  * @author sakai
  *
  */
 @RestController
-public class NewsController {
+public class RegisterNewsController {
 
 	@Autowired
-	private PostedNewsService postedNewsService;
-	
+	private RegisterNewsService registerNewsService;
+
 	public PostedNewsForm setUpForm() {
 		return new PostedNewsForm();
 	}
-	
+
 	/**
 	 * お知らせ投稿を行うメソッド.
 	 * 
-	 * @param form
-	 * @return
+	 * @param form 投稿内容
+	 * @return お知らせ投稿一覧
 	 */
 	@RequestMapping("/news")
 	public List<PostedNews> postedNews(@RequestBody PostedNewsForm form) {
-		List<PostedNews> PostedNewsList = postedNewsService.PostedNews(form);
+		List<PostedNews> PostedNewsList = registerNewsService.PostedNews(form);
 		return PostedNewsList;
 	}
-	
+
 }

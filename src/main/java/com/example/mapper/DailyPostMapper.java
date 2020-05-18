@@ -23,6 +23,23 @@ public interface DailyPostMapper {
      * @return 挿入したdailyPostID
      */
     public Integer save(DailyPost dailyPost);
+    
+    /**
+     * 毎日の投稿の編集を行うメソッド.
+     * 
+     * @param dailyPost 挿入する毎日の投稿情報
+     * @return 挿入したdailyPostID
+     */
+    public Integer edit(DailyPost dailyPost);
+    
+    
+    /**
+     * 毎日の投稿IDから投稿情報を取得する.
+     * 
+     * @param dailyPostId 毎日の投稿ID
+     * @return 毎日の投稿情報
+     */
+    public DailyPost findByDailyPostId(Integer dailyPostId);
 
     /**
      * 年月日で検索して投稿を取得するメソッド.
@@ -41,7 +58,6 @@ public interface DailyPostMapper {
     public List<DailyPost> findByUserId(Integer userId);
     
     
-    
     /**
      * １日１回しか投稿不可にするために取得するメソッド.
      * 
@@ -50,5 +66,23 @@ public interface DailyPostMapper {
      * @return
      */
     public DailyPost findByUserIdAndDate(@Param("userId") Integer userId,@Param ("tsDate") String date);
+    
+    /**
+     * 投稿内容を更新する.
+     * 
+     * @param dailyPost 毎日の投稿.
+     */
+    public void update(Integer dailyPostId,Integer updateUserId,Timestamp updateDate);
+    
+    
+    /**
+     * 投稿を保留・削除するメソッド.
+     * 
+     * 
+     * @param dailyPost　投稿内容のstatus等
+     * @return 最新のバージョン
+     */
+    public Integer updateDailyPostStatus(DailyPost dailyPost);
+    
 
 }

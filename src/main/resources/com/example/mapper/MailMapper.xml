@@ -35,8 +35,20 @@
 		SET
 		mail_name = #{mailName},
 		update_user_id = #{updateUserId},
-		updateDate = #{updateDate},
+		update_date = #{updateDate}
 		WHERE
 		user_id= #{userId};
 	</update>
+	<select id="updateMailStatus" resultType="Integer">
+		UPDATE
+		mails
+		SET
+		update_user_id = #{updateUserId},
+		update_date = #{updateDate},
+		status =
+		#{status},
+		version=#{version}
+		WHERE
+		user_id= #{userId};
+	</select>
 </mapper>

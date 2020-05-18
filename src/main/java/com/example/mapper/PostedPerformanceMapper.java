@@ -2,6 +2,8 @@ package com.example.mapper;
 
 import com.example.domain.PostedPerformance;
 
+import java.sql.Timestamp;
+
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -18,5 +20,9 @@ public interface PostedPerformanceMapper {
      * @param postedPerformance 投稿された成果情報
      */
     public void save(PostedPerformance postedPerformance);
+    
+    public void update(Integer dailyPostId,Integer updateUserId,Integer performanceId,Timestamp updateDate);
+    
+    public Integer updateStatus(PostedPerformance postedPerformance);
 
 }

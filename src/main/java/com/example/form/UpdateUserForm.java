@@ -36,17 +36,11 @@ public class UpdateUserForm {
 	@Email
 	@NotBlank
 	private String mailAddress;
-	@NotBlank
-	@Pattern(regexp="\\d{1}")
-	private String authorityId;
 	
 	public Integer getIntDepId() {
 		return Integer.parseInt(depId);
 	}
 	
-	public Integer getIntAuthorityId() {
-		return Integer.parseInt(authorityId);
-	}
 	
 	
 
