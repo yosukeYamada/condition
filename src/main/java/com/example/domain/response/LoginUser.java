@@ -10,6 +10,12 @@ import com.example.domain.PostedNews;
 
 import lombok.Data;
 
+
+/**
+ * ログインユーザー情報を返す
+ * 
+ * iidashuhei
+ */
 @Data
 public class LoginUser {
 
@@ -25,10 +31,9 @@ public class LoginUser {
 	private Timestamp updateDate;
 	private Integer version;
 	private Integer status;
-	private Dep dep;
 	private List<DailyPost> dailyPost;
 	private List<Mail> mailList;
-	private List<Dep> depList;
-	private List<PostedNews> postedNewsList;
+	private Dep dep; //TODO のちほど削除する
+	private List<PostedNews> postedNewsList; //TODO のちほど削除
 	
 }

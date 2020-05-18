@@ -2,10 +2,9 @@ package com.example.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.example.domain.User;
-import com.example.domain.response.LoginUser;
+
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * ユーザーマッパー.
@@ -49,15 +48,15 @@ public interface UserMapper {
 	/**
 	 * メールからユーザー情報を検索する.
 	 * 
-	 * @return ユーザー情報
+	 * @return ユーザー情報(ユーザードメインのプロパティ全て)
 	 */
-	public LoginUser findByMailAndAuthority(String mail);
+	public User findByMail(String mail);
 
 	/**
 	 * メールアドレスからユーザー情報を取得する.
 	 * 
 	 * @param email メール
-	 * @return ユーザー情報
+	 * @return ユーザー情報(dep, mailなし)
 	 */
 	public User findUserByMail(String email);
 

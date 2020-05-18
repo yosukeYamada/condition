@@ -87,8 +87,7 @@
 		u.version u_version,
 		u.status u_status,
 		m.mail_id m_mail_id,
-		m.mail_name
-		m_mail_name,
+		m.mail_name m_mail_name,
 		m.user_id m_user_id,
 		m.register_user_id m_register_user_id,
 		m.register_date m_register_date,
@@ -314,9 +313,7 @@
 		#{registerUserId}
 	</update>
 
-
-	<!-- LoginUserオブジェクト＋α -->
-	<resultMap type="com.example.domain.response.LoginUser"
+	<resultMap type="com.example.domain.User"
 		id="userInfo">
 		<id property="userId" column="u_user_id" />
 		<result property="userName" column="u_user_name" />
@@ -441,7 +438,7 @@
 		</collection>
 
 	</resultMap>
-	<select id="findByMailAndAuthority" resultMap="userInfo"
+	<select id="findByMail" resultMap="userInfo"
 		parameterType="String">
 		SELECT
 		u.user_id u_user_id,
