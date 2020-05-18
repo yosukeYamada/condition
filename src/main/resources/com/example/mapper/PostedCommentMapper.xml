@@ -18,6 +18,15 @@
     	version = version + 1
     	where daily_post_id = #{dailyPostId}
     </update>
+    <select id="updateStatus">
+    	UPDATE posted_comments
+    	SET
+    	update_user_id = #{updateUserId},
+    	update_date = #{updateDate},
+    	version = #{version}
+    	status=#{status}
+    	where daily_post_id = #{dailyPostId}
+    </select>
 
 
 </mapper>

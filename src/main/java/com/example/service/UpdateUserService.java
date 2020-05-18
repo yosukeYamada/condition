@@ -3,16 +3,28 @@ package com.example.service;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.domain.DailyPost;
 import com.example.domain.Mail;
+import com.example.domain.PostedComment;
+import com.example.domain.PostedCondition;
+import com.example.domain.PostedMotivation;
+import com.example.domain.PostedPerformance;
+import com.example.domain.Status;
 import com.example.domain.User;
 import com.example.domain.error.ExclusiveException;
 import com.example.form.UpdateUserForm;
 import com.example.form.UpdateUserStatusForm;
+import com.example.mapper.DailyPostMapper;
 import com.example.mapper.MailMapper;
+import com.example.mapper.PostedCommentMapper;
+import com.example.mapper.PostedConditionMapper;
+import com.example.mapper.PostedMotivationMapper;
+import com.example.mapper.PostedPerformanceMapper;
 import com.example.mapper.UserMapper;
 
 /**
@@ -30,6 +42,21 @@ public class UpdateUserService {
 
 	@Autowired
 	private MailMapper mailMapper;
+
+	@Autowired
+	private DailyPostMapper dailyPostMapper;
+
+	@Autowired
+	private PostedPerformanceMapper postedPerformanceMapper;
+
+	@Autowired
+	private PostedConditionMapper postedConditionMapper;
+
+	@Autowired
+	private PostedMotivationMapper postedMotivationMapper;
+
+	@Autowired
+	private PostedCommentMapper postedCommentMapper;
 
 	/**
 	 * ユーザー情報の更新をusersとmailsのテーブルにUPDATEする.
@@ -74,33 +101,101 @@ public class UpdateUserService {
 
 	}
 
+	/**
+	 * ユーザのステータスを更新するメソッド.
+	 * 
+	 * @param form リクエストパラメータ
+	 * @return 最新のユーザVersion
+	 */
 	public Integer updateUserStatus(UpdateUserStatusForm form) {
 		Integer updateUserId = Integer.parseInt(form.getUpdateUserId());
 		Integer userId = Integer.parseInt(form.getUserId());
 		Integer updateStatus = Integer.parseInt(form.getUpdateUserStatus());
 		Integer userVarsion = Integer.parseInt(form.getUserVersion());
 		Timestamp updateDate = new Timestamp(System.currentTimeMillis());
-		Integer latestUserVersion = userMapper.findByUserId(userId).getVersion();
-		if(userVarsion != latestUserVersion) {
+		User latestUser = userMapper.findByUserId(userId);
+		Integer latestUserVersion = latestUser.getVersion();
+		if (userVarsion != latestUserVersion) {
 			throw new ExclusiveException("不正なパラメータです");
 		}
-		userVarsion+=1;
+		userVarsion += 1;
 		User user = new User();
 		user.setUpdateUserId(updateUserId);
 		user.setUserId(userId);
 		user.setStatus(updateStatus);
 		user.setVersion(userVarsion);
 		user.setUpdateDate(updateDate);
+		// userのテーブルを更新
 		Integer varsion = userMapper.updateUserStatus(user);
-		if(user.getStatus() == 9) {
-			
+		if (user.getStatus() == Status.DELETED.getStatusId()) {
+			// もし削除ならばユーザに紐づく投稿履歴とメールアドレスを削除
+			updateRelatedUsers(latestUser, user);
 		}
 		return varsion;
-		
+
 	}
-	
-	public void updateRelatedUsers(User user) {
-		
+
+	/**
+	 * Userテーブルに紐づく全ての情報を削除するメソッド.
+	 * 
+	 * @param latestUser
+	 * @param user
+	 */
+	public void updateRelatedUsers(User latestUser, User user) {
+		user.setStatus(null);
+		Mail mail = new Mail();
+		BeanUtils.copyProperties(user, mail);
+		List<Mail> latestMailList = user.getMailList();
+		for(Mail latestMail:latestMailList) {
+			Integer latestMailVersion = latestMail.getVersion();
+			latestMailVersion+=1;
+			mail.setVersion(latestMailVersion);
+			mailMapper.updateMailStatus(mail);
+		}
+		DailyPost dailyPost = new DailyPost();
+		BeanUtils.copyProperties(user, dailyPost);
+		PostedPerformance postedPerformance = new PostedPerformance();
+		BeanUtils.copyProperties(user, postedPerformance);
+		PostedCondition postedCondition = new PostedCondition();
+		BeanUtils.copyProperties(user, postedCondition);
+		PostedMotivation postedMotivation = new PostedMotivation();
+		BeanUtils.copyProperties(user, postedMotivation);
+		PostedComment postedComment = new PostedComment();
+		BeanUtils.copyProperties(user, postedComment);
+		List<DailyPost> latestDailyPostList = latestUser.getDailyPost();
+		// DailyPost下位テーブルをすべて削除
+		for (DailyPost latestDailyPost : latestDailyPostList) {
+			// パフォーマンスを更新
+			PostedPerformance latestPostedPerformance = latestDailyPost.getPostedPerformance();
+			Integer latestPostedPerformanceVersion = latestPostedPerformance.getVersion();
+			latestPostedPerformanceVersion += 1;
+			postedPerformance.setVersion(latestPostedPerformanceVersion);
+			postedPerformanceMapper.updateStatus(postedPerformance);
+
+			PostedCondition latestPostedCondition = latestDailyPost.getPostedCondition();
+			Integer latestPostedConditionVersion = latestPostedCondition.getVersion();
+			latestPostedConditionVersion += 1;
+			postedCondition.setVersion(latestPostedConditionVersion);
+			postedConditionMapper.updateStatus(postedCondition);
+
+			PostedMotivation latestPostedMotivation = latestDailyPost.getPostedMotivation();
+			Integer latestPostedMotivationVersion = latestPostedMotivation.getVersion();
+			latestPostedMotivationVersion += 1;
+			postedMotivation.setVersion(latestPostedMotivationVersion);
+			postedMotivationMapper.updateStatus(postedMotivation);
+
+			PostedComment latestPostedComment = latestDailyPost.getPostedComment();
+			Integer latestPostedCommentVersion = latestPostedComment.getVersion();
+			latestPostedCommentVersion += 1;
+			postedComment.setVersion(latestPostedCommentVersion);
+			postedCommentMapper.updateStatus(postedComment);
+
+			Integer latestDailyPostVersion = latestDailyPost.getVersion();
+			latestDailyPostVersion += 1;
+			dailyPost.setVersion(latestDailyPostVersion);
+			dailyPostMapper.updateDailyPostStatus(dailyPost);
+		}
+
 	}
 
 }

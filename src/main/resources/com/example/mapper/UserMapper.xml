@@ -826,6 +826,120 @@
 		SELECT COUNT(*) FROM users
 		WHERE dep_id = #{depId}
 	</select>
+	<select id="findByUserId" resultMap="UserAndPost">
+	SELECT
+		u.user_id u_user_id,
+		u.user_name u_user_name,
+		u.user_name_kana u_user_name_kana,
+		u.dep_id u_dep_id,
+		u.hire_date
+		u_hire_date,
+		u.authority u_authority,
+		u.register_user_id
+		u_register_user_id,
+		u.register_date u_register_date,
+		u.update_user_id
+		u_update_user_id,
+		u.update_date u_update_date,
+		u.version u_version,
+		u.status u_status,
+		m.mail_id
+		m_mail_id,
+		m.mail_name m_mail_name,
+		m.user_id m_user_id,
+		m.register_user_id m_register_user_id,
+		m.register_date m_register_date,
+		m.update_user_id m_update_user_id,
+		m.update_date m_update_date,
+		m.version m_version,
+		m.status m_status,
+		d.daily_post_id d_daily_post_id,
+		d.user_id d_user_id,
+		d.date d_date,
+		d.register_user_id
+		d_register_user_id,
+		d.register_date d_register_date,
+		d.update_user_id
+		d_update_user_id,
+		d.update_date d_update_date,
+		d.version d_version,
+		d.status d_status,
+		pm.posted_motivation_id pm_posted_motivation_id,
+		pm.daily_post_id pm_daily_post_id,
+		pm.motivation_id pm_motivation_id,
+		pm.register_user_id pm_register_user_id,
+		pm.register_date
+		pm_register_date,
+		pm.update_user_id pm_update_user_id,
+		pm.update_date
+		pm_update_date,
+		pm.version pm_version,
+		pm.status pm_status,
+		mo.motivation_id mo_motivation_id,
+		mo.motivation_name
+		mo_motivation_name,
+		pc.posted_condition_id pc_posted_condition_id,
+		pc.daily_post_id pc_daily_post_id,
+		pc.condition_id pc_condition_id,
+		pc.register_user_id pc_register_user_id,
+		pc.register_date
+		pc_register_date,
+		pc.update_user_id pc_update_user_id,
+		pc.update_date
+		pc_update_date,
+		pc.version pc_version,
+		pc.status pc_status,
+		c.condition_id c_condition_id,
+		c.condition_name c_condition_name,
+		pp.posted_performance_id pp_posted_performance_id,
+		pp.daily_post_id
+		pp_daily_post_id,
+		pp.performance_id pp_performance_id,
+		pp.register_user_id pp_register_user_id,
+		pp.register_date
+		pp_register_date,
+		pp.update_user_id pp_update_user_id,
+		pp.update_date
+		pp_update_date,
+		pp.version pp_version,
+		pp.status pp_status,
+		p.performance_id p_performance_id,
+		p.performance_name
+		p_performance_name,
+		pcm.posted_comment_id pcm_posted_comment_id,
+		pcm.daily_post_id pcm_daily_post_id,
+		pcm.comment pcm_comment,
+		pcm.register_user_id pcm_register_user_id,
+		pcm.register_date
+		pcm_register_date,
+		pcm.update_user_id pcm_update_user_id,
+		pcm.update_date pcm_update_date,
+		pcm.version pcm_version,
+		pcm.status
+		pcm_status
+		FROM users as u
+		LEFT OUTER JOIN mails as m on u.user_id =
+		m.user_id
+		LEFT OUTER JOIN daily_posts AS d ON u.user_id = d.user_id
+		LEFT OUTER JOIN posted_motivations AS pm ON d.daily_post_id =
+		pm.daily_post_id
+		LEFT OUTER JOIN motivations AS mo ON pm.motivation_id
+		= mo.motivation_id
+		LEFT OUTER JOIN posted_conditions AS pc ON
+		d.daily_post_id = pc.daily_post_id
+		LEFT OUTER JOIN conditions AS c ON
+		pc.condition_id = c.condition_id
+		LEFT OUTER JOIN posted_performances AS
+		pp ON d.daily_post_id = pp.daily_post_id
+		LEFT OUTER JOIN performances
+		AS p ON pp.performance_id = p.performance_id
+		LEFT OUTER JOIN
+		posted_comments AS pcm ON d.daily_post_id =
+		pcm.daily_post_id
+		WHERE user_id=#{userId}
+		ORDER BY u.hire_date, d.date
+		DESC;
+	</select>
 
 
 </mapper>

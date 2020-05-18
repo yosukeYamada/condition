@@ -73,5 +73,16 @@ public interface DailyPostMapper {
      * @param dailyPost 毎日の投稿.
      */
     public void update(Integer dailyPostId,Integer updateUserId,Timestamp updateDate);
+    
+    
+    /**
+     * 投稿を保留・削除するメソッド.
+     * 
+     * 
+     * @param dailyPost　投稿内容のstatus等
+     * @return 最新のバージョン
+     */
+    public Integer updateDailyPostStatus(DailyPost dailyPost);
+    
 
 }
