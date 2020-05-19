@@ -8,9 +8,6 @@ drop table if exists users;
 create table users (user_id serial primary key,user_name text not null, user_name_kana text not null, dep_id Integer not null,hire_date timestamp not null,authority Integer, register_user_id Integer,register_date Timestamp not null,update_user_id Integer,update_date timestamp,version Integer not null,status Integer not null);
 drop table if exists mails;
 create table mails(mail_id serial primary key, mail_name text not null,user_id Integer not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
-drop table if exists deps;
-create table deps(dep_id serial primary key,dep_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp,version Integer not null,status Integer not null);
-
 drop table if exists daily_posts;
 create table daily_posts(daily_post_id serial primary key,user_id Integer not null,date timestamp not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp, version Integer not null,status Integer not null);
 drop table if exists posted_comments;
@@ -21,6 +18,10 @@ drop table if exists posted_performances;
 create table posted_performances(posted_performance_id serial primary key, daily_post_id Integer not null, performance_id Integer not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp, version Integer not null,status Integer not null);
 drop table if exists posted_motivations;
 create table posted_motivations(posted_motivation_id serial primary key, daily_post_id Integer not null, motivation_id Integer not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp, version Integer not null,status Integer not null);
+
+
+drop table if exists deps;
+create table deps(dep_id serial primary key,dep_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp,version Integer not null,status Integer not null);
 
 drop table if exists conditions;
 create table conditions (condition_id serial primary key,condition_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
@@ -49,7 +50,7 @@ INSERT INTO deps(dep_name,register_user_id,register_date,update_user_id,update_d
 INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('rakuskarukaru@rakus.co.jp',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
 INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('rakuskarukaruchan@rakus.co.jp',2,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
 INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('rakuskarukarusenpai@rakus.co.jp',3,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
-INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('shuhei.iida@rakus-partners.co.jp',4,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('shuhei.iida@gmail.com',4,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
 
 INSERT INTO posted_news(news_date,news_comment,user_id, register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-01 09:00:00','お知らせ1',1,1,'2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
 INSERT INTO posted_news(news_date,news_comment,user_id, register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-02 09:00:00','お知らせ2',1,1,'2020-05-02 09:00:00',1,'2020-05-02 09:00:00',1,2);
