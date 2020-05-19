@@ -43,7 +43,7 @@ public interface UserMapper {
 	 * 
 	 * @return 全ユーザー情報とその投稿の一覧
 	 */
-	public List<User> findAllAndDailyPost();
+	public List<User> findAllAndDailyPost(Integer userStatus, Integer mailStatus, Integer dailyPostStatus);
 
 	/**
 	 * メールからユーザー情報を検索する.

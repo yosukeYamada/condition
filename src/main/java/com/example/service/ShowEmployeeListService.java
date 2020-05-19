@@ -2,6 +2,7 @@ package com.example.service;
 
 import java.util.List;
 
+import com.example.domain.Status;
 import com.example.domain.User;
 import com.example.mapper.UserMapper;
 
@@ -24,11 +25,13 @@ public class ShowEmployeeListService {
 	/**
 	 * 従業員情報の一覧を取得するメソッド.
 	 * 
-	 * @param date 日付('yyyy/MM/dd')
-	 * @return 引数で受け取った日付の投稿を含む従業員一覧
+	 * @return 従業員一覧(ステータスが"利用可能"のデータだけ取得)
 	 */
-	public List<User> showEmployee() {
-		List<User> employeeList = userMapper.findAllAndDailyPost();
+	public List<User> showEmployeeList() {
+		Integer userStatus = Status.AVAILABLE.getStatusId();
+		Integer mailStatus = Status.AVAILABLE.getStatusId();
+		Integer dailyPostStatus = Status.AVAILABLE.getStatusId();
+		List<User> employeeList = userMapper.findAllAndDailyPost(userStatus, mailStatus, dailyPostStatus);
 		return employeeList;
 	}
 }
