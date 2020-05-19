@@ -10,8 +10,8 @@ drop table if exists mails;
 create table mails(mail_id serial primary key, mail_name text not null,user_id Integer not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
 drop table if exists deps;
 create table deps(dep_id serial primary key,dep_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp,version Integer not null,status Integer not null);
-drop table if exists daily_posts;
 
+drop table if exists daily_posts;
 create table daily_posts(daily_post_id serial primary key,user_id Integer not null,date timestamp not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp, version Integer not null,status Integer not null);
 drop table if exists posted_comments;
 create table posted_comments(posted_comment_id serial primary key,daily_post_id Integer not null,comment text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp, version Integer not null,status Integer not null);
