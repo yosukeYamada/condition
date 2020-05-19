@@ -32,7 +32,13 @@ public class FindUserInfoService {
 	 * @return ユーザー情報
 	 */
 	public User findByMailAndAuthoriry(String mail) {
-		User loginUser = userMapper.findByMail(mail);
+		User loginUser = new User();
+		try {
+			loginUser = userMapper.findByMail(mail);
+		} catch (Exception e) {
+			System.out.println("エラー！！");
+			e.printStackTrace();
+		}
 		// nullならauthority番号が0のものと、mailAddress、depListをつめたユーザー情報を返す
 		if (loginUser == null) {
 			List<Mail> mailList = new ArrayList<>();
