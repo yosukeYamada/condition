@@ -322,7 +322,7 @@
 	<select id="insertDailyPost" resultType="Integer">
 		INSERT INTO daily_posts(user_id, date, register_user_id, register_date,update_user_id, update_date, version, status)
 		select #{userId},CURRENT_DATE + CAST( i || 'days' AS interval),1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2
-		from generate_series(1,10) as i;
+		from generate_series(1,20) as i;
 	</select>
 	
 </mapper>

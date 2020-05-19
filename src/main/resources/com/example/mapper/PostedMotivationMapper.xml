@@ -59,7 +59,7 @@
 	<select id="insertPostedMotivation" resultType="Integer">
 		INSERT INTO posted_motivations(daily_post_id, motivation_id, register_user_id, register_date, update_user_id, update_date, version, status)
 		select i,1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2
-		from generate_series(1,10) as i;
+		from generate_series(1,500) as i;
 	</select>
     
 
