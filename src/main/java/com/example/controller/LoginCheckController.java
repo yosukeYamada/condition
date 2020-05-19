@@ -38,6 +38,7 @@ public class LoginCheckController {
 		Pattern pattern2 = Pattern.compile(check2);
 		Matcher matcher = pattern.matcher(param.get("mail"));
 		Matcher matcher2 = pattern2.matcher(param.get("mail"));
+		System.out.println(param.get("mail"));
 		if (matcher.matches() || matcher2.matches()) {
 			return userService.findByMailAndAuthoriry(param.get("mail"));
 		} else {
