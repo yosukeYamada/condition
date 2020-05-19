@@ -53,7 +53,6 @@ public class ConditionExceptionHandler extends ResponseEntityExceptionHandler {
 		errorResponseBody.setStatus(responseCode);
 		errorResponseBody.setError(responseErrorMessage);
 		errorResponseBody.setMessage(exception.getMessage());
-		// TODO Auto-generated method stub
 		return errorResponseBody;
 	}
 

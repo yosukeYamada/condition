@@ -6,7 +6,7 @@ import java.util.List;
 import lombok.Data;
 
 /**
- * ユーザー情報のドメインクラス TODO dep,postedNewsListはのちほど削除する
+ * ユーザー情報のドメインクラス TODO depはのちほど削除するByYasui
  * 
  * @author yuichiyasui
  */

@@ -35,7 +35,7 @@ public class ChangeAuthorityService {
     	User user = userMapper.findUserByMail(email);
     	if(user == null) {
     		User noUser = new User();
-    		noUser.setAuthority(3); // TODO
+    		noUser.setAuthority(3); // TODO これはなんの3？ByYasui
     		return noUser;
     	} else {
     		return user;

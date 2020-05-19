@@ -66,7 +66,6 @@ public class UpdateUserService {
 	 */
 	public User findVersion(Integer userId) {
 		return userMapper.findVersion(userId);
-
 	}
 
 	/**
@@ -76,16 +75,13 @@ public class UpdateUserService {
 	 * @return 全従業員のユーザー情報
 	 */
 	public List<User> updateUser(UpdateUserForm form) {
-
 		User user = new User();
-
 		StringBuilder bldHireDate = new StringBuilder();
 		bldHireDate.append(form.getHireYear());
 		bldHireDate.append("-");
 		bldHireDate.append(form.getHireMonth());
 		bldHireDate.append("-01 00:00:00");
 		Timestamp hireDate = java.sql.Timestamp.valueOf(bldHireDate.toString());
-
 		Timestamp updateDate = new Timestamp(System.currentTimeMillis());
 
 		user.setUserId(form.getUserId());
@@ -95,21 +91,20 @@ public class UpdateUserService {
 		user.setHireDate(hireDate);
 		user.setUpdateDate(updateDate);
 		user.setUpdateUserId(form.getUpdateUserId());
-
 		userMapper.updateUser(user);
 
 		Mail mail = new Mail();
-
 		mail.setUserId(form.getUserId());
 		mail.setMailName(form.getMailAddress());
 		mail.setUpdateDate(updateDate);
 		mail.setUpdateUserId(form.getUpdateUserId());
-
 		mailMapper.updateMail(mail);
 
-		List<User> employeeList = userMapper.findAllAndDailyPost();
+		Integer userStatus = Status.AVAILABLE.getStatusId();
+		Integer mailStatus = Status.AVAILABLE.getStatusId();
+		Integer dailyPostStatus = Status.AVAILABLE.getStatusId();
+		List<User> employeeList = userMapper.findAllAndDailyPost(userStatus, mailStatus, dailyPostStatus);
 		return employeeList;
-
 	}
 
 	/**
