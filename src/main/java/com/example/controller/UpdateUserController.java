@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.User;
@@ -29,11 +30,22 @@ public class UpdateUserController {
 	 * @param form 更新後のユーザー情報
 	 * @return 全従業員のユーザー情報
 	 */
+	@ResponseBody
 	@RequestMapping("/updateUser")
 	public List<User> updateUser(@RequestBody UpdateUserForm form) {
-		UpdateUserForm updateUserForm = reMakeUserName(form);
-		List<User> EmployeeList = updateUserService.updateUser(updateUserForm);
-		return EmployeeList;
+		Integer version = updateUserService.findVersion(form.getUserId());
+		
+		if (version!=form.getIntVersion()) {
+			List<User> EmployeeList = null ;
+			System.out.println(EmployeeList);
+			return EmployeeList;
+		}else {
+			
+			UpdateUserForm updateUserForm = reMakeUserName(form);
+			List<User> EmployeeList = updateUserService.updateUser(updateUserForm);
+			System.out.println(EmployeeList);
+			return EmployeeList;
+		}
 	}
 
 	/**

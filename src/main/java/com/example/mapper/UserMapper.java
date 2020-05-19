@@ -76,4 +76,12 @@ public interface UserMapper {
 	 */
 	public Integer countByDepId(Integer depId);
 
+	/**
+	 * ユーザー情報の更新の際の排他処理のためにversionを取得するメソッド.
+	 * 
+	 * @param userId ユーザーID
+	 * @return version
+	 */
+	public Integer findVersion(Integer userId);
+
 }

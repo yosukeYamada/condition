@@ -30,6 +30,17 @@ public class UpdateUserService {
 	private MailMapper mailMapper;
 
 	/**
+	 * ユーザー情報の更新の際にversionを確認するため取得する.
+	 * 
+	 * @param userId 更新情報
+	 * @return version
+	 */
+	public Integer findVersion(Integer userId) {
+		return userMapper.findVersion(userId);
+
+	}
+
+	/**
 	 * ユーザー情報の更新をusersとmailsのテーブルにUPDATEする.
 	 * 
 	 * @param form 更新情報
