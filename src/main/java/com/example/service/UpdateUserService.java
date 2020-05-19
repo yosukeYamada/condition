@@ -64,7 +64,7 @@ public class UpdateUserService {
 	 * @param userId 更新情報
 	 * @return version
 	 */
-	public Integer findVersion(Integer userId) {
+	public User findVersion(Integer userId) {
 		return userMapper.findVersion(userId);
 
 	}

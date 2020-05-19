@@ -34,17 +34,15 @@ public class UpdateUserController {
 	@ResponseBody
 	@RequestMapping("/updateUser")
 	public List<User> updateUser(@RequestBody UpdateUserForm form) {
-		Integer version = updateUserService.findVersion(form.getUserId());
-		
-		if (version!=form.getIntVersion()) {
-			List<User> EmployeeList = null ;
-			System.out.println(EmployeeList);
+		User user = updateUserService.findVersion(form.getUserId());
+
+		if (user.getVersion() != form.getVersion()) {
+			List<User> EmployeeList = null;
 			return EmployeeList;
-		}else {
-			
+		} else {
+
 			UpdateUserForm updateUserForm = reMakeUserName(form);
 			List<User> EmployeeList = updateUserService.updateUser(updateUserForm);
-			System.out.println(EmployeeList);
 			return EmployeeList;
 		}
 	}
