@@ -26,12 +26,11 @@ public class ShowEmployeeListController {
 	 * 従業員一覧(ユーザー情報with投稿一覧)を表示するメソッド.
 	 * 
 	 * @apiNote 投稿一覧は最新の投稿が先頭に来るように降順に設定
-	 * @apiNote 呼び出し方：http://localhost:8080/showEmployeeList
 	 * @return 従業員一覧
 	 */
 	@ResponseBody
 	@RequestMapping("/showEmployeeList")
 	public List<User> showEmployeeList() {
-		return showEmployeeListService.showEmployee();
+		return showEmployeeListService.showEmployeeList();
 	}
 }

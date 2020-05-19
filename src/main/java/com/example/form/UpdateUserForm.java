@@ -18,6 +18,7 @@ public class UpdateUserForm {
 	
 	private Integer userId;
 	private Integer updateUserId;
+	private Integer version;
 	@NotBlank
 	@Pattern(regexp="^[^ -~｡-ﾟ]{1,20}+$")
 	private String userName;
@@ -37,9 +38,11 @@ public class UpdateUserForm {
 	@NotBlank
 	private String mailAddress;
 	
+	
 	public Integer getIntDepId() {
 		return Integer.parseInt(depId);
 	}
+	
 	
 	
 	

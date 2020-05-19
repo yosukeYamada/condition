@@ -28,7 +28,7 @@ public class DailyPostsHistoryController {
 	 * @param form ユーザIDのリクエストパラメータ
 	 * @return 投稿履歴リスト
 	 */
-	@RequestMapping("/motivations") // TODO メソッド名とパスを一致させる 
+	@RequestMapping("/motivations") // TODO メソッド名とパスを一致させるByYasui 
 	public List<DailyPost> showDailyPostsHistory(@RequestBody ShowDailyPostListForm form) {
 		List<DailyPost> dailyPostList = dailyPostService.getDailyPostList(form);
 		return dailyPostList;

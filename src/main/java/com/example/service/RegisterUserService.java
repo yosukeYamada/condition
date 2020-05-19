@@ -27,6 +27,12 @@ public class RegisterUserService {
 	@Autowired
 	private UserMapper userMapper;
 
+	/**
+	 * ユーザー登録処理を行うメソッド
+	 * 
+	 * @param form 登録するユーザー情報
+	 * @return 登録したユーザー情報
+	 */
 	public User registerUser(RegisterUserForm form) {
 		User user = new User();
 		StringBuilder bldHireDate = new StringBuilder();
@@ -45,14 +51,9 @@ public class RegisterUserService {
 		user.setStatus(Status.AVAILABLE.getStatusId());
 		BeanUtils.copyProperties(form, user);
 		Integer registerUserId = userMapper.insertUser(user);
-		userMapper.updateRegisterUserId(registerUserId);
+		userMapper.updateRegisterUserId(registerUserId); 
 		user.setUserId(registerUserId);
 		user.setRegisterUserId(registerUserId);
 		return user;
-	}
-
-	public List<User> findAll() {
-		List<User> userList = userMapper.findAll();
-		return userList;
 	}
 }

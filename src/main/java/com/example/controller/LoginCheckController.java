@@ -4,14 +4,14 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.example.domain.Authority;
 import com.example.domain.User;
 import com.example.service.FindUserInfoService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * ログイン時にユーザー確認を行うコントローラークラス
@@ -30,7 +30,7 @@ public class LoginCheckController {
 	 * @param param メールアドレス
 	 * @return ログインユーザー情報
 	 */
-	@PostMapping("/loginCheck")
+	@RequestMapping("/loginCheck")
 	public User loginCheck(@RequestBody Map<String, String> param) {
 		String check = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@rakus-partners.co.jp";
 		String check2 = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@rakus.co.jp";
