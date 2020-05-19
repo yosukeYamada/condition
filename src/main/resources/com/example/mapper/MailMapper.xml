@@ -57,7 +57,7 @@
 	<select id="insertMails" resultType="Integer">
 		INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) 
 		select format('rakuskarukaru%s@rakus.co.jp',i),i,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1
-		from generate_series(1,100) as i;
+		from generate_series(1,10) as i;
 	</select>
 	
 </mapper>
