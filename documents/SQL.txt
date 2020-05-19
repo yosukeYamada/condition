@@ -4,6 +4,8 @@ create database conditions;
 drop table if exists authority_memos;
 drop table if exists status_memos;
 
+
+
 drop table if exists users;
 create table users (user_id serial primary key,user_name text not null, user_name_kana text not null, dep_id Integer not null,hire_date timestamp not null,authority Integer, register_user_id Integer,register_date Timestamp not null,update_user_id Integer,update_date timestamp,version Integer not null,status Integer not null);
 drop table if exists mails;
@@ -20,6 +22,9 @@ drop table if exists posted_performances;
 create table posted_performances(posted_performance_id serial primary key, daily_post_id Integer not null, performance_id Integer not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp, version Integer not null,status Integer not null);
 drop table if exists posted_motivations;
 create table posted_motivations(posted_motivation_id serial primary key, daily_post_id Integer not null, motivation_id Integer not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp, version Integer not null,status Integer not null);
+
+
+
 drop table if exists conditions;
 create table conditions (condition_id serial primary key,condition_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date Timestamp,version Integer not null,status Integer not null);
 drop table if exists performances;
