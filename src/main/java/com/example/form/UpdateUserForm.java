@@ -36,9 +36,15 @@ public class UpdateUserForm {
 	@Email
 	@NotBlank
 	private String mailAddress;
+	@NotBlank
+	@Pattern(regexp="^[0-9]+$")
+	private String version;
 	
 	public Integer getIntDepId() {
 		return Integer.parseInt(depId);
+	}
+	public Integer getIntVersion() {
+		return Integer.parseInt(version);
 	}
 	
 	
