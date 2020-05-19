@@ -24,14 +24,6 @@ public interface UserMapper {
 	public Integer insertUser(User user);
 
 	/**
-	 * 全件検索するマッパー.
-	 * 
-	 * @return ユーザリスト ユーザー情報を全件取得
-	 * 
-	 */
-	public List<User> findAll();
-
-	/**
 	 * 新規ユーザ登録時、登録したuserのidを登録するメソッド.
 	 * 
 	 * @param userId
