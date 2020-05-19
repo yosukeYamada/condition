@@ -24,10 +24,9 @@ public interface PostedNewsMapper {
 	
 	
     /**
-     * お知らせIDで検索して投稿を取得するメソッド.
+     * お知らせ投稿一覧を取得するメソッド.
      * 
-     * @param newsId お知らせID
-     * @return お知らせIDに紐づく投稿内容
+     * @return お知らせ投稿一覧
      */
     public List<PostedNews> findAll();
 	

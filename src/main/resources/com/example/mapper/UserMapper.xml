@@ -28,6 +28,14 @@
 		VALUES(#{userName},#{userNameKana},#{depId},#{hireDate},#{registerDate},#{authority},#{version},#{status})
 		returning user_id
 	</select>
+	
+	<select id="findVersion" resultMap="UserResultMap">
+	SELECT
+	version
+	from users
+	where
+	user_id=#{userId};
+	</select>
 
 	<update id="updateUser">
 		UPDATE users
@@ -41,6 +49,14 @@
 		WHERE 
 		user_id=#{userId};
 	</update>
+	
+	
+	<!-- テスト用 100件挿入-->
+	<select id="insertUsers" resultType="Integer">
+		INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)
+		select format('いいだ先輩%s',i),format('いいだせんぱい%s',i),2,'2019-07-01 00:00:00',2,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1
+		from generate_series(1,100) as i
+	</select>
 
 
 	<!-- Userオブジェクト + MailList -->

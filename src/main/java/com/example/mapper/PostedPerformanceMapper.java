@@ -25,4 +25,8 @@ public interface PostedPerformanceMapper {
     
     public Integer updateStatus(PostedPerformance postedPerformance);
 
+    
+    //テスト用
+    public void insertPostedPerformance();
+
 }

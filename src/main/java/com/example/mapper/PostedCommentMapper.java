@@ -24,5 +24,9 @@ public interface PostedCommentMapper {
 	public void update(Integer dailyPostId, Integer updateUserId, String comment, Timestamp updateDate);
 
 	public Integer updateStatus(PostedComment postedComment);
+    
+    
+    //テスト用
+    public void insertPostedComment();
 
 }

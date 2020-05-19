@@ -36,8 +36,8 @@ create table categories(category_id serial primary key,category_name text not nu
 
 
 INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカルくん','らくすかるくん',1,'2019-10-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
-INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカルちゃん','らくすかるちゃん',1,'2019-10-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
-INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカル先輩','らくすかるせんぱい',1,'2019-07-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカルちゃん','らくすかるちゃん',1,'2018-10-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
+INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカル先輩','らくすかるせんぱい',1,'2018-07-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
 INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('いいだ先輩','いいだせんぱい',2,'2019-07-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
 
 
@@ -85,7 +85,7 @@ INSERT INTO categories(category_name,register_user_id, register_date,update_user
 INSERT INTO categories(category_name,register_user_id, register_date,update_user_id,update_date,version,status) VALUES('訂正とお詫び','1','2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
 
 
-<<<<<<< HEAD
+
 INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカルくん','らくすかるくん',1,'2019-10-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカルちゃん','らくすかるちゃん',1,'2019-10-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);
 INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)VALUES('ラクスカル先輩','らくすかるせんぱい',1,'2019-07-01 00:00:00',1,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,1);

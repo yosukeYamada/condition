@@ -4,14 +4,14 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.example.domain.Authority;
-import com.example.domain.User;
-import com.example.service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.domain.Authority;
+import com.example.domain.User;
+import com.example.service.FindUserInfoService;
 
 /**
  * ログイン時にユーザー確認を行うコントローラークラス
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginCheckController {
 
 	@Autowired
-	private UserService userService;
+	private FindUserInfoService userService;
 
 	/**
 	 * メールアドレスからログインユーザー情報を取得を取得するメソッド.

@@ -8,30 +8,30 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.Mail;
-import com.example.domain.PostedNews;
 import com.example.domain.User;
 import com.example.form.RegisterUserForm;
-import com.example.service.MailService;
-import com.example.service.RegisterNewsService;
+import com.example.service.RegisterMailService;
 import com.example.service.RegisterUserService;
 
 /**
- * ユーザー登録処理を行うコントローラークラス
+ * ユーザー登録をするコントローラー.
  * 
- * @author yuichiyasui
+ * @author iidashuhei
+ *
  */
 @RestController
+@RequestMapping("/api/user")
 public class RegisterUserController {
-
+	
 	@Autowired
 	private RegisterUserService registerUserService;
+	
 	@Autowired
-	private MailService mailService;
-	@Autowired
-	private RegisterNewsService registerNewsService;
+	private RegisterMailService mailService;
 
 	/**
 	 * ユーザ登録とメール登録を行うメソッド.
@@ -48,11 +48,6 @@ public class RegisterUserController {
 		List<Mail> mailList = new ArrayList<>();
 		mailList.add(mail);
 		user.setMailList(mailList);
-
-		// お知らせ一覧の取得、表示 TODO 別でメソッドを切り出す
-		List<PostedNews> postedNewsList = registerNewsService.showNewsPostList();
-		user.setPostedNewsList(postedNewsList);
-
 		return user;
 	}
 
