@@ -24,9 +24,9 @@ public interface UserMapper {
 	public Integer insertUser(User user);
 
 	/**
-	 * 新規ユーザ登録時、登録したuserのidを登録するメソッド.
+	 * 新規ユーザ登録時、登録したuserの自動採番されたuserIdをregisterUserIdとして登録するメソッド.
 	 * 
-	 * @param userId
+	 * @param userId ユーザーID
 	 */
 	public void updateRegisterUserId(Integer userId);
 
@@ -35,7 +35,7 @@ public interface UserMapper {
 	 * 
 	 * @return 全ユーザー情報とその投稿の一覧
 	 */
-	public List<User> findAllAndDailyPost(Integer userStatus, Integer mailStatus, Integer dailyPostStatus);
+	public List<User> findAllAndDailyPost(Integer userStatus, Integer mailStatus);
 
 	/**
 	 * メールからユーザー情報を検索する.
@@ -58,15 +58,15 @@ public interface UserMapper {
 	 * @param user ユーザー情報
 	 */
 	public void updateUser(User user);
-	
+
 	/**
 	 * ユーザーstatusを更新するメソッド.
 	 * 
-	 * @param updateUserId ユーザID
+	 * @param updateUserId     ユーザID
 	 * @param updateUserStatus ユーザstatus
 	 */
 	public Integer updateUserStatus(User user);
-	
+
 	/**
 	 * ユーザIDでユーザを検索するメソッド.
 	 * 
@@ -82,9 +82,8 @@ public interface UserMapper {
 	 * @return 所属人数
 	 */
 	public Integer countByDepId(Integer depId);
-	
-	
-	//テスト用
+
+	// テスト用
 	public void insertUsers();
 
 	/**

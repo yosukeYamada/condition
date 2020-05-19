@@ -51,7 +51,7 @@ public class RegisterUserService {
 		user.setStatus(Status.AVAILABLE.getStatusId());
 		BeanUtils.copyProperties(form, user);
 		Integer registerUserId = userMapper.insertUser(user);
-		userMapper.updateRegisterUserId(registerUserId);
+		userMapper.updateRegisterUserId(registerUserId); 
 		user.setUserId(registerUserId);
 		user.setRegisterUserId(registerUserId);
 		return user;

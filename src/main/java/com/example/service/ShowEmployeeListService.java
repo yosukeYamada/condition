@@ -30,8 +30,7 @@ public class ShowEmployeeListService {
 	public List<User> showEmployeeList() {
 		Integer userStatus = Status.AVAILABLE.getStatusId();
 		Integer mailStatus = Status.AVAILABLE.getStatusId();
-		Integer dailyPostStatus = Status.AVAILABLE.getStatusId();
-		List<User> employeeList = userMapper.findAllAndDailyPost(userStatus, mailStatus, dailyPostStatus);
+		List<User> employeeList = userMapper.findAllAndDailyPost(userStatus, mailStatus);
 		return employeeList;
 	}
 }
