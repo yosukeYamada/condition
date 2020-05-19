@@ -24,7 +24,6 @@ import com.example.service.RegisterUserService;
  *
  */
 @RestController
-@RequestMapping("/api/user")
 public class RegisterUserController {
 	
 	@Autowired
