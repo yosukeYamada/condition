@@ -45,7 +45,8 @@
 		dep_id=#{depId},
 		hire_date=#{hireDate},
 		update_user_id=#{updateUserId},
-		update_date=#{updateDate}
+		update_date=#{updateDate},
+		version=version + 1
 		WHERE 
 		user_id=#{userId};
 	</update>

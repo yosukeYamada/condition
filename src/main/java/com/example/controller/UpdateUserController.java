@@ -40,7 +40,6 @@ public class UpdateUserController {
 			List<User> EmployeeList = null;
 			return EmployeeList;
 		} else {
-
 			UpdateUserForm updateUserForm = reMakeUserName(form);
 			List<User> EmployeeList = updateUserService.updateUser(updateUserForm);
 			return EmployeeList;
