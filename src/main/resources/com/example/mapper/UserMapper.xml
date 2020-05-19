@@ -29,7 +29,7 @@
 		returning user_id
 	</select>
 	
-	<select id="findVersion" resultMap="UserResultMap">
+	<select id="findVersion" resultMap="UserResultMap" parameterType="Integer">
 	SELECT
 	version
 	from users

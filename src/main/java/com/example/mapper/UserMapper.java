@@ -101,6 +101,6 @@ public interface UserMapper {
 	 * @param userId ユーザーID
 	 * @return version
 	 */
-	public Integer findVersion(Integer userId);
+	public User findVersion(Integer userId);
 
 }
