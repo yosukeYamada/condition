@@ -37,17 +37,19 @@ public class TestController {
 	@Autowired
 	private PostedConditionMapper con;
 	
+	
+	//50人分をテスト
 	@RequestMapping("/insert")
 	public void insert() {
 		user.insertUsers();
 		mail.insertMails();
 		
-		for (int i = 1; i <= 10; i++) {
+		for (int i = 1; i <= 50; i++) {
 			daily.insertDailyPost(i);
-			con.insertPostedCondition();
-			mot.insertPostedMotivation();
-			per.insertPostedPerformance();
-			com.insertPostedComment();
 		}
+		con.insertPostedCondition();
+		mot.insertPostedMotivation();
+		per.insertPostedPerformance();
+		com.insertPostedComment();
 	}
 }
