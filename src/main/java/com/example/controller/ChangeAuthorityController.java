@@ -45,6 +45,7 @@ public class ChangeAuthorityController {
 			} else {
 				/** ケース2-2:従業員が存在してかつ変更するデータが最新版の場合(期待する処理) */
 				User updatedUser = changeAuthorityService.changeAuthority(param);
+				updatedUser.setUserId(user.getUserId());
 				updatedUser.setUserName(user.getUserName());
 				return updatedUser;
 			}
