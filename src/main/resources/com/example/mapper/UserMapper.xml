@@ -50,7 +50,7 @@
 	<select id="insertUsers" resultType="Integer">
 		INSERT INTO users (user_name,user_name_kana,dep_id,hire_date,authority,register_user_id,register_date,update_user_id,update_date,version,status)
 		select format('やまだ先輩%s',i),format('やまだせんぱい%s',i),2,'2019-07-01 00:00:00',2,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2
-		from generate_series(1,50) as i;
+		from generate_series(1,10) as i;
 	</select>
 
 

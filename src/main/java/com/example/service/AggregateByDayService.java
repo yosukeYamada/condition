@@ -41,6 +41,9 @@ public class AggregateByDayService {
         Timestamp startTs = Timestamp.valueOf(startLdt); // LocalDateTime→Timestamp
         Timestamp endTs = Timestamp.valueOf(endLdt); // LocalDateTime→Timestamp
         List<DailyPost> todaysPostList = dailyPostMapper.findByDate(startTs, endTs);
+        
+        System.err.println(todaysPostList);
+        
         Map<String, DailyScore> resultMap = new HashMap<>();
         DailyScore motivationScore = new DailyScore();
         DailyScore conditionScore = new DailyScore();
