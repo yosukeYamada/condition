@@ -9,7 +9,6 @@ import com.example.service.AggregateByMonthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -31,7 +30,6 @@ public class ShowAggregateController {
      * @param date 日付('yyyy/MM/dd')
      * @return 引数で受け取った日の集計結果
      */
-    @ResponseBody
     @RequestMapping("/getAggregateByDay")
     public Map<String, DailyScore> getAggregateByDay(@RequestBody Map<String, String> param) {
         String date = param.get("date").replace("-", "/");
@@ -44,7 +42,6 @@ public class ShowAggregateController {
      * @param date 日付('yyyy/MM/dd')
      * @return 引数で受け取った日付の月の集計結果
      */
-    @ResponseBody
     @RequestMapping("/getAggregateByMonth")
     public Map<String, Map<String, DailyScore>> getAggregateByMonth(@RequestBody Map<String, String> param) {
         String date = param.get("date").replace("-", "/");

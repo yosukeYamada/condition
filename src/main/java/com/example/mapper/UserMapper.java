@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.example.domain.User;
@@ -94,4 +95,14 @@ public interface UserMapper {
 	 */
 	public User findVersion(Integer userId);
 
+	/**
+	 * メールアドレスで検索したユーザーのユーザー権限を変更するメソッド.
+	 * 
+	 * @param email        メールアドレス
+	 * @param authority    変更する権限
+	 * @param updateUserId 更新するユーザーのID
+	 * @param updateDate   更新日
+	 * @return 最新のバージョン番号
+	 */
+	public Integer updateAuthorityByEmail(String email, Integer authority, Integer updateUserId, Timestamp updateDate);
 }

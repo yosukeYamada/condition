@@ -1,7 +1,6 @@
 package com.example.service;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import com.example.domain.Authority;
 import com.example.domain.Status;

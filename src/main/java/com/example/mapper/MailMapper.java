@@ -1,7 +1,5 @@
 package com.example.mapper;
 
-import java.sql.Timestamp;
-
 import com.example.domain.Mail;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -21,16 +19,6 @@ public interface MailMapper {
 	 */
 	public Mail insertMailAddress(Mail mail);
 
-	/**
-	 * メールアドレスで検索したユーザーのユーザー権限を変更するメソッド.
-	 * 
-	 * @param email        メールアドレス
-	 * @param authority    変更する権限
-	 * @param updateUserId 更新するユーザーのID
-	 * @param updateDate   更新日
-	 * @return 更新されたユーザーの名前
-	 */
-	public String updateAuthorityByEmail(String email, Integer authority, Integer updateUserId, Timestamp updateDate);
 
 	/**
 	 * ユーザー情報更新時にメールアドレスを変更するメソッド.
@@ -43,7 +31,7 @@ public interface MailMapper {
 	 * メールアドレスで検索したユーザのステータスを変更するメソッド.
 	 * 
 	 * @param mail メール情報
-	 * @return　最新のメールVersion
+	 * @return 最新のメールVersion
 	 */
 	public Integer updateMailStatus(Mail mail);
 		

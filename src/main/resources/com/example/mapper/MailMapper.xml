@@ -21,13 +21,6 @@
 		returning
 		mail_id,mail_name,user_id,register_user_id,register_date,version,status
 	</select>
-	<select id="updateAuthorityByEmail" resultType="string">
-		UPDATE users SET
-		authority = #{authority}, update_user_id = #{updateUserId},
-		update_date = #{updateDate}, version = version+1 WHERE user_id =
-		(SELECT user_id FROM mails WHERE mail_name = #{email} ) RETURNING
-		user_name;
-	</select>
 
 	<update id="updateMail">
 		UPDATE

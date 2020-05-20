@@ -812,5 +812,12 @@
 		DESC;
 	</select>
 
+	<select id="updateAuthorityByEmail" resultType="Integer">
+		UPDATE users SET
+		authority = #{authority}, update_user_id = #{updateUserId},
+		update_date = #{updateDate}, version = version+1 WHERE user_id =
+		(SELECT user_id FROM mails WHERE mail_name = #{email} ) RETURNING 
+		version;
+	</select>
 
 </mapper>
