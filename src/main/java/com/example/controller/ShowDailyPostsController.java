@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.domain.DailyPost;
-import com.example.service.DailyPostService;
+import com.example.service.ShowDailyPostsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @yuichiyasui
  */
 @RestController
-public class DailyPostsHistoryController {
+public class ShowDailyPostsController {
 
 	@Autowired
-	private DailyPostService dailyPostService;
+	private ShowDailyPostsService showDailyPostsService;
 
 	/**
 	 * ユーザの投稿履歴を取得するメソッド.
@@ -28,9 +28,9 @@ public class DailyPostsHistoryController {
 	 * @param form ユーザIDのリクエストパラメータ
 	 * @return 投稿履歴リスト
 	 */
-	@RequestMapping("/motivations") // TODO メソッド名とパスを一致させるByYasui
+	@RequestMapping("/showDailyPosts")
 	public List<DailyPost> showDailyPostsHistory(@RequestBody Map<String, String> param) {
-		List<DailyPost> dailyPostList = dailyPostService.getDailyPostList(Integer.parseInt(param.get("userId")));
+		List<DailyPost> dailyPostList = showDailyPostsService.getDailyPostList(Integer.parseInt(param.get("userId")));
 		return dailyPostList;
 	}
 }
