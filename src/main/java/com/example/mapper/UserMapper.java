@@ -39,6 +39,13 @@ public interface UserMapper {
 	public List<User> findAllAndDailyPost(Integer userStatus, Integer mailStatus);
 
 	/**
+	 * 更新後のユーザー情報とそのユーザーの投稿一覧を取得するメソッド.
+	 * 
+	 * @return ユーザー情報とその投稿の一覧
+	 */
+	public List<User> findByUserIdAndDailyPost(Integer userId);
+
+	/**
 	 * メールからユーザー情報を検索する.
 	 * 
 	 * @return ユーザー情報(ユーザードメインのプロパティ全て)
