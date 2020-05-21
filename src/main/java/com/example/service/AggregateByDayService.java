@@ -42,12 +42,11 @@ public class AggregateByDayService {
         Timestamp endTs = Timestamp.valueOf(endLdt); // LocalDateTime→Timestamp
         List<DailyPost> todaysPostList = dailyPostMapper.findByDate(startTs, endTs);
         
-        System.err.println(todaysPostList);
-        
         Map<String, DailyScore> resultMap = new HashMap<>();
         DailyScore motivationScore = new DailyScore();
         DailyScore conditionScore = new DailyScore();
         DailyScore performanceScore = new DailyScore();
+        
         for (DailyPost post : todaysPostList) {
             switch (post.getPostedMotivation().getMotivation().getMotivationName()) {
                 case "快晴":
