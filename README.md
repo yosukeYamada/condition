@@ -1,5 +1,5 @@
 <div align="center">
-<img width="80%" height="80%" style="padding-bottom:20px;" src="/public/img/readme_img.png">
+<img width="80%" height="80%" style="padding-bottom:20px;" src="/img/readme_img.png">
 <br><br>
 <p>働く人のコンディション管理を行う<br>
 アプリケーションのサーバーサイドアプリケーション</p>
