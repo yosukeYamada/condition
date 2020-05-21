@@ -3,7 +3,6 @@ package com.example.service;
 import java.util.List;
 
 import com.example.domain.DailyPost;
-import com.example.form.ShowDailyPostListForm;
 import com.example.mapper.DailyPostMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,7 @@ public class DailyPostService {
 	@Autowired
 	private DailyPostMapper dailyPostMapper;
 
-	public List<DailyPost> getDailyPostList(ShowDailyPostListForm form) {
-		Integer userId = Integer.parseInt(form.getUserId());
+	public List<DailyPost> getDailyPostList(Integer userId) {
 		List<DailyPost> dailyPostList = dailyPostMapper.findByUserId(userId);
 		return dailyPostList;
 	}
