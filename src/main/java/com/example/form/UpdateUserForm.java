@@ -14,37 +14,31 @@ import lombok.Data;
  */
 @Data
 public class UpdateUserForm {
-	
-	
+
 	private Integer userId;
 	private Integer updateUserId;
 	private Integer version;
 	@NotBlank
-	@Pattern(regexp="^[^ -~｡-ﾟ]{1,20}+$")
+	@Pattern(regexp = "^[^ -~｡-ﾟ]{1,20}+$")
 	private String userName;
 	@NotBlank
-	@Pattern(regexp="^[ぁ-んー]{1,20}+$")
+	@Pattern(regexp = "^[ぁ-んー]{1,20}+$")
 	private String userNameKana;
 	@NotBlank
-	@Pattern(regexp="^[0-9]+$")
+	@Pattern(regexp = "^[0-9]+$")
 	private String depId;
 	@NotBlank
-	@Pattern(regexp="\\d{4}")
+	@Pattern(regexp = "\\d{4}")
 	private String hireYear;
 	@NotBlank
-	@Pattern(regexp="\\d{1,2}")
+	@Pattern(regexp = "\\d{1,2}")
 	private String hireMonth;
 	@Email
 	@NotBlank
 	private String mailAddress;
-	
-	
+
 	public Integer getIntDepId() {
 		return Integer.parseInt(depId);
 	}
-	
-	
-	
-	
 
 }
