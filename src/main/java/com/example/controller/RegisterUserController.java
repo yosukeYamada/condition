@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import com.example.domain.Mail;
 import com.example.domain.User;
 import com.example.form.RegisterUserForm;
+import com.example.form.SignInUserForm;
 import com.example.service.RegisterMailService;
 import com.example.service.RegisterUserService;
 
@@ -30,6 +31,15 @@ public class RegisterUserController {
 	
 	@Autowired
 	private RegisterMailService mailService;
+	
+	
+	@PostMapping("/signUp")
+	public void signUp(@RequestBody(required = false) @Valid SignInUserForm form) {
+		registerUserService.registerApiUser(form);
+	}
+	
+	
+	
 
 	/**
 	 * ユーザ登録とメール登録を行うメソッド.

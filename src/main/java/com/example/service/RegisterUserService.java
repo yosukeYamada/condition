@@ -2,16 +2,20 @@ package com.example.service;
 
 import java.sql.Timestamp;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.domain.Authority;
+import com.example.domain.Password;
 import com.example.domain.Status;
 import com.example.domain.User;
 import com.example.form.RegisterUserForm;
+import com.example.form.SignInUserForm;
+import com.example.mapper.PasswordMapper;
 import com.example.mapper.UserMapper;
-
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * ユーザ登録を行うサービス.
@@ -25,6 +29,26 @@ public class RegisterUserService {
 
 	@Autowired
 	private UserMapper userMapper;
+	
+	
+	@Autowired
+	private PasswordMapper passwordmapper;
+	
+	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
+	public void registerApiUser(SignInUserForm form) {
+		Password password = new Password();
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		password.setPassword(encoder.encode(form.getPassword()));
+		password.setStatus(Status.AVAILABLE.getStatusId());
+		password.setVersion(1);
+		password.setRegisterDate(timestamp);
+		password.setRegisterUserId(0);
+		password.setMailAddress(form.getMailAddress());
+		passwordmapper.registerPassword(password);
+	}
 
 	/**
 	 * ユーザー登録処理を行うメソッド
