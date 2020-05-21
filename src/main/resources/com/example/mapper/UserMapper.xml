@@ -81,6 +81,7 @@
 			<result property="status" column="m_status" />
 		</collection>
 	</resultMap>
+	
 	<select id="findUserByMail" resultMap="UserResult">
 		SELECT
 		u.user_id u_user_id,
@@ -688,6 +689,49 @@
 		ORDER BY u.hire_date, d.date
 		DESC;
 	</select>
+	<select id="findByUserIdAndDailyPost" resultMap="UserAndPost" parameterType="Integer">
+		SELECT
+		u.user_id u_user_id,
+		u.user_name u_user_name,
+		u.user_name_kana u_user_name_kana,
+		u.dep_id u_dep_id,
+		u.hire_date
+		u_hire_date,
+		u.authority u_authority,
+		u.register_user_id
+		u_register_user_id,
+		u.register_date u_register_date,
+		u.update_user_id
+		u_update_user_id,
+		u.update_date u_update_date,
+		u.version u_version,
+		u.status u_status,
+		de.dep_id de_dep_id,
+		de.dep_name de_dep_name,
+		de.register_user_id de_register_user_id,
+		de.register_date
+		de_register_date,
+		de.update_user_id de_update_user_id,
+		de.update_date
+		de_update_date,
+		de.version de_version,
+		de.status de_status,
+		m.mail_id
+		m_mail_id,
+		m.mail_name m_mail_name,
+		m.user_id m_user_id,
+		m.register_user_id m_register_user_id,
+		m.register_date m_register_date,
+		m.update_user_id m_update_user_id,
+		m.update_date m_update_date,
+		m.version m_version,
+		m.status m_status
+		FROM users as u
+		LEFT OUTER JOIN mails as m on u.user_id =
+		m.user_id
+		LEFT OUTER JOIN deps AS de ON u.dep_id = de.dep_id 
+		WHERE u.user_id = #{userId};
+	</select>
 	<select id="updateUserStatus" resultType="Integer">
 		Update users SET update_user_id =
 		#{updateUserId},status = #{status},update_date =#{updateDate},version
@@ -819,5 +863,7 @@
 		(SELECT user_id FROM mails WHERE mail_name = #{email} ) RETURNING 
 		version;
 	</select>
+	
+	
 
 </mapper>

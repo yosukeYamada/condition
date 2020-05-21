@@ -1,5 +1,6 @@
 package com.example.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +38,12 @@ public class UpdateUserController {
 		User user = updateUserService.findVersion(form.getUserId());
 
 		if (user.getVersion() != form.getVersion()) {
-			List<User> EmployeeList = null;
-			return EmployeeList;
+			List<User> UpdateUser = null;
+			return UpdateUser;
 		} else {
 			UpdateUserForm updateUserForm = reMakeUserName(form);
-			List<User> EmployeeList = updateUserService.updateUser(updateUserForm);
-			return EmployeeList;
+			List<User> UpdateUser = updateUserService.updateUser(updateUserForm);
+			return UpdateUser;
 		}
 	}
 
