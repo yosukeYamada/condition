@@ -453,7 +453,8 @@
 		LEFT OUTER
 		JOIN deps AS de ON
 		u.dep_id = de.dep_id
-		where m.mail_name =#{mail}
+		where m.mail_name =#{mail} 
+		ORDER BY d.date DESC;
 	</select>
 
 
