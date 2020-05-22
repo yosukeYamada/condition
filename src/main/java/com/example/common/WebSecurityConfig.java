@@ -30,9 +30,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.cors()
-		.configurationSource(corsConfigrationSource())
+		.configurationSource(corsConfigrationSourceForLogin())
 		.and()
-		.authorizeRequests().antMatchers("/information","/showNewsList","/loginCheck", "/test", SIGNUP_URL, LOGIN_URL).permitAll()
+		.authorizeRequests().antMatchers("/information","/showNewsList","/loginCheck","/getDepList", "/test", SIGNUP_URL, LOGIN_URL).permitAll()
 				.anyRequest().authenticated().and().logout().and().csrf().disable()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager(), bCryptPasswordEncoder()))
 				.addFilter(new JWTAuthorizationFilter(authenticationManager())).sessionManagement()
@@ -47,16 +47,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 * 
 	 * @return
 	 */
-	private CorsConfigurationSource corsConfigrationSource() {
+	private CorsConfigurationSource corsConfigrationSourceForLogin() {
 		CorsConfiguration corsConfigration = new CorsConfiguration();
 		corsConfigration.addAllowedHeader(corsConfigration.ALL); // Headerの制限
-		corsConfigration.addAllowedMethod("POST"); // メソッドの制限
-		corsConfigration.addAllowedOrigin(corsConfigration.ALL); // オリジンの制限
+		corsConfigration.addAllowedMethod(corsConfigration.ALL); // メソッドの制限
+		corsConfigration.addAllowedOrigin("http://localhost:8888"); // オリジンの制限
+		corsConfigration.addAllowedOrigin("http://localhost:8888/**");
 		List<String> exposedHeaderList = new ArrayList<>();
 		exposedHeaderList.add("Authorization");
-		corsConfigration.setExposedHeaders(exposedHeaderList); // レスポンスヘッダへのアクセス制限
+		corsConfigration.setExposedHeaders(exposedHeaderList);;; // レスポンスヘッダへのアクセス制限
+		corsConfigration.getAllowedHeaders();
 		 UrlBasedCorsConfigurationSource corsSource = new UrlBasedCorsConfigurationSource();
-		corsSource.registerCorsConfiguration("/login", corsConfigration); //第1引数：適用されるパス 第2引数：制限内容
+		corsSource.registerCorsConfiguration("/**", corsConfigration); //第1引数：適用されるパス 第2引数：制限内容
+		 return corsSource;
+	}
+	
+	private CorsConfigurationSource corsConfigrationSourceAthors() {
+		CorsConfiguration corsConfigration = new CorsConfiguration();
+		corsConfigration.addAllowedHeader(corsConfigration.ALL); // Headerの制限
+		corsConfigration.addAllowedMethod(corsConfigration.ALL); // メソッドの制限
+		corsConfigration.addAllowedOrigin(corsConfigration.ALL); // オリジンの制限
+		corsConfigration.getAllowedHeaders();
+		 UrlBasedCorsConfigurationSource corsSource = new UrlBasedCorsConfigurationSource();
+		corsSource.registerCorsConfiguration("/registerUser", corsConfigration); //第1引数：適用されるパス 第2引数：制限内容
 		 return corsSource;
 	}
 	
