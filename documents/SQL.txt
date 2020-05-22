@@ -52,18 +52,7 @@ INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_i
 INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('rakuskarukarusenpai@rakus.co.jp',3,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
 INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('shuhei.iida@gmail.com',4,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
 
-INSERT INTO posted_news(news_date,news_comment,user_id, register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-01 09:00:00','お知らせ1',1,1,'2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
-INSERT INTO posted_news(news_date,news_comment,user_id, register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-02 09:00:00','お知らせ2',1,1,'2020-05-02 09:00:00',1,'2020-05-02 09:00:00',1,2);
-INSERT INTO posted_news(news_date,news_comment,user_id, register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-03 09:00:00','お知らせ3',1,1,'2020-05-03 09:00:00',1,'2020-05-03 09:00:00',1,2);
-
-INSERT INTO information(information_date,information_title,information_content,category_id,register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-01 09:00:00','ラクスカルくん逮捕','刑務所にいたラクスカルくんが逮捕されました',1,1,'2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
-INSERT INTO information(information_date,information_title,information_content,category_id,register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-01 09:00:00','ラクスカルくん脱獄','刑務所にいたラクスカルくんが脱獄しました',2,1,'2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
-INSERT INTO information(information_date,information_title,information_content,category_id,register_user_id, register_date,update_user_id,update_date,version,status) VALUES('2020-05-01 09:00:00','ラクスカルくん再逮捕','刑務所にいたラクスカルくんが再逮捕されました',3,1,'2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
-
-INSERT INTO categories(category_name,register_user_id, register_date,update_user_id,update_date,version,status) VALUES('お知らせ','1','2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
-INSERT INTO categories(category_name,register_user_id, register_date,update_user_id,update_date,version,status) VALUES('プレスリリース','1','2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
-INSERT INTO categories(category_name,register_user_id, register_date,update_user_id,update_date,version,status) VALUES('訂正とお詫び','1','2020-05-01 09:00:00',1,'2020-05-01 09:00:00',1,2);
-
+s
 INSERT INTO deps(dep_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('アプリエンジニア',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
 INSERT INTO deps(dep_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('クラウドエンジニア',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);
 INSERT INTO deps(dep_name,register_user_id,register_date,update_user_id,update_date,version,status) VALUES('機械学習エンジニア',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2);

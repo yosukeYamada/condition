@@ -39,19 +39,14 @@ public class ShowAggregateController {
     @RequestMapping("/getAggregateByDay")
     public Map<String, DailyScore> getAggregateByDay(@RequestBody Map<String, String> param) {
     	
-    	System.err.println("日付 : " + param.get("date"));
-    	System.err.println("dep : " + param.get("depId"));
-    	
     	String date = param.get("date").replace("-", "/");
     	
         if(Integer.parseInt(param.get("depId")) == 0 || param.get("depId") == "") {
         	
-        	System.out.println("全従業員");
         	return aggregateByDayService.aggregateByDay(date);
         	
         } else {
         	
-        	System.out.println("部署");
         	return aggregateByDayAndDepService.aggregateByDateAndDep(date, Integer.parseInt(param.get("depId")));
         }
     }
@@ -65,9 +60,6 @@ public class ShowAggregateController {
     @RequestMapping("/getAggregateByMonth")
     public Map<String, Map<String, DailyScore>> getAggregateByMonth(@RequestBody Map<String, String> param) {
     	
-    	System.out.println("月付 : " + param.get("date"));
-    	System.out.println("dep : " + param.get("depId"));
-        
     	String date = param.get("date").replace("-", "/");
         
         Integer depId = Integer.parseInt(param.get("depId"));
