@@ -21,13 +21,6 @@
 		returning
 		mail_id,mail_name,user_id,register_user_id,register_date,version,status
 	</select>
-	<select id="updateAuthorityByEmail" resultType="string">
-		UPDATE users SET
-		authority = #{authority}, update_user_id = #{updateUserId},
-		update_date = #{updateDate}, version = version+1 WHERE user_id =
-		(SELECT user_id FROM mails WHERE mail_name = #{email} ) RETURNING
-		user_name;
-	</select>
 
 	<update id="updateMail">
 		UPDATE
@@ -56,8 +49,8 @@
 	<!-- テスト用 100件挿入-->
 	<select id="insertMails" resultType="Integer">
 		INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) 
-		select format('rakuskarukaru%s@rakus.co.jp',i),i,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2
-		from generate_series(1,50) as i;
+		select format('rakuskarukaruaaa%s@rakus.co.jp',i),i,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2
+		from generate_series(31,40) as i;
 	</select>
 	
 </mapper>

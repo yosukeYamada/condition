@@ -7,7 +7,6 @@ import com.example.service.ShowEmployeeListService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -28,7 +27,6 @@ public class ShowEmployeeListController {
 	 * @apiNote 投稿一覧は最新の投稿が先頭に来るように降順に設定
 	 * @return 従業員一覧
 	 */
-	@ResponseBody
 	@RequestMapping("/showEmployeeList")
 	public List<User> showEmployeeList() {
 		return showEmployeeListService.showEmployeeList();

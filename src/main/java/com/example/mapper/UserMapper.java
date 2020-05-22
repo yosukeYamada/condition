@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.example.domain.User;
@@ -36,6 +37,13 @@ public interface UserMapper {
 	 * @return 全ユーザー情報とその投稿の一覧
 	 */
 	public List<User> findAllAndDailyPost(Integer userStatus, Integer mailStatus);
+
+	/**
+	 * 更新後のユーザー情報とそのユーザーの投稿一覧を取得するメソッド.
+	 * 
+	 * @return ユーザー情報とその投稿の一覧
+	 */
+	public List<User> findByUserIdAndDailyPost(Integer userId);
 
 	/**
 	 * メールからユーザー情報を検索する.
@@ -94,4 +102,24 @@ public interface UserMapper {
 	 */
 	public User findVersion(Integer userId);
 
+	/**
+	 * メールアドレスで検索したユーザーのユーザー権限を変更するメソッド.
+	 * 
+	 * @param email        メールアドレス
+	 * @param authority    変更する権限
+	 * @param updateUserId 更新するユーザーのID
+	 * @param updateDate   更新日
+	 * @return 最新のバージョン番号
+	 */
+	public Integer updateAuthorityByEmail(String email, Integer authority, Integer updateUserId, Timestamp updateDate);
+	
+	/**
+	 * 年月日と部署名で投稿を取得するメソッド.
+	 * 
+	 * @param startTs 始まり日付
+	 * @param endTs 終わり日付
+	 * @param depId 部署ID
+	 * @return 引数で受け取った年月日に合致する投稿一覧
+	 */
+	public List<User> findByDayAndDep(Timestamp startTs, Timestamp endTs, Integer depId);
 }

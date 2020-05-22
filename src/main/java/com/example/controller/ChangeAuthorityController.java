@@ -1,16 +1,15 @@
 package com.example.controller;
 
-import java.util.HashMap;
 import java.util.Map;
+
+import com.example.domain.Authority;
+import com.example.domain.User;
+import com.example.service.ChangeAuthorityService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.domain.User;
-import com.example.service.ChangeAuthorityService;
 
 /**
  * ユーザー権限を変更するコントローラークラス
@@ -27,30 +26,28 @@ public class ChangeAuthorityController {
 	 * ユーザー権限の変更を行うメソッド
 	 * 
 	 * @param param メールアドレス、変更するユーザー権限、更新ユーザーのID
-	 * @return 変更したユーザーのメールアドレスと名前
+	 * @return 変更したユーザーの名前、バージョン、更新日時
 	 */
-	@ResponseBody
 	@RequestMapping("/changeAuthority")
-	public Map<String, String> changeAuthority(@RequestBody Map<String, String> param) {
-		Map<String, String> resultMap = new HashMap<>();
+	public User changeAuthority(@RequestBody Map<String, String> param) {
+		/** 取得したメールアドレスに該当する従業員がいるかチェック */
 		User user = changeAuthorityService.findUserByMail(param.get("email"));
-		if (user.getAuthority() == 3) {
-			// TODO これに該当することはあるのか？？ByYasui
-			resultMap.put("email", "null");
-			return resultMap;
+		if (user.getAuthority() == Authority.OUTSIDER.getAuthorityId()) {
+			/** ケース1:従業員が存在しなかった場合 */
+			user.setAuthority(Authority.OUTSIDER.getAuthorityId());
+			return user;
 		} else {
-			// DBにあるuserのversion番号を取得.
-			Integer version = user.getVersion();
-			// DBにあるuserのversion番号とフロントから送られてきたversion番号を確認.
-			if (version != Integer.parseInt(param.get("version"))) {
-				resultMap.put("version", "null");
-				return resultMap;
+			/** ケース2:従業員が存在する場合 */
+			if (user.getVersion() != Integer.parseInt(param.get("version"))) {
+				/** ケース2-1:排他制御に引っかかった場合(最新版じゃなかった場合) */ 
+				user.setVersion(0);
+				return user;
 			} else {
-				String name = changeAuthorityService.changeAuthority(param.get("email"),
-						Integer.parseInt(param.get("authority")), Integer.parseInt(param.get("updateUserId")));
-				resultMap.put("email", param.get("email"));
-				resultMap.put("name", name);
-				return resultMap;
+				/** ケース2-2:従業員が存在してかつ変更するデータが最新版の場合(期待する処理) */
+				User updatedUser = changeAuthorityService.changeAuthority(param);
+				updatedUser.setUserId(user.getUserId());
+				updatedUser.setUserName(user.getUserName());
+				return updatedUser;
 			}
 		}
 	}

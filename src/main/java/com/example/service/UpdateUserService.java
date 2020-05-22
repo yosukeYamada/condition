@@ -100,10 +100,8 @@ public class UpdateUserService {
 		mail.setUpdateUserId(form.getUpdateUserId());
 		mailMapper.updateMail(mail);
 
-		Integer userStatus = Status.AVAILABLE.getStatusId();
-		Integer mailStatus = Status.AVAILABLE.getStatusId();
-		List<User> employeeList = userMapper.findAllAndDailyPost(userStatus, mailStatus);
-		return employeeList;
+		List<User> Updateuser = userMapper.findByUserIdAndDailyPost(form.getUserId());
+		return Updateuser;
 	}
 
 	/**
@@ -150,9 +148,9 @@ public class UpdateUserService {
 		Mail mail = new Mail();
 		BeanUtils.copyProperties(user, mail);
 		List<Mail> latestMailList = latestUser.getMailList();
-		for(Mail latestMail:latestMailList) {
+		for (Mail latestMail : latestMailList) {
 			Integer latestMailVersion = latestMail.getVersion();
-			latestMailVersion+=1;
+			latestMailVersion += 1;
 			mail.setVersion(latestMailVersion);
 			mailMapper.updateMailStatus(mail);
 		}

@@ -9,5 +9,5 @@ public class UpdateUserStatusForm {
 	private String userVersion;
 	private String updateUserStatus;
 	private String updateUserId;
-	
+
 }

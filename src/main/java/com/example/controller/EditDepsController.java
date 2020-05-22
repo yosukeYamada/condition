@@ -32,9 +32,7 @@ public class EditDepsController {
     @ResponseBody
     @RequestMapping("/addNewDep")
     public Dep addNewDep(@RequestBody Map<String, String> param) {
-        System.out.println("受け取ったparam:" + param);
         Dep dep = editDepsService.addNewDep(param);
-        System.out.println("返却するdep:" + dep);
         return dep;
     }
 

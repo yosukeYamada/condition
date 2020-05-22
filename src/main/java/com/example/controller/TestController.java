@@ -44,7 +44,7 @@ public class TestController {
 		user.insertUsers();
 		mail.insertMails();
 		
-		for (int i = 1; i <= 50; i++) {
+		for (int i = 1; i <= 10; i++) {
 			daily.insertDailyPost(i);
 		}
 		con.insertPostedCondition();
