@@ -31,10 +31,11 @@ public class RegisterDailyPostController {
 	 * 
 	 * @apiNote 呼び出し方：http://localhost:8080/registerDailyPost
 	 * @param form 投稿内容
+	 * @return 挿入した投稿内容
 	 */
 	@RequestMapping("/registerDailyPost")
-	public List<DailyPost> registerDailyPost(@RequestBody RegisterDailyPostForm form) {
-		List<DailyPost> DailyPostList= registerDailyPostServise.registerDailyPost(form);
-		return  DailyPostList;
+	public DailyPost registerDailyPost(@RequestBody RegisterDailyPostForm form) {
+		DailyPost dailyPost= registerDailyPostServise.registerDailyPost(form);
+		return  dailyPost;
 	}
 }
