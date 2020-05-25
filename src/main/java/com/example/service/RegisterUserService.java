@@ -2,16 +2,20 @@ package com.example.service;
 
 import java.sql.Timestamp;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.domain.Authority;
+import com.example.domain.Password;
 import com.example.domain.Status;
 import com.example.domain.User;
 import com.example.form.RegisterUserForm;
+import com.example.form.SignInUserForm;
+import com.example.mapper.PasswordMapper;
 import com.example.mapper.UserMapper;
-
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * ユーザ登録を行うサービス.
@@ -50,7 +54,7 @@ public class RegisterUserService {
 		user.setStatus(Status.AVAILABLE.getStatusId());
 		BeanUtils.copyProperties(form, user);
 		Integer registerUserId = userMapper.insertUser(user);
-		userMapper.updateRegisterUserId(registerUserId); 
+		userMapper.updateRegisterUserId(registerUserId);
 		user.setUserId(registerUserId);
 		user.setRegisterUserId(registerUserId);
 		return user;

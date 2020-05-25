@@ -18,8 +18,8 @@ drop table if exists posted_performances;
 create table posted_performances(posted_performance_id serial primary key, daily_post_id Integer not null, performance_id Integer not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp, version Integer not null,status Integer not null);
 drop table if exists posted_motivations;
 create table posted_motivations(posted_motivation_id serial primary key, daily_post_id Integer not null, motivation_id Integer not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp, version Integer not null,status Integer not null);
-
-
+drop table if exists passwords;
+create table passwords(password_id serial primary key, mail_address text not null, password text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp, version Integer not null,status Integer not null);
 drop table if exists deps;
 create table deps(dep_id serial primary key,dep_name text not null,register_user_id Integer not null,register_date timestamp not null,update_user_id Integer,update_date timestamp,version Integer not null,status Integer not null);
 
