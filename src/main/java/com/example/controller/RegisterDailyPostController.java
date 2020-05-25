@@ -1,10 +1,10 @@
 package com.example.controller;
 
 import com.example.domain.DailyPost;
+
 import com.example.form.RegisterDailyPostForm;
 import com.example.service.RegisterDailyPostServise;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

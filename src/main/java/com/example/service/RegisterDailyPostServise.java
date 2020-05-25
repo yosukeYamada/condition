@@ -101,9 +101,9 @@ public class RegisterDailyPostServise {
 		postedComment.setStatus(Status.AVAILABLE.getStatusId());
 		postedCommentMapper.save(postedComment); // posted_commentsテーブルに挿入
 
-		DailyPost insertedDailyPost = dailyPostMapper.findByDailyPostId(dailyPostId);
-		System.out.println("投稿内容"+insertedDailyPost);
-		return insertedDailyPost;
+		List<DailyPost> DailyPostList = dailyPostMapper.findByUserId(userId);
+		return DailyPostList.get(0);
+
 
 	}
 }
