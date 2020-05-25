@@ -408,7 +408,7 @@
 		m_update_user_id,
 		m.update_date m_update_date,
 		m.version m_version,
-		m.status m_status,
+		m.status m_status
 		<!-- d.daily_post_id d_daily_post_id, -->
 		<!-- d.user_id d_user_id, -->
 		<!-- d.date d_date, -->
