@@ -52,7 +52,7 @@ public class EditDailyPostService {
 	 * @param form form
 	 * @return 毎日の投稿リスト
 	 */
-	public List<DailyPost> edit(EditDailyPostForm form) {
+	public DailyPost edit(EditDailyPostForm form) {
 		
 		//updateで必要な要素
 		Integer dailyPostId = form.getDailyPostId();
@@ -74,7 +74,9 @@ public class EditDailyPostService {
 		
 		postedCommentMapper.update(dailyPostId, updateUserId, comment, updateDate);
 		
-		return dailyPostMapper.findByUserId(updateUserId);
+		List<DailyPost> dailyPost=dailyPostMapper.findByUserId(updateUserId);
+		
+		return dailyPost.get(0);
 	
 	}
 }

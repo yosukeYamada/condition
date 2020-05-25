@@ -34,7 +34,8 @@ public class FindUserInfoService {
 	public User findByMailAndAuthoriry(String mail) {
 		User loginUser = new User();
 		try {
-			loginUser = userMapper.findByMail(mail);
+			loginUser = userMapper.findUserByMail(mail);
+			System.out.println(loginUser);
 		} catch (Exception e) {
 			System.out.println("エラー！！");
 			e.printStackTrace();

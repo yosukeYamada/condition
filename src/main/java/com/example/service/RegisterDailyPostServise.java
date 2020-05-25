@@ -42,7 +42,7 @@ public class RegisterDailyPostServise {
 	 * 
 	 * @param form 投稿内容
 	 */
-	public List<DailyPost> registerDailyPost(RegisterDailyPostForm form) {
+	public DailyPost registerDailyPost(RegisterDailyPostForm form) {
 		Timestamp tsDate = new Timestamp(System.currentTimeMillis()); // 現在時刻を生成
 		Integer userId = form.getUserId();
 		DailyPost dailyPost = new DailyPost();
@@ -102,7 +102,7 @@ public class RegisterDailyPostServise {
 		postedCommentMapper.save(postedComment); // posted_commentsテーブルに挿入
 
 		List<DailyPost> DailyPostList = dailyPostMapper.findByUserId(userId);
-		return DailyPostList;
+		return DailyPostList.get(0);
 
 	}
 }

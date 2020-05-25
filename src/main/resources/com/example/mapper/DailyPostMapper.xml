@@ -216,7 +216,7 @@
 		LEFT OUTER JOIN posted_comments AS pcm ON dp.daily_post_id =
 		pcm.daily_post_id
 		WHERE dp.user_id = #{userId}
-		ORDER BY dp.date;
+		ORDER BY dp.date DESC;
 	</select>
 	<select id="findByDailyPostId" parameterType="Integer"
 		resultMap="dailyPostWithAllChildren">
