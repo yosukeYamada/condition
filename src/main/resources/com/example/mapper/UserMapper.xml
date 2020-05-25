@@ -522,18 +522,6 @@
 		<result property="version" column="u_version" />
 		<result property="status" column="u_status" />
 
-		<association property="dep"
-			javaType="com.example.domain.Dep">
-			<id property="depId" column="de_dep_id" />
-			<result property="depName" column="de_dep_name" />
-			<result property="registerUserId" column="de_register_user_id" />
-			<result property="registerDate" column="de_register_date" />
-			<result property="updateUserId" column="de_update_user_id" />
-			<result property="updateDate" column="de_update_date" />
-			<result property="version" column="de_version" />
-			<result property="status" column="de_status" />
-		</association>
-
 		<collection property="mailList"
 			ofType="com.example.domain.Mail">
 			<id property="mailId" column="m_mail_id" />

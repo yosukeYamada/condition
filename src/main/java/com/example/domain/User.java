@@ -44,6 +44,5 @@ public class User {
 	 * @apiNote 現状1つしか登録しないが複数利用可能にした場合を想定
 	 */
 	private List<Mail> mailList;
-	private Dep dep;
 
 }
