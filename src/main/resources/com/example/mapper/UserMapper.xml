@@ -565,7 +565,7 @@
 		</collection>
 	</resultMap>
 	<select id="findAllAndDailyPost" resultMap="UserAndPost" parameterType="Integer">
-		SELECT
+		SELECT distinct on (u.user_id)
 		u.user_id u_user_id,
 		u.user_name u_user_name,
 		u.user_name_kana u_user_name_kana,
@@ -581,16 +581,6 @@
 		u.update_date u_update_date,
 		u.version u_version,
 		u.status u_status,
-		de.dep_id de_dep_id,
-		de.dep_name de_dep_name,
-		de.register_user_id de_register_user_id,
-		de.register_date
-		de_register_date,
-		de.update_user_id de_update_user_id,
-		de.update_date
-		de_update_date,
-		de.version de_version,
-		de.status de_status,
 		m.mail_id
 		m_mail_id,
 		m.mail_name m_mail_name,
@@ -684,10 +674,8 @@
 		LEFT OUTER JOIN
 		posted_comments AS pcm ON d.daily_post_id =
 		pcm.daily_post_id
-		LEFT OUTER
-		JOIN deps AS de ON u.dep_id = de.dep_id 
 		WHERE u.status = #{userStatus} AND m.status = #{mailStatus}
-		ORDER BY u.hire_date, d.date
+		ORDER BY u.user_id,u.hire_date, d.date
 		DESC;
 	</select>
 	<select id="findByUserIdAndDailyPost" resultMap="UserAndPost" parameterType="Integer">
