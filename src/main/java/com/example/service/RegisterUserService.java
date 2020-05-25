@@ -29,26 +29,6 @@ public class RegisterUserService {
 
 	@Autowired
 	private UserMapper userMapper;
-	
-	
-	@Autowired
-	private PasswordMapper passwordmapper;
-	
-	
-	@Autowired
-	private BCryptPasswordEncoder encoder;
-	
-	public void registerApiUser(SignInUserForm form) {
-		Password password = new Password();
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		password.setPassword(encoder.encode(form.getPassword()));
-		password.setStatus(Status.AVAILABLE.getStatusId());
-		password.setVersion(1);
-		password.setRegisterDate(timestamp);
-		password.setRegisterUserId(0);
-		password.setMailAddress(form.getMailAddress());
-		passwordmapper.registerPassword(password);
-	}
 
 	/**
 	 * ユーザー登録処理を行うメソッド
@@ -74,7 +54,7 @@ public class RegisterUserService {
 		user.setStatus(Status.AVAILABLE.getStatusId());
 		BeanUtils.copyProperties(form, user);
 		Integer registerUserId = userMapper.insertUser(user);
-		userMapper.updateRegisterUserId(registerUserId); 
+		userMapper.updateRegisterUserId(registerUserId);
 		user.setUserId(registerUserId);
 		user.setRegisterUserId(registerUserId);
 		return user;

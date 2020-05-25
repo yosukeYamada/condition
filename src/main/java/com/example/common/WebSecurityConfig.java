@@ -26,6 +26,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 
+	@Autowired
+    private EnvironmentsConfiguration envConfig;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -51,8 +54,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		CorsConfiguration corsConfigration = new CorsConfiguration();
 		corsConfigration.addAllowedHeader(corsConfigration.ALL); // Headerの制限
 		corsConfigration.addAllowedMethod(corsConfigration.ALL); // メソッドの制限
-		corsConfigration.addAllowedOrigin("http://localhost:8888"); // オリジンの制限
-		corsConfigration.addAllowedOrigin("http://localhost:8888/**");
+		corsConfigration.addAllowedOrigin(envConfig.getOriginUrl()); // オリジンの制限
+		corsConfigration.addAllowedOrigin(envConfig.getOriginUrl()+"/**");
 		List<String> exposedHeaderList = new ArrayList<>();
 		exposedHeaderList.add("Authorization");
 		corsConfigration.setExposedHeaders(exposedHeaderList);;; // レスポンスヘッダへのアクセス制限
@@ -62,16 +65,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		 return corsSource;
 	}
 	
-	private CorsConfigurationSource corsConfigrationSourceAthors() {
-		CorsConfiguration corsConfigration = new CorsConfiguration();
-		corsConfigration.addAllowedHeader(corsConfigration.ALL); // Headerの制限
-		corsConfigration.addAllowedMethod(corsConfigration.ALL); // メソッドの制限
-		corsConfigration.addAllowedOrigin(corsConfigration.ALL); // オリジンの制限
-		corsConfigration.getAllowedHeaders();
-		 UrlBasedCorsConfigurationSource corsSource = new UrlBasedCorsConfigurationSource();
-		corsSource.registerCorsConfiguration("/registerUser", corsConfigration); //第1引数：適用されるパス 第2引数：制限内容
-		 return corsSource;
-	}
 	
 
 	@Autowired
