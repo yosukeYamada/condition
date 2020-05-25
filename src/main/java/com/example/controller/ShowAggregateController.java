@@ -41,7 +41,7 @@ public class ShowAggregateController {
     	
     	String date = param.get("date").replace("-", "/");
     	
-        if(Integer.parseInt(param.get("depId")) == 0 || param.get("depId") == "") {
+        if(param.get("depId") == "" || Integer.parseInt(param.get("depId")) == 0) {
         	
         	return aggregateByDayService.aggregateByDay(date);
         	
