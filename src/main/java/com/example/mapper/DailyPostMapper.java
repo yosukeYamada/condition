@@ -76,7 +76,7 @@ public interface DailyPostMapper {
      * @param dailyPost 投稿内容のstatus等
      * @return 最新のバージョン
      */
-    public Integer updateDailyPostStatus(DailyPost dailyPost);
+    public void updateDailyPostStatus(DailyPost dailyPost);
 
     // テスト用
     public void insertDailyPost(Integer userId);
