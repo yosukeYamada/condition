@@ -1,9 +1,13 @@
 package com.example.common;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.domain.Password;
 import com.example.mapper.PasswordMapper;
+import com.example.domain.Authority;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -28,8 +33,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if (password==null) {
 			throw new UsernameNotFoundException(mailAddress);
 		}
-		
-		UserDetails user = User.withUsername(password.getMailAddress()).password(password.getPassword()).authorities("ROLE_USER").build();
+		// ここで権限を付与
+		Collection<GrantedAuthority> authorityList = new ArrayList<>();
+		authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
+		if(password.getAuthority()==Authority.ADMIN.getAuthorityId()) {
+			authorityList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		}
+		UserDetails user = User.withUsername(password.getMailAddress()).password(password.getPassword()).authorities(authorityList).build();
 		
 		// ユーザの権限
 		return user;

@@ -36,7 +36,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.configurationSource(corsConfigrationSourceForLogin())
 		.and()
 		.authorizeRequests().antMatchers("/information","/showNewsList","/loginCheck","/getDepList", "/test", SIGNUP_URL, LOGIN_URL).permitAll()
-				.anyRequest().authenticated().and().logout().and().csrf().disable()
+		.antMatchers("/registerDailyPost","/registerLimit","/editDailyPost/edit").hasRole("USER")
+		.antMatchers("/showEmployeeList","/news","/deleteNews","/editDeps/deleteDep","/editDeps/changeDepName","/editDeps/addNewDep","/changeAuthority","/editDeps/exclusiveProcessing","/editDeps/checkIsEmployeeBelong","/information/insert","/status","/getAggregateByDay","/getAggregateByMonth","/updateUser").hasRole("ROLE_ADMIN")
+		
+		.anyRequest().authenticated().and().logout().and().csrf().disable()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager(), bCryptPasswordEncoder()))
 				.addFilter(new JWTAuthorizationFilter(authenticationManager())).sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
