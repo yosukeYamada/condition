@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.Authority;
 import com.example.domain.Mail;
+import com.example.domain.Status;
 import com.example.domain.User;
 import com.example.mapper.UserMapper;
 
@@ -35,7 +36,6 @@ public class FindUserInfoService {
 		User loginUser = new User();
 		try {
 			loginUser = userMapper.findUserByMail(mail);
-			System.out.println(loginUser);
 		} catch (Exception e) {
 			System.out.println("エラー！！");
 			e.printStackTrace();
@@ -51,7 +51,11 @@ public class FindUserInfoService {
 			newUser.setAuthority(Authority.UNREGISTERED.getAuthorityId());
 			return newUser;
 			
-		// nullじゃなければすべて詰まった情報を返す
+		// statusが9（削除）だったらログインをさせない
+		} else if(loginUser.getStatus() == Status.DELETED.getStatusId()) {
+			User deletedUser = new User();
+			deletedUser.setStatus(9);
+			return deletedUser;
 		} else {
 			/** nullじゃなければすべて詰まった情報を返す */
 			return loginUser;
