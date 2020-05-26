@@ -11,4 +11,6 @@ public interface PasswordMapper {
 	
 	public Password load(String mailAddress);
 	
+	public Password confirmDuplication(String mailAddress);
+	
 }

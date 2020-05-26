@@ -62,9 +62,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		try {
 			// requestパラメータからユーザ情報を読み取る
 			SignInUserForm userForm = new ObjectMapper().readValue(req.getInputStream(), SignInUserForm.class);
-
-			String pass  = userForm.getPassword();
-			String hashPass = bCryptPasswordEncoder.encode(pass);
+			System.out.println(userForm);
 			return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userForm.getMailAddress(),
 					userForm.getPassword(), new ArrayList<>()));
 		} catch (IOException e) {

@@ -37,13 +37,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 		.authorizeRequests().antMatchers("/information","/showNewsList","/loginCheck","/getDepList", "/test", SIGNUP_URL, LOGIN_URL).permitAll()
 		.antMatchers("/registerDailyPost","/registerLimit","/editDailyPost/edit").hasRole("USER")
-		.antMatchers("/showEmployeeList","/news","/deleteNews","/editDeps/deleteDep","/editDeps/changeDepName","/editDeps/addNewDep","/changeAuthority","/editDeps/exclusiveProcessing","/editDeps/checkIsEmployeeBelong","/information/insert","/status","/getAggregateByDay","/getAggregateByMonth","/updateUser").hasRole("ROLE_ADMIN")
+		.antMatchers("/showEmployeeList","/news","/deleteNews","/editDeps/deleteDep","/editDeps/changeDepName","/editDeps/addNewDep","/changeAuthority","/editDeps/exclusiveProcessing","/editDeps/checkIsEmployeeBelong","/information/insert","/status","/getAggregateByDay","/getAggregateByMonth","/updateUser").hasRole("ADMIN")
 		
 		.anyRequest().authenticated().and().logout().and().csrf().disable()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager(), bCryptPasswordEncoder()))
 				.addFilter(new JWTAuthorizationFilter(authenticationManager())).sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		;
 	}
 	
 	/**
@@ -61,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		corsConfigration.addAllowedOrigin(envConfig.getOriginUrl()+"/**");
 		List<String> exposedHeaderList = new ArrayList<>();
 		exposedHeaderList.add("Authorization");
-		corsConfigration.setExposedHeaders(exposedHeaderList);;; // レスポンスヘッダへのアクセス制限
+		corsConfigration.setExposedHeaders(exposedHeaderList); // レスポンスヘッダへのアクセス制限
 		corsConfigration.getAllowedHeaders();
 		 UrlBasedCorsConfigurationSource corsSource = new UrlBasedCorsConfigurationSource();
 		corsSource.registerCorsConfiguration("/**", corsConfigration); //第1引数：適用されるパス 第2引数：制限内容

@@ -17,7 +17,7 @@ import com.example.mapper.PasswordMapper;
 public class RegisterPasswordService {
 
 	@Autowired
-	private PasswordMapper passwordmapper;
+	private PasswordMapper passwordMapper;
 	
 	
 	@Autowired
@@ -37,9 +37,10 @@ public class RegisterPasswordService {
 		password.setRegisterDate(timestamp);
 		password.setRegisterUserId(0);
 		password.setMailAddress(form.getMailAddress());
-		Password confirmPassword = passwordmapper.load(form.getMailAddress());
+		Password confirmPassword = passwordMapper.confirmDuplication(form.getMailAddress());
+		System.out.println("41行目"+confirmPassword);
 		if(confirmPassword == null) {
-			passwordmapper.registerPassword(password);
+			passwordMapper.registerPassword(password);
 		}
 	}
 	

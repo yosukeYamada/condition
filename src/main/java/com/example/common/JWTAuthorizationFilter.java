@@ -6,6 +6,7 @@ import static com.example.common.SecurityConstants.TOKEN_PREFIX;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Enumeration;
 
 import javax.servlet.FilterChain;
@@ -13,14 +14,25 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+
+import com.example.domain.Authority;
+import com.example.mapper.UserMapper;
 
 import io.jsonwebtoken.Jwts;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+	
+	@Autowired
+	private UserMapper userMapper;
+	
+	
 	private AuthenticationManager authenticationManager;
 
 	public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
@@ -53,7 +65,13 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 					.getBody().getSubject();
 
 			if (user != null) {
-				return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+				Collection<GrantedAuthority> authorityList = new ArrayList<>();
+				authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
+				Integer userAuthority = userMapper.findByMail(user).getAuthority();
+				if(userAuthority == Authority.ADMIN.getAuthorityId()) {
+					authorityList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+				}
+				return new UsernamePasswordAuthenticationToken(user, null, authorityList);
 			}
 			return null;
 		}
