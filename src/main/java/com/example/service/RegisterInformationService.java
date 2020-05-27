@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.Information;
+import com.example.domain.Status;
 import com.example.form.RegisterInformationForm;
 import com.example.mapper.InformationMapper;
 
@@ -42,10 +43,10 @@ public class RegisterInformationService {
 		information.setRegisterUserId(form.getRegisterUserId());
 		information.setRegisterDate(tsDate);
 		information.setVersion(1);
-		information.setStatus(1);
+		information.setStatus(Status.AVAILABLE.getStatusId());
 		
 		informationMapper.insert(information);
 		
-		return informationMapper.findAll();
+		return informationMapper.findAll(Status.AVAILABLE.getStatusId());
 	}
 }

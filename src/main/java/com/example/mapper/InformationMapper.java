@@ -14,7 +14,14 @@ public interface InformationMapper {
 	 * 
 	 * @return インフォメーション一覧
 	 */
-	public List<Information> findAll();
+	public List<Information> findAll(Integer status);
+	
+	/**
+	 * インフォメーション一覧取得.
+	 * 
+	 * @return インフォメーション一覧
+	 */
+	public Information findByInformationId(Integer informationId,Integer status);
 	
 	/**
 	 * トップページのNews投稿.
@@ -22,4 +29,17 @@ public interface InformationMapper {
 	 */
 	public void insert(Information information);
 	
+	/**
+	 * トップページのNews編集
+	 * 
+	 * @param information
+	 */
+	public Integer update(Information information);
+	
+	/**
+	 * トップページのNewsを論理削除する.
+	 * 
+	 * @param information
+	 */
+	public Integer delete(Information information);
 }

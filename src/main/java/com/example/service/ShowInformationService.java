@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.Category;
 import com.example.domain.Information;
+import com.example.domain.Status;
 import com.example.domain.response.Form;
 import com.example.mapper.CategoryMapper;
 import com.example.mapper.InformationMapper;
@@ -34,7 +35,7 @@ public class ShowInformationService {
 	 * @return インフォメーション一覧
 	 */
 	public Form findAll() {
-		List<Information> informationList = informationMapper.findAll();
+		List<Information> informationList = informationMapper.findAll(Status.AVAILABLE.getStatusId());
 		List<Category> category = categoryMapper.findAll();
 		Form form = new Form();
 		form.setInformationList(informationList);
