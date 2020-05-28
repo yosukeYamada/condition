@@ -34,7 +34,7 @@ public interface PostedNewsMapper {
     /**
      * お知らせを削除するメソッド
      * 
-     * @param postedNews お知らせID
+     * @param postedNews 削除するお知らせ情報
      */
     public void deleteByNewsId(PostedNews postedNews);
     

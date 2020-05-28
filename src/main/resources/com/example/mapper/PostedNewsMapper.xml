@@ -33,11 +33,12 @@
 		version,
 		status
 		FROM posted_news
+		WHERE status != 9
 		ORDER BY news_date DESC;
 	</select>
 	
 	<delete id="deleteByNewsId">
-		DELETE FROM posted_news WHERE news_id = #{newsId};
+		UPDATE posted_news SET update_user_id = #{updateUserId}, update_date = #{updateDate}, version = version+1, status = #{status} WHERE news_id = #{newsId}
 	</delete>
 
 </mapper>
