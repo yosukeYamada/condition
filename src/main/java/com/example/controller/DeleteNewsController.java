@@ -29,7 +29,7 @@ public class DeleteNewsController {
 	/**
 	 * お知らせの削除を行うメソッド
 	 * 
-	 * @param form お知らせID
+	 * @param form お知らせID,更新ユーザーID
 	 */
 	@ResponseBody
 	@RequestMapping("/deleteNews")
