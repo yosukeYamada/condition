@@ -122,4 +122,24 @@ public interface UserMapper {
 	 * @return 引数で受け取った年月日に合致する投稿一覧
 	 */
 	public List<User> findByDayAndDep(Timestamp startTs, Timestamp endTs, Integer depId);
+	
+	/**
+	 * 年月日とユーザーIDで投稿を取得するメソッド.
+	 * 
+	 * @param startTs 始まり日付
+	 * @param endTs 終わり日付
+	 * @param userId ユーザーID
+	 * @return 引数で受け取った年月日に合致する投稿一覧
+	 */
+	public List<User> findByUserIdAndLastWeek(Timestamp startTs, Timestamp endTs, Integer userId);
+	
+	/**
+	 * 年月日とユーザーIDで投稿を取得するメソッド.
+	 * 
+	 * @param startTs 始まり日付
+	 * @param endTs 終わり日付
+	 * @param userId ユーザーID
+	 * @return 引数で受け取った年月日に合致する投稿一覧
+	 */
+	public List<User> findByUserIdAndLastMonth(Timestamp startTs, Timestamp endTs, Integer userId);
 }
