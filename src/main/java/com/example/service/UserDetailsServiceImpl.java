@@ -1,4 +1,4 @@
-package com.example.common;
+package com.example.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,11 +29,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String mailAddress) throws UsernameNotFoundException {
 
 		Password password = passwordMapper.confirmDuplication(mailAddress);
-		System.out.println(mailAddress);
 		// 本来ならここでDBなどからユーザを検索することになるが、サンプルのためリストに含まれるかで判定している
 		if (password==null) {
-			System.out.println("ユーザ取得失敗");
-			System.out.println(password);
 			throw new UsernameNotFoundException(mailAddress);
 		}
 		// ここで権限を付与

@@ -122,4 +122,14 @@ public interface UserMapper {
 	 * @return 引数で受け取った年月日に合致する投稿一覧
 	 */
 	public List<User> findByDayAndDep(Timestamp startTs, Timestamp endTs, Integer depId);
+	
+	/**
+	 * メールアドレスからユーザの権限を取得するメソッド.
+	 * 
+	 * @param mail メールアドレス
+	 * @return ユーザ権限の実が格納されたuserオブジェクト
+	 */
+	public User findByEmail(String mailAddress);
+	
+	
 }

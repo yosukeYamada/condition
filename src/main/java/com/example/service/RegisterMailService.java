@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.domain.Mail;
 import com.example.domain.User;
 import com.example.mapper.MailMapper;
+import com.example.mapper.UserMapper;
 
 /**
  * メールを管理するサービス.
@@ -21,6 +22,9 @@ public class RegisterMailService {
 
 	@Autowired
 	private MailMapper mailMapper;
+	
+	@Autowired
+	private UserMapper userMapper;
 	
 	/**
 	 * メールアドレスを登録する.

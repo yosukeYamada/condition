@@ -8,6 +8,21 @@
 		VALUES(#{userName},#{userNameKana},#{depId},#{hireDate},#{registerDate},#{authority},#{version},#{status})
 		returning user_id
 	</select>
+	<resultMap type="com.example.domain.User" id="AuthUserMap">
+		<id property="userId" column="u_user_id" />
+		<result property="authority" column="u_authority" />
+		<collection property="mailList"
+			ofType="com.example.domain.Mail">
+			<id property="mailId" column="m_mail_id" />
+			<result property="mailName" column="m_mail_name" />
+		</collection>
+	</resultMap>
+
+	<select id="findByEmail" resultMap="AuthUserMap" parameterType="String">
+		SELECT u.authority AS
+		u_authority from users AS u LEFT OUTER JOIN mails AS m ON u.user_id =
+		m.user_id WHERE m.mail_name= #{mailAddress}
+	</select>
 
 	<select id="findVersion" resultMap="UserResultMap"
 		parameterType="Integer">
@@ -503,7 +518,8 @@
 		LEFT OUTER
 		JOIN deps AS de ON
 		u.dep_id = de.dep_id
-		where m.mail_name =#{mail};
+		where m.mail_name
+		=#{mail};
 	</select>
 
 
@@ -619,12 +635,14 @@
 			</association>
 		</collection>
 	</resultMap>
-	<select id="findAllAndDailyPost" resultMap="UserAndPost" parameterType="Integer">
+	<select id="findAllAndDailyPost" resultMap="UserAndPost"
+		parameterType="Integer">
 		SELECT distinct on (u.user_id)
 		u.user_id u_user_id,
 		u.user_name u_user_name,
 		u.user_name_kana u_user_name_kana,
-		u.dep_id u_dep_id,
+		u.dep_id
+		u_dep_id,
 		u.hire_date
 		u_hire_date,
 		u.authority u_authority,
@@ -638,7 +656,8 @@
 		u.status u_status,
 		m.mail_id
 		m_mail_id,
-		m.mail_name m_mail_name,
+		m.mail_name
+		m_mail_name,
 		m.user_id m_user_id,
 		m.register_user_id m_register_user_id,
 		m.register_date m_register_date,
@@ -657,10 +676,12 @@
 		d.update_date d_update_date,
 		d.version d_version,
 		d.status d_status,
-		pm.posted_motivation_id pm_posted_motivation_id,
+		pm.posted_motivation_id
+		pm_posted_motivation_id,
 		pm.daily_post_id pm_daily_post_id,
 		pm.motivation_id pm_motivation_id,
-		pm.register_user_id pm_register_user_id,
+		pm.register_user_id
+		pm_register_user_id,
 		pm.register_date
 		pm_register_date,
 		pm.update_user_id pm_update_user_id,
@@ -668,13 +689,16 @@
 		pm_update_date,
 		pm.version pm_version,
 		pm.status pm_status,
-		mo.motivation_id mo_motivation_id,
+		mo.motivation_id
+		mo_motivation_id,
 		mo.motivation_name
 		mo_motivation_name,
 		pc.posted_condition_id pc_posted_condition_id,
-		pc.daily_post_id pc_daily_post_id,
+		pc.daily_post_id
+		pc_daily_post_id,
 		pc.condition_id pc_condition_id,
-		pc.register_user_id pc_register_user_id,
+		pc.register_user_id
+		pc_register_user_id,
 		pc.register_date
 		pc_register_date,
 		pc.update_user_id pc_update_user_id,
@@ -682,7 +706,8 @@
 		pc_update_date,
 		pc.version pc_version,
 		pc.status pc_status,
-		c.condition_id c_condition_id,
+		c.condition_id
+		c_condition_id,
 		c.condition_name c_condition_name,
 		pp.posted_performance_id pp_posted_performance_id,
 		pp.daily_post_id
@@ -729,8 +754,10 @@
 		LEFT OUTER JOIN
 		posted_comments AS pcm ON d.daily_post_id =
 		pcm.daily_post_id
-		WHERE u.status = #{userStatus} AND m.status = #{mailStatus}
-		ORDER BY u.user_id,u.hire_date, d.date
+		WHERE
+		u.status = #{userStatus} AND m.status = #{mailStatus}
+		ORDER BY
+		u.user_id,u.hire_date, d.date
 		DESC;
 	</select>
 	<select id="findByUserIdAndDailyPost" resultMap="UserAndPost"
@@ -797,7 +824,8 @@
 		u.user_name u_user_name,
 		u.user_name_kana
 		u_user_name_kana,
-		u.dep_id u_dep_id,
+		u.dep_id
+		u_dep_id,
 		u.hire_date
 		u_hire_date,
 		u.authority
@@ -810,11 +838,13 @@
 		u_update_user_id,
 		u.update_date
 		u_update_date,
-		u.version u_version,
+		u.version
+		u_version,
 		u.status u_status,
 		m.mail_id
 		m_mail_id,
-		m.mail_name m_mail_name,
+		m.mail_name
+		m_mail_name,
 		m.user_id m_user_id,
 		m.register_user_id m_register_user_id,
 		m.register_date m_register_date,
@@ -833,10 +863,12 @@
 		d.update_date d_update_date,
 		d.version d_version,
 		d.status d_status,
-		pm.posted_motivation_id pm_posted_motivation_id,
+		pm.posted_motivation_id
+		pm_posted_motivation_id,
 		pm.daily_post_id pm_daily_post_id,
 		pm.motivation_id pm_motivation_id,
-		pm.register_user_id pm_register_user_id,
+		pm.register_user_id
+		pm_register_user_id,
 		pm.register_date
 		pm_register_date,
 		pm.update_user_id pm_update_user_id,
@@ -844,13 +876,16 @@
 		pm_update_date,
 		pm.version pm_version,
 		pm.status pm_status,
-		mo.motivation_id mo_motivation_id,
+		mo.motivation_id
+		mo_motivation_id,
 		mo.motivation_name
 		mo_motivation_name,
 		pc.posted_condition_id pc_posted_condition_id,
-		pc.daily_post_id pc_daily_post_id,
+		pc.daily_post_id
+		pc_daily_post_id,
 		pc.condition_id pc_condition_id,
-		pc.register_user_id pc_register_user_id,
+		pc.register_user_id
+		pc_register_user_id,
 		pc.register_date
 		pc_register_date,
 		pc.update_user_id pc_update_user_id,
@@ -858,7 +893,8 @@
 		pc_update_date,
 		pc.version pc_version,
 		pc.status pc_status,
-		c.condition_id c_condition_id,
+		c.condition_id
+		c_condition_id,
 		c.condition_name c_condition_name,
 		pp.posted_performance_id pp_posted_performance_id,
 		pp.daily_post_id
@@ -1043,7 +1079,8 @@
 		pcm.daily_post_id
 		LEFT OUTER
 		JOIN deps AS de ON u.dep_id = de.dep_id
-		WHERE d.date BETWEEN #{startTs} AND #{endTs} AND de.dep_id = #{depId};
+		WHERE d.date BETWEEN #{startTs}
+		AND #{endTs} AND de.dep_id = #{depId};
 	</select>
 
 </mapper>

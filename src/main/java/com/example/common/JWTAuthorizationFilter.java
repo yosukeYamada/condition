@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -18,21 +20,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import com.example.domain.Authority;
+import com.example.mapper.DepMapper;
 import com.example.mapper.UserMapper;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
-	
-	@Autowired
-	private UserMapper userMapper;
-	
-	
+
 	private AuthenticationManager authenticationManager;
 
 	public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
@@ -57,21 +58,32 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 		chain.doFilter(req, res);
 	}
 
+	@Autowired
+	private UserMapper userMapper;
+
+	@Autowired
+	private DepMapper depMapper;
+
 	private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
+
 		String token = request.getHeader(HEADER_STRING);
 		if (token != null) {
 			// parse the token.
-			String user = Jwts.parser().setSigningKey(SECRET.getBytes()).parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
-					.getBody().getSubject();
-
+			String user = Jwts.parser().setSigningKey(SECRET.getBytes())
+					.parseClaimsJws(token.replace(TOKEN_PREFIX, "").replace(TOKEN_PREFIX, "").trim()).getBody()
+					.getSubject();
+			Claims claims = Jwts.parser().setSigningKey(SECRET.getBytes())
+					.parseClaimsJws(token.replace(TOKEN_PREFIX, "").replace(TOKEN_PREFIX, "").trim()).getBody();
+			List grants = (List) claims.get("role");
+			String[] arrayRole = new String[grants.size()];
+			for (int i = 0; i < grants.size(); i++) {
+				LinkedHashMap grant = (LinkedHashMap) grants.get(i);
+				String rolestr = (String) grant.get("authority");
+				arrayRole[i] = rolestr;
+			}
 			if (user != null) {
-				Collection<GrantedAuthority> authorityList = new ArrayList<>();
-				authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
-				Integer userAuthority = userMapper.findByMail(user).getAuthority();
-				if(userAuthority == Authority.ADMIN.getAuthorityId()) {
-					authorityList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-				}
-				return new UsernamePasswordAuthenticationToken(user, null, authorityList);
+				List<GrantedAuthority> roles = AuthorityUtils.createAuthorityList(arrayRole);
+				return new UsernamePasswordAuthenticationToken(user, null, roles);
 			}
 			return null;
 		}
