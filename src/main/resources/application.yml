@@ -31,7 +31,9 @@ server:
 # 環境変数(デプロイ時に変更)
 #ローカル環境のOrigin
 environments:
-  originUrl: http://localhost:8888
+#  originUrl: http://localhost:8888
   
 #デプロイ環境のOrigin 
 #  originUrl: https://condition-meter.firebaseapp.com.firebaseapp.com
+
+  originUrl:https://condition-test-45186.web.app
