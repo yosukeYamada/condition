@@ -14,20 +14,19 @@ import com.example.service.ShowInformationService;
  *
  */
 @RestController
-@RequestMapping("/information")
 public class ShowInformationController {
 
 	@Autowired
 	private ShowInformationService informationService;
-	
+
 	/**
 	 * インフォメーション一覧を取得する.
 	 * 
 	 * @return インフォメーション一覧
 	 */
-	@RequestMapping("")
+	@RequestMapping("/information")
 	public Form findAll() {
 		return informationService.findAll();
 	}
-	
+
 }

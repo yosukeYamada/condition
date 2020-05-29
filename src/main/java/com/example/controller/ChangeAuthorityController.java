@@ -30,23 +30,32 @@ public class ChangeAuthorityController {
 	 */
 	@RequestMapping("/changeAuthority")
 	public User changeAuthority(@RequestBody Map<String, String> param) {
+		
 		/** 取得したメールアドレスに該当する従業員がいるかチェック */
 		User user = changeAuthorityService.findUserByMail(param.get("email"));
+		
 		if (user.getAuthority() == Authority.OUTSIDER.getAuthorityId()) {
+			
 			/** ケース1:従業員が存在しなかった場合 */
 			user.setAuthority(Authority.OUTSIDER.getAuthorityId());
 			return user;
+			
 		} else {
+			
 			/** ケース2:従業員が存在する場合 */
 			if (user.getVersion() != Integer.parseInt(param.get("version"))) {
+				
 				/** ケース2-1:排他制御に引っかかった場合(最新版じゃなかった場合) */ 
 				user.setVersion(0);
 				return user;
+				
 			} else {
+				
 				/** ケース2-2:従業員が存在してかつ変更するデータが最新版の場合(期待する処理) */
 				User updatedUser = changeAuthorityService.changeAuthority(param);
 				updatedUser.setUserId(user.getUserId());
 				updatedUser.setUserName(user.getUserName());
+				
 				return updatedUser;
 			}
 		}

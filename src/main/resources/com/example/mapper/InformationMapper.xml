@@ -36,7 +36,26 @@
 			version,
 			status
 			FROM information
+			WHERE status = #{status}
 			order by information_date desc
+		</select>
+		
+		<select id="findByInformationId" resultMap="information">
+			SELECT
+			information_id,
+			information_date,
+			information_title,
+			information_content,
+			category_id,
+			register_user_id,
+			register_date,
+			update_user_id,
+			update_date,
+			version,
+			status
+			FROM information
+			WHERE status = #{status}
+			AND information_id =#{informationId}
 		</select>
 		
 		
@@ -60,6 +79,30 @@
 			#{version},
 			#{status})
 		</insert>
+		
+		<update id="update">
+			UPDATE information SET
+			information_title=#{informationTitle},
+			information_content=#{informationContent},
+			category_id=#{categoryId},
+			update_user_id=#{updateUserId},
+			update_date=#{updateDate},
+			version=version + 1
+			WHERE
+			information_id=#{informationId}
+			returning version
+		</update>
+		
+		<update id="delete">
+			UPDATE information SET
+			update_user_id=#{updateUserId},
+			update_date=#{updateDate},
+			status=#{status},
+			version=version + 1
+			WHERE
+			information_id=#{informationId}
+			returning version
+		</update>
 	
 	
 </mapper>
