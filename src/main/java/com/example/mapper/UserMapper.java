@@ -124,6 +124,7 @@ public interface UserMapper {
 	public List<User> findByDayAndDep(Timestamp startTs, Timestamp endTs, Integer depId);
 	
 	/**
+<<<<<<< HEAD
 	 * メールアドレスからユーザの権限を取得するメソッド.
 	 * 
 	 * @param mail メールアドレス
@@ -132,4 +133,24 @@ public interface UserMapper {
 	public User findByEmail(String mailAddress);
 	
 	
+=======
+	 * 年月日とユーザーIDで投稿を取得するメソッド.
+	 * 
+	 * @param startTs 始まり日付
+	 * @param endTs 終わり日付
+	 * @param userId ユーザーID
+	 * @return 引数で受け取った年月日に合致する投稿一覧
+	 */
+	public List<User> findByUserIdAndLastWeek(Timestamp startTs, Timestamp endTs, Integer userId);
+	
+	/**
+	 * 年月日とユーザーIDで投稿を取得するメソッド.
+	 * 
+	 * @param startTs 始まり日付
+	 * @param endTs 終わり日付
+	 * @param userId ユーザーID
+	 * @return 引数で受け取った年月日に合致する投稿一覧
+	 */
+	public List<User> findByUserIdAndLastMonth(Timestamp startTs, Timestamp endTs, Integer userId);
+>>>>>>> 68421db9652e3b897532d8c753a6f959c9c431cf
 }
