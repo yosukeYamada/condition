@@ -4,17 +4,25 @@ spring:
    ansi:
      enabled: always
   # DBの設定(デプロイ時に変更)
-  datasource:
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/conditions
-    username: postgres
-    password: postgres
+#  datasource:
+#    driverClassName: org.postgresql.Driver
+#    url: jdbc:postgresql://localhost:5432/conditions
+#    username: postgres
+#    password: postgres
   # DBの設定(デプロイ環境)
 #  datasource:
 #    driverClassName: org.postgresql.Driver
 #    url: jdbc:postgresql://fwkeyoimbfhnmi:802f27f88d33eb7e6db7802702696c1617983e629b27739878f7191c145dcdb6@ec2-34-197-212-240.compute-1.amazonaws.com:5432/d75mhop209mu35
 #    username: fwkeyoimbfhnmi
 #    password: 802f27f88d33eb7e6db7802702696c1617983e629b27739878f7191c145dcdb6
+
+  # DBの設定(テストデプロイ環境)
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://thmzmjvgmhgjma ：ad2e2685f34019da57bdef5808decfa050aa249fa03a7ae5325e8dc9e864f4f2 @ ec2-34-200-72-77.compute-1.amazonaws.com ：5432 / d6opopbvj26meb
+    username: thmzmjvgmhgjma
+    password: ad2e2685f34019da57bdef5808decfa050aa249fa03a7ae5325e8dc9e864f4f2
+  
 
 # ローカル環境での起動ポート番号の設定
 server:
