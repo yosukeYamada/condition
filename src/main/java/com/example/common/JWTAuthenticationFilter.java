@@ -78,7 +78,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		// loginIdからtokenを設定してヘッダにセットする
 		String token = Jwts.builder().setSubject(((User) auth.getPrincipal()).getUsername()) // usernameだけを設定する
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-				.signWith(SignatureAlgorithm.HS512, SECRET.getBytes()).compact();
+				.signWith(SignatureAlgorithm.HS512, SECRET.getBytes()).claim("role", auth.getAuthorities()).compact();
 		res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
 
 		// ここでレスポンスを組み立てると個別のパラメータを返せるがFilterの責務の範囲内で実施しなければならない
