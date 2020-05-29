@@ -29,6 +29,12 @@ server:
   port: 8080
 
 # 環境変数(デプロイ時に変更)
+#ローカル環境のOrigin
 environments:
-  originUrl: http://localhost:8888
+#  originUrl: http://localhost:8888
+  
+#デプロイ環境のOrigin 
 #  originUrl: https://condition-meter.firebaseapp.com.firebaseapp.com
+
+#テストデプロイ環境のOrigin 
+  originUrl: https://condition-test-app.herokuapp.com
