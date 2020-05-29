@@ -79,7 +79,6 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 			for (int i = 0; i < grants.size(); i++) {
 				LinkedHashMap grant = (LinkedHashMap) grants.get(i);
 				String rolestr = (String) grant.get("authority");
-				System.out.println(rolestr);
 				arrayRole[i] = rolestr;
 			}
 			if (user != null) {
