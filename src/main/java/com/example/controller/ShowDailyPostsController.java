@@ -30,6 +30,7 @@ public class ShowDailyPostsController {
 	 */
 	@RequestMapping("/showDailyPosts")
 	public List<DailyPost> showDailyPostsHistory(@RequestBody Map<String, String> param) {
+		
 		List<DailyPost> dailyPostList = showDailyPostsService.getDailyPostList(Integer.parseInt(param.get("userId")));
 		return dailyPostList;
 	}
