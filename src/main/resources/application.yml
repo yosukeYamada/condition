@@ -35,5 +35,4 @@ environments:
   
 #デプロイ環境のOrigin 
 #  originUrl: https://condition-meter.firebaseapp.com.firebaseapp.com
-
-  originUrl:https://condition-test-45186.web.app
+  originUrl: https://condition-test-45186.web.app
