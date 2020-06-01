@@ -83,6 +83,7 @@ public class AggregateScoreController {
         	dailyPostByDayAndDep = user.getDailyPost();
         }
         
+        
         for (User user : myDailyPostLastWeekList) {
         	for(DailyPost post : user.getDailyPost()) {
 	            switch (post.getPostedMotivation().getMotivation().getMotivationName()) {
@@ -138,19 +139,20 @@ public class AggregateScoreController {
 	            }
         	}
         }
+        
         motivationScore.setPercentage(dailyPostByDayAndDep.size());
         conditionScore.setPercentage(dailyPostByDayAndDep.size());
         performanceScore.setPercentage(dailyPostByDayAndDep.size());
         
-        Integer totalOrderCountOfLastWeek = userMapper.OrderCountByUserIdAndLastWeek(startMon,endFri,Integer.parseInt(param.get("userId")));
-        Integer MaxTotalScoreOfLastWeek = totalOrderCountOfLastWeek * 15;
-        Integer MaxPartScoreOfLastWeek = totalOrderCountOfLastWeek * 5;
+        Integer totalOrderCountOfLastWeek = userMapper.findByUserIdAndLastWeek(startMon,endFri,Integer.parseInt(param.get("userId"))).size();
+        Integer maxTotalScoreOfLastWeek = totalOrderCountOfLastWeek * 15;
+        Integer maxPartScoreOfLastWeek = totalOrderCountOfLastWeek * 5;
 		Integer totalLastWeekMotivationScore = motivationScore.getClearCount() + motivationScore.getSunnyCount() + motivationScore.getCloudyCount() + motivationScore.getRainyCount() + motivationScore.getStormyCount();
 		Integer totalLastWeekConditionScore = conditionScore.getClearCount() + conditionScore.getSunnyCount() + conditionScore.getCloudyCount() + conditionScore.getRainyCount() + conditionScore.getStormyCount();
 		Integer totalLastWeekPerformanceScore = performanceScore.getClearCount() + performanceScore.getSunnyCount() + performanceScore.getCloudyCount() + performanceScore.getRainyCount() + performanceScore.getStormyCount();
 	    
-        count.setMaxTotalScoreOfLastWeek(MaxTotalScoreOfLastWeek);
-        count.setMaxPartScoreOfLastWeek(MaxPartScoreOfLastWeek);
+        count.setMaxTotalScoreOfLastWeek(maxTotalScoreOfLastWeek);
+        count.setMaxPartScoreOfLastWeek(maxPartScoreOfLastWeek);
 		count.setTotalLastWeekMotivationScore(totalLastWeekMotivationScore);
 		count.setTotalLastWeekConditionScore(totalLastWeekConditionScore);
 		count.setTotalLastWeekPerformanceScore(totalLastWeekPerformanceScore);
@@ -158,7 +160,7 @@ public class AggregateScoreController {
 		Integer totalLastWeekCount = totalLastWeekConditionScore + totalLastWeekMotivationScore + totalLastWeekPerformanceScore;
 		count.setTotalLastWeekCount(totalLastWeekCount);
 		
-		System.out.println("先週の結果"+MaxTotalScoreOfLastWeek+MaxPartScoreOfLastWeek);
+		System.out.println("先週の結果" + maxTotalScoreOfLastWeek + maxPartScoreOfLastWeek);
 		
 		
 		/* ---------- 先月の集計結果を返す ---------- */
@@ -255,13 +257,21 @@ public class AggregateScoreController {
                     dayMap.get("performance").setStormyCount(dayMap.get("performance").getStormyCount() + 1);
                     break;
             }
-            
             totalLastMonthMotivationScore = dayMap.get("motivation").getClearCount() + dayMap.get("motivation").getSunnyCount() + dayMap.get("motivation").getCloudyCount() + dayMap.get("motivation").getRainyCount() + dayMap.get("motivation").getStormyCount();
             totalLastMonthConditionScore = dayMap.get("condition").getClearCount() + dayMap.get("condition").getSunnyCount() + dayMap.get("condition").getCloudyCount() + dayMap.get("condition").getRainyCount() + dayMap.get("condition").getStormyCount();
             totalLastMonthPerformanceScore = dayMap.get("performance").getClearCount() + dayMap.get("performance").getSunnyCount() + dayMap.get("performance").getCloudyCount() + dayMap.get("performance").getRainyCount() + dayMap.get("performance").getStormyCount();
             
         }
+        Integer totalOrderCountOfLastMonth = userMapper.findByUserIdAndLastWeek(startFirstDayOfMonth,endLastDayOfMonth,Integer.parseInt(param.get("userId"))).size();
+        Integer maxTotalScoreOfLastMonth = totalOrderCountOfLastMonth * 15;
+        Integer maxPartScoreOfLastMonth = totalOrderCountOfLastMonth * 5;
         
+        
+        count.setMaxTotalScoreOfLastMonth(maxTotalScoreOfLastMonth);
+        count.setMaxPartScoreOfLastMonth(maxPartScoreOfLastMonth);
+        count.setTotalLastMonthMotivationScore(totalLastMonthMotivationScore);
+        count.setTotalLastMonthConditionScore(totalLastMonthConditionScore);
+        count.setTotalLastMonthPerformanceScore(totalLastMonthPerformanceScore);
         totalLastMonthCount = totalLastMonthMotivationScore + totalLastMonthConditionScore + totalLastMonthPerformanceScore;
         count.setTotalLastMonthCount(totalLastMonthCount);
         return count;

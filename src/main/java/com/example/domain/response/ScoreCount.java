@@ -4,15 +4,17 @@ import lombok.Data;
 
 @Data
 public class ScoreCount {
-	private Integer MaxTotalScoreOfLastWeek;
-	private Integer MaxPartScoreOfLastWeek;
+	private Integer maxTotalScoreOfLastWeek;
+	private Integer maxPartScoreOfLastWeek;
     private Integer totalLastWeekMotivationScore;
     private Integer totalLastWeekConditionScore;
     private Integer totalLastWeekPerformanceScore;
 	private Integer totalLastWeekCount;
 	
+	private Integer maxTotalScoreOfLastMonth;
+	private Integer maxPartScoreOfLastMonth;
 	private Integer totalLastMonthMotivationScore;
-	private Integer totalLastMonthConditionScor;
+	private Integer totalLastMonthConditionScore;
 	private Integer totalLastMonthPerformanceScore;
 	private Integer totalLastMonthCount;
 	
