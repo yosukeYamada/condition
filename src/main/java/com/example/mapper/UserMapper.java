@@ -150,4 +150,7 @@ public interface UserMapper {
 	 * @return 引数で受け取った年月日に合致する投稿一覧
 	 */
 	public List<User> findByUserIdAndLastMonth(Timestamp startTs, Timestamp endTs, Integer userId);
+	
+	
+	public Integer OrderCountByUserIdAndLastWeek(Timestamp startTs,Timestamp endTs,Integer userId);
 }

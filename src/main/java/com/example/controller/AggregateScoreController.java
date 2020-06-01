@@ -141,12 +141,24 @@ public class AggregateScoreController {
         motivationScore.setPercentage(dailyPostByDayAndDep.size());
         conditionScore.setPercentage(dailyPostByDayAndDep.size());
         performanceScore.setPercentage(dailyPostByDayAndDep.size());
+        
+        Integer totalOrderCountOfLastWeek = userMapper.OrderCountByUserIdAndLastWeek(startMon,endFri,Integer.parseInt(param.get("userId")));
+        Integer MaxTotalScoreOfLastWeek = totalOrderCountOfLastWeek * 15;
+        Integer MaxPartScoreOfLastWeek = totalOrderCountOfLastWeek * 5;
 		Integer totalLastWeekMotivationScore = motivationScore.getClearCount() + motivationScore.getSunnyCount() + motivationScore.getCloudyCount() + motivationScore.getRainyCount() + motivationScore.getStormyCount();
 		Integer totalLastWeekConditionScore = conditionScore.getClearCount() + conditionScore.getSunnyCount() + conditionScore.getCloudyCount() + conditionScore.getRainyCount() + conditionScore.getStormyCount();
 		Integer totalLastWeekPerformanceScore = performanceScore.getClearCount() + performanceScore.getSunnyCount() + performanceScore.getCloudyCount() + performanceScore.getRainyCount() + performanceScore.getStormyCount();
+	    
+        count.setMaxTotalScoreOfLastWeek(MaxTotalScoreOfLastWeek);
+        count.setMaxPartScoreOfLastWeek(MaxPartScoreOfLastWeek);
+		count.setTotalLastWeekMotivationScore(totalLastWeekMotivationScore);
+		count.setTotalLastWeekConditionScore(totalLastWeekConditionScore);
+		count.setTotalLastWeekPerformanceScore(totalLastWeekPerformanceScore);
 		
 		Integer totalLastWeekCount = totalLastWeekConditionScore + totalLastWeekMotivationScore + totalLastWeekPerformanceScore;
 		count.setTotalLastWeekCount(totalLastWeekCount);
+		
+		System.out.println("先週の結果"+MaxTotalScoreOfLastWeek+MaxPartScoreOfLastWeek);
 		
 		
 		/* ---------- 先月の集計結果を返す ---------- */
