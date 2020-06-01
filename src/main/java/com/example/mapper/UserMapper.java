@@ -152,5 +152,5 @@ public interface UserMapper {
 	public List<User> findByUserIdAndLastMonth(Timestamp startTs, Timestamp endTs, Integer userId);
 	
 	
-	public Integer OrderCountByUserIdAndLastWeek(Timestamp startTs,Timestamp endTs,Integer userId);
+	
 }
