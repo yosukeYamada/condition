@@ -56,7 +56,7 @@
 	<select id="insertPostedCondition" resultType="Integer">
 		INSERT INTO posted_conditions(daily_post_id, condition_id, register_user_id, register_date, update_user_id, update_date, version, status) 
 		select i,3,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2
-		from generate_series(1,100) as i;
+		from generate_series(1,30) as i;
 	</select>
 	
     
