@@ -45,8 +45,6 @@ public class AggregateScoreController {
 	@RequestMapping("")
 	public ScoreCount showScore(@RequestBody Map<String, String> param) {
 		
-		System.err.println("userID : " + param.get("userId"));
-		
 		ScoreCount count = new ScoreCount();
 		
 		// 現在日付を取得
