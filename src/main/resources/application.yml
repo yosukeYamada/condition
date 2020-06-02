@@ -9,12 +9,34 @@ spring:
     url: jdbc:postgresql://localhost:5432/conditions
     username: postgres
     password: postgres
+  mail:
+   host: smtp.gmail.com
+   port: 587
+   username: shun053013@gmail.com
+   password: tgyitrynesuzvvst
+   properties:
+    mail:
+    smtp:
+     auth: true
+     starttls:
+      enable: true
   # DBの設定(デプロイ環境)
 #  datasource:
 #    driverClassName: org.postgresql.Driver
 #    url: jdbc:postgresql://fwkeyoimbfhnmi:802f27f88d33eb7e6db7802702696c1617983e629b27739878f7191c145dcdb6@ec2-34-197-212-240.compute-1.amazonaws.com:5432/d75mhop209mu35
 #    username: fwkeyoimbfhnmi
 #    password: 802f27f88d33eb7e6db7802702696c1617983e629b27739878f7191c145dcdb6
+#   mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: rakus.yahoo@gmail.com(新しいタブが開きます)
+#    password: lggfscuvpevplvsw
+#    properties:
+#     mail:
+#     smtp:
+#      auth: true
+#      starttls:
+#       enable: true
 
   # DBの設定(テストデプロイ環境)
 #  datasource:
