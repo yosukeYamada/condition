@@ -56,7 +56,7 @@ public class AggregateByDayService {
                     motivationScore.setSunnyCount(motivationScore.getSunnyCount() + 1);
                     break;
                 case "曇":
-                    motivationScore.setCloudyCount(motivationScore.getClearCount() + 1);
+                    motivationScore.setCloudyCount(motivationScore.getCloudyCount() + 1);
                     break;
                 case "雨":
                     motivationScore.setRainyCount(motivationScore.getRainyCount() + 1);
@@ -73,7 +73,7 @@ public class AggregateByDayService {
                     conditionScore.setSunnyCount(conditionScore.getSunnyCount() + 1);
                     break;
                 case "曇":
-                    conditionScore.setCloudyCount(conditionScore.getClearCount() + 1);
+                    conditionScore.setCloudyCount(conditionScore.getCloudyCount() + 1);
                     break;
                 case "雨":
                     conditionScore.setRainyCount(conditionScore.getRainyCount() + 1);
@@ -90,7 +90,7 @@ public class AggregateByDayService {
                     performanceScore.setSunnyCount(performanceScore.getSunnyCount() + 1);
                     break;
                 case "曇":
-                    performanceScore.setCloudyCount(performanceScore.getClearCount() + 1);
+                    performanceScore.setCloudyCount(performanceScore.getCloudyCount() + 1);
                     break;
                 case "雨":
                     performanceScore.setRainyCount(performanceScore.getRainyCount() + 1);

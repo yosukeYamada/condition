@@ -33,7 +33,7 @@ import com.example.mapper.UserMapper;
 @RestController
 @RequestMapping("/showScore")
 public class AggregateScoreController {
-	
+
 	@Autowired
 	private UserMapper userMapper;
 
@@ -44,8 +44,6 @@ public class AggregateScoreController {
 	 */
 	@RequestMapping("")
 	public ScoreCount showScore(@RequestBody Map<String, String> param) {
-		
-		System.err.println("userID : " + param.get("userId"));
 		
 		ScoreCount count = new ScoreCount();
 		
@@ -94,7 +92,7 @@ public class AggregateScoreController {
 	                    motivationScore.setSunnyCount(motivationScore.getSunnyCount() + 4);
 	                    break;
 	                case "曇":
-	                    motivationScore.setCloudyCount(motivationScore.getClearCount() + 3);
+	                    motivationScore.setCloudyCount(motivationScore.getCloudyCount() + 3);
 	                    break;
 	                case "雨":
 	                    motivationScore.setRainyCount(motivationScore.getRainyCount() + 2);
@@ -111,7 +109,7 @@ public class AggregateScoreController {
 	                    conditionScore.setSunnyCount(conditionScore.getSunnyCount() + 4);
 	                    break;
 	                case "曇":
-	                    conditionScore.setCloudyCount(conditionScore.getClearCount() + 3);
+	                    conditionScore.setCloudyCount(conditionScore.getCloudyCount() + 3);
 	                    break;
 	                case "雨":
 	                    conditionScore.setRainyCount(conditionScore.getRainyCount() + 2);
@@ -128,7 +126,7 @@ public class AggregateScoreController {
 	                    performanceScore.setSunnyCount(performanceScore.getSunnyCount() + 4);
 	                    break;
 	                case "曇":
-	                    performanceScore.setCloudyCount(performanceScore.getClearCount() + 3);
+	                    performanceScore.setCloudyCount(performanceScore.getCloudyCount() + 3);
 	                    break;
 	                case "雨":
 	                    performanceScore.setRainyCount(performanceScore.getRainyCount() + 2);
@@ -144,7 +142,8 @@ public class AggregateScoreController {
         conditionScore.setPercentage(dailyPostByDayAndDep.size());
         performanceScore.setPercentage(dailyPostByDayAndDep.size());
         
-        Integer totalOrderCountOfLastWeek = (userMapper.findByUserIdAndLastWeek(startMon,endFri,Integer.parseInt(param.get("userId")))).size();
+
+        Integer totalOrderCountOfLastWeek = dailyPostByDayAndDep.size();
         Integer maxTotalScoreOfLastWeek = totalOrderCountOfLastWeek * 15;
         Integer maxPartScoreOfLastWeek = totalOrderCountOfLastWeek * 5;
 		Integer totalLastWeekMotivationScore = motivationScore.getClearCount() + motivationScore.getSunnyCount() + motivationScore.getCloudyCount() + motivationScore.getRainyCount() + motivationScore.getStormyCount();
@@ -159,8 +158,6 @@ public class AggregateScoreController {
 		
 		Integer totalLastWeekCount = totalLastWeekConditionScore + totalLastWeekMotivationScore + totalLastWeekPerformanceScore;
 		count.setTotalLastWeekCount(totalLastWeekCount);
-		
-		System.out.println("先週の結果" + maxTotalScoreOfLastWeek + maxPartScoreOfLastWeek);
 		
 		
 		/* ---------- 先月の集計結果を返す ---------- */
@@ -214,7 +211,7 @@ public class AggregateScoreController {
                     dayMap.get("motivation").setSunnyCount(dayMap.get("motivation").getSunnyCount() + 4);
                     break;
                 case "曇":
-                    dayMap.get("motivation").setCloudyCount(dayMap.get("motivation").getClearCount() + 3);
+                    dayMap.get("motivation").setCloudyCount(dayMap.get("motivation").getCloudyCount() + 3);
                     break;
                 case "雨":
                     dayMap.get("motivation").setRainyCount(dayMap.get("motivation").getRainyCount() + 2);
@@ -231,7 +228,7 @@ public class AggregateScoreController {
                     dayMap.get("condition").setSunnyCount(dayMap.get("condition").getSunnyCount() + 4);
                     break;
                 case "曇":
-                    dayMap.get("condition").setCloudyCount(dayMap.get("condition").getClearCount() + 3);
+                    dayMap.get("condition").setCloudyCount(dayMap.get("condition").getCloudyCount() + 3);
                     break;
                 case "雨":
                     dayMap.get("condition").setRainyCount(dayMap.get("condition").getRainyCount() + 2);
@@ -248,7 +245,7 @@ public class AggregateScoreController {
                     dayMap.get("performance").setSunnyCount(dayMap.get("performance").getSunnyCount() + 4);
                     break;
                 case "曇":
-                    dayMap.get("performance").setCloudyCount(dayMap.get("performance").getClearCount() + 3);
+                    dayMap.get("performance").setCloudyCount(dayMap.get("performance").getCloudyCount() + 3);
                     break;
                 case "雨":
                     dayMap.get("performance").setRainyCount(dayMap.get("performance").getRainyCount() + 2);
@@ -262,7 +259,8 @@ public class AggregateScoreController {
             totalLastMonthPerformanceScore = dayMap.get("performance").getClearCount() + dayMap.get("performance").getSunnyCount() + dayMap.get("performance").getCloudyCount() + dayMap.get("performance").getRainyCount() + dayMap.get("performance").getStormyCount();
             
         }
-        Integer totalOrderCountOfLastMonth = (userMapper.findByUserIdAndLastWeek(startFirstDayOfMonth,endLastDayOfMonth,Integer.parseInt(param.get("userId")))).size();
+
+        Integer totalOrderCountOfLastMonth = monthPostByDayAndDep.size();
         Integer maxTotalScoreOfLastMonth = totalOrderCountOfLastMonth * 15;
         Integer maxPartScoreOfLastMonth = totalOrderCountOfLastMonth * 5;
         System.out.println("要素の数"+totalOrderCountOfLastMonth);
@@ -276,38 +274,39 @@ public class AggregateScoreController {
         count.setTotalLastMonthPerformanceScore(totalLastMonthPerformanceScore);
         totalLastMonthCount = totalLastMonthMotivationScore + totalLastMonthConditionScore + totalLastMonthPerformanceScore;
         count.setTotalLastMonthCount(totalLastMonthCount);
+        
         return count;
         
 	}
-	
+
 	/**
-     * 日付をStringからLocalDateTimeに変換するメソッド
-     * 
-     * @param date 日付('yyyy/MM/dd')
-     * @return LocalDateTimeに変換した日付
-     */
-    public LocalDate stringToLocalDate(String date) {
-        try {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-            return LocalDate.parse(date, dtf);
-        } catch (Exception e) {
-            /** 変換に失敗した場合は今日の日付を返す */
-            e.printStackTrace();
-            return LocalDate.now();
-        }
+	 * 日付をStringからLocalDateTimeに変換するメソッド
+	 * 
+	 * @param date 日付('yyyy/MM/dd')
+	 * @return LocalDateTimeに変換した日付
+	 */
+	public LocalDate stringToLocalDate(String date) {
+		try {
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			return LocalDate.parse(date, dtf);
+		} catch (Exception e) {
+			/** 変換に失敗した場合は今日の日付を返す */
+			e.printStackTrace();
+			return LocalDate.now();
+		}
 
-    }
+	}
 
-    /**
-     * 日付をTimestamp型からString型に変換するメソッド
-     * 
-     * @param date Timestamp型の日付
-     * @return String型のyyyy/MM/ddに変換した日付
-     */
-    public String timestampToString(Timestamp date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        return sdf.format(date);
+	/**
+	 * 日付をTimestamp型からString型に変換するメソッド
+	 * 
+	 * @param date Timestamp型の日付
+	 * @return String型のyyyy/MM/ddに変換した日付
+	 */
+	public String timestampToString(Timestamp date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		return sdf.format(date);
 
-    }
-    
+	}
+
 }

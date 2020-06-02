@@ -67,7 +67,7 @@ public class AggregateByMonthService {
                     dayMap.get("motivation").setSunnyCount(dayMap.get("motivation").getSunnyCount() + 1);
                     break;
                 case "曇":
-                    dayMap.get("motivation").setCloudyCount(dayMap.get("motivation").getClearCount() + 1);
+                    dayMap.get("motivation").setCloudyCount(dayMap.get("motivation").getCloudyCount() + 1);
                     break;
                 case "雨":
                     dayMap.get("motivation").setRainyCount(dayMap.get("motivation").getRainyCount() + 1);
@@ -84,7 +84,7 @@ public class AggregateByMonthService {
                     dayMap.get("condition").setSunnyCount(dayMap.get("condition").getSunnyCount() + 1);
                     break;
                 case "曇":
-                    dayMap.get("condition").setCloudyCount(dayMap.get("condition").getClearCount() + 1);
+                    dayMap.get("condition").setCloudyCount(dayMap.get("condition").getCloudyCount() + 1);
                     break;
                 case "雨":
                     dayMap.get("condition").setRainyCount(dayMap.get("condition").getRainyCount() + 1);
@@ -101,7 +101,7 @@ public class AggregateByMonthService {
                     dayMap.get("performance").setSunnyCount(dayMap.get("performance").getSunnyCount() + 1);
                     break;
                 case "曇":
-                    dayMap.get("performance").setCloudyCount(dayMap.get("performance").getClearCount() + 1);
+                    dayMap.get("performance").setCloudyCount(dayMap.get("performance").getCloudyCount() + 1);
                     break;
                 case "雨":
                     dayMap.get("performance").setRainyCount(dayMap.get("performance").getRainyCount() + 1);
