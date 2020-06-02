@@ -14,12 +14,8 @@ spring:
    port: 587
    username: shun053013@gmail.com
    password: tgyitrynesuzvvst
-   properties:
-    mail:
-    smtp:
-     auth: true
-     starttls:
-      enable: true
+   properties.mail.smtp.auth: true
+   properties.mail.smtp.starttls.enable: true
   # DBの設定(デプロイ環境)
 #  datasource:
 #    driverClassName: org.postgresql.Driver

@@ -24,24 +24,24 @@ public class SendMailController {
 	
 	
 @RequestMapping("")
-public Integer sendMail(@RequestBody SendMailForm sendMailForm){
-	System.out.println(sendMailForm);
-	String IPadnPort = "localhost:8080";
-//	String IPadnPort = "condition-meter.web.app";
-	String from = "rakus.yahoo@gmail.com";
+public void sendMail(@RequestBody SendMailForm sendMailForm){
+
+
+	String IPadnPort = "condition-meter.web.app";
+	String from = "shun053013@gmail.com";
 	String title = "【Rakuppo】本日のコンディション未投稿通知";
 	String content = sendMailForm.getUserName() + "さん" +"\n"+ "本日のコンディション投稿がされていません。" + "\n"+"以下のリンクにアクセスしてコンディション投稿を行いましょう。"+"\n"+"https://"+IPadnPort;
 	
+
 	SimpleMailMessage msg = new SimpleMailMessage();
-	msg.setFrom(from);
-	msg.setTo(sendMailForm.getMail());
-	msg.setSubject(title);
-	msg.setText(content);
-	System.out.println(msg);
 	
+	msg.setFrom(from);
+    msg.setTo(sendMailForm.getMail());
+    msg.setSubject(title);
+    msg.setText(content);
 	mailSender.send(msg);
 	
-	return 1;
+	
 }
 	
 	
