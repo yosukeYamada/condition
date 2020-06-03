@@ -58,7 +58,7 @@ public interface UserMapper {
 	 * @param email メール
 	 * @return ユーザー情報(dep, mailなし)
 	 */
-	public User findUserByMail(String email);
+	public User findUserByMail(String mail,Integer status);
 
 	/**
 	 * ユーザー登録を更新する

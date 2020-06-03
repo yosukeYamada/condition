@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.example.domain.Authority;
+import com.example.domain.Status;
 import com.example.domain.User;
 import com.example.service.FindUserInfoService;
 
@@ -39,7 +40,7 @@ public class LoginCheckController {
 		Matcher matcher = pattern.matcher(param.get("mail"));
 		Matcher matcher2 = pattern2.matcher(param.get("mail"));
 		if (matcher.matches() || matcher2.matches()) {
-			return userService.findByMailAndAuthoriry(param.get("mail"));
+			return userService.findByMailAndAuthoriry(param.get("mail"),Status.AVAILABLE.getStatusId());
 		} else {
 			/** 組織外ユーザーによるログインであった場合 */
 			User user = new User();
