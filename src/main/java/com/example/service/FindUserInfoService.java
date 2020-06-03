@@ -32,10 +32,10 @@ public class FindUserInfoService {
 	 * @param mail メールアドレス
 	 * @return ユーザー情報
 	 */
-	public User findByMailAndAuthoriry(String mail) {
+	public User findByMailAndAuthoriry(String mail,Integer status) {
 		User loginUser = new User();
 		try {
-			loginUser = userMapper.findUserByMail(mail);
+			loginUser = userMapper.findUserByMail(mail,status);
 		} catch (Exception e) {
 			System.out.println("エラー！！");
 			e.printStackTrace();

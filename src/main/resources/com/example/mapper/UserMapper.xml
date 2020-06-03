@@ -132,6 +132,7 @@
 		LEFT OUTER JOIN mails as m on u.user_id = m.user_id
 		WHERE
 		m.mail_name =#{mail}
+		AND u.status =#{status}
 	</select>
 
 

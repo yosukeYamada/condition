@@ -263,9 +263,6 @@ public class AggregateScoreController {
         Integer totalOrderCountOfLastMonth = monthPostByDayAndDep.size();
         Integer maxTotalScoreOfLastMonth = totalOrderCountOfLastMonth * 15;
         Integer maxPartScoreOfLastMonth = totalOrderCountOfLastMonth * 5;
-        System.out.println("要素の数"+totalOrderCountOfLastMonth);
-        System.out.println("先月の総数"+maxTotalScoreOfLastMonth);
-        System.out.println("先月の部分"+maxPartScoreOfLastMonth);
         
         count.setMaxTotalScoreOfLastMonth(maxTotalScoreOfLastMonth);
         count.setMaxPartScoreOfLastMonth(maxPartScoreOfLastMonth);
