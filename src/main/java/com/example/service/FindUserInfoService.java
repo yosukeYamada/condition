@@ -37,7 +37,6 @@ public class FindUserInfoService {
 		try {
 			loginUser = userMapper.findUserByMail(mail);
 		} catch (Exception e) {
-			System.out.println("エラー！！");
 			e.printStackTrace();
 		}
 		// nullならauthority番号が0のものと、mailAddress、depListをつめたユーザー情報を返す
