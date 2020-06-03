@@ -182,23 +182,29 @@ public class AggregateScoreController {
         Timestamp startFirstDayOfMonth = Timestamp.valueOf(firstDay);
         Timestamp endLastDayOfMonth = Timestamp.valueOf(lastDay);
         
-        List<User> myDailyPostLastMonthList = userMapper.findByUserIdAndLastWeek(startFirstDayOfMonth,endLastDayOfMonth,Integer.parseInt(param.get("userId")));
+        DailyScore motivationScore2 = new DailyScore();
+        DailyScore conditionScore2 = new DailyScore();
+        DailyScore performanceScore2 = new DailyScore();
+        
+        List<User> myDailyPostLastMonthList = userMapper.findByUserIdAndLastMonth(startFirstDayOfMonth,endLastDayOfMonth,Integer.parseInt(param.get("userId")));
         
         Map<String, Map<String, DailyScore>> resultMap2 = new LinkedHashMap<>();
+        Map<String, DailyScore> dayMap2 = new HashMap<>();
         for (int i = 0; i < lastDay.getDayOfMonth(); i++) {
-            Map<String, DailyScore> dayMap = new HashMap<>();
-            dayMap.put("motivation", motivationScore);
-            dayMap.put("condition", conditionScore);
-            dayMap.put("performance", performanceScore);
+            dayMap2.put("motivation", motivationScore2);
+            dayMap2.put("condition", conditionScore2);
+            dayMap2.put("performance", performanceScore2);
             String key = firstDay.getYear() + "/" + String.format("%02d", firstDay.getMonthValue()) + "/"
                     + String.format("%02d", firstDay.getDayOfMonth() + i);
-            resultMap2.put(key, dayMap);
+            resultMap2.put(key, dayMap2);
         }
         
         List<DailyPost> monthPostByDayAndDep = new ArrayList<>();
         for(User user : myDailyPostLastMonthList) {
         	monthPostByDayAndDep = user.getDailyPost();
         }
+        
+        System.out.println(resultMap2);
         
         for (DailyPost post : monthPostByDayAndDep) {
         	// TimestampをString型に変換してyyyy/MM/ddにしてreturnMapの日付と合致するキーの中に計算した結果を入れる
@@ -259,7 +265,7 @@ public class AggregateScoreController {
             totalLastMonthPerformanceScore = dayMap.get("performance").getClearCount() + dayMap.get("performance").getSunnyCount() + dayMap.get("performance").getCloudyCount() + dayMap.get("performance").getRainyCount() + dayMap.get("performance").getStormyCount();
             
         }
-
+        
         Integer totalOrderCountOfLastMonth = monthPostByDayAndDep.size();
         Integer maxTotalScoreOfLastMonth = totalOrderCountOfLastMonth * 15;
         Integer maxPartScoreOfLastMonth = totalOrderCountOfLastMonth * 5;

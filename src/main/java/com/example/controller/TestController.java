@@ -43,7 +43,6 @@ public class TestController {
 	public void insert() {
 //		user.insertUsers();
 //		mail.insertMails();
-		
 //		for (int i = 1; i <= 10; i++) {
 //		}
 		daily.insertDailyPost();
