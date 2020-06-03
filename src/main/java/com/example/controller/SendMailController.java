@@ -30,19 +30,6 @@ public class SendMailController {
 public void sendMail(@RequestBody SendMailForm sendMailForm){
 
 
-//	String IPadnPort = "condition-meter.web.app";
-//	String from = "rakuppo123@gmail.com";
-//	String title = "【Rakuppo】本日のコンディション未投稿通知";
-//	String content = sendMailForm.getUserName() + "さん" +"\n"+ "本日のコンディション投稿がされていません。" + "\n"+"以下のリンクにアクセスしてコンディション投稿を行いましょう。"+"\n"+"https://"+IPadnPort;
-//	
-//
-//	SimpleMailMessage msg = new SimpleMailMessage();
-//	
-//	msg.setFrom(from);
-//    msg.setTo(sendMailForm.getMail());
-//    msg.setSubject(title);
-//    msg.setText(content);
-//	mailSender.send(msg);
 	sendMailService.sendMail(sendMailForm);
 	
 	
