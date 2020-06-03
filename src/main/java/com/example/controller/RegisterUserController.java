@@ -71,7 +71,9 @@ public class RegisterUserController {
 	 * @return ユーザ情報
 	 */
 	@PostMapping("/registerUser")
-	public User reisterUser(@RequestBody(required = false) @Valid RegisterUserForm form) {
+	public User reisterUser(@RequestBody(required = false) @Valid RegisterUserForm form)throws ExclusiveException  {
+		boolean confirmDuplication = mailService.confirmMail(form.getMailAddress());
+		if(confirmDuplication == true) {
 		RegisterUserForm registerUserform = reMakeUserName(form);
 		User user = registerUserService.registerUser(registerUserform);
 		String mailAddress = form.getMailAddress();
@@ -80,6 +82,9 @@ public class RegisterUserController {
 		mailList.add(mail);
 		user.setMailList(mailList);
 		return user;
+		}else {
+			throw new ExclusiveException(null);
+		}
 	}
 
 	/**

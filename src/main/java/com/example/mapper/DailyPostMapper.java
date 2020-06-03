@@ -79,6 +79,6 @@ public interface DailyPostMapper {
     public void updateDailyPostStatus(DailyPost dailyPost);
 
     // テスト用
-    public void insertDailyPost(Integer userId);
+    public void insertDailyPost();
 
 }

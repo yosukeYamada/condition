@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.cors()
 		.configurationSource(corsConfigrationSourceForLogin())
 		.and()
-		.authorizeRequests().antMatchers("/registerUser","/information","/showNewsList","/loginCheck","/getDepList", "/test", SIGNUP_URL, LOGIN_URL).permitAll()
+		.authorizeRequests().antMatchers("/registerUser","/information","/showNewsList","/loginCheck","/getDepList", "/test/insert", SIGNUP_URL, LOGIN_URL).permitAll()
 		.antMatchers("/registerDailyPost","/registerLimit","/editDailyPost/edit","/showScore").hasRole("USER")
 		.antMatchers("/showEmployeeList","/news","/deleteNews","/editDeps/deleteDep","/editDeps/changeDepName","/editDeps/addNewDep","/changeAuthority","/editDeps/exclusiveProcessing","/editDeps/checkIsEmployeeBelong","/information/insert","/status","/getAggregateByDay","/getAggregateByMonth","/updateUser").hasRole("ADMIN")
 		
