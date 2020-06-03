@@ -34,7 +34,7 @@
 	<select id="insertPostedComment" resultType="Integer">
 		INSERT INTO posted_comments(daily_post_id, comment, register_user_id, register_date, update_user_id, update_date, version, status) 
 		select i,'いえい',1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2
-		from generate_series(1,30) as i;
+		from generate_series(1,10) as i;
 	</select>
 
 
