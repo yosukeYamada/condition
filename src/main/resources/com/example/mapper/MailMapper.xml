@@ -27,7 +27,8 @@
 		mails
 		SET
 		mail_name = #{mailName},
-		update_user_id = #{updateUserId},
+		update_user_id
+		= #{updateUserId},
 		update_date = #{updateDate}
 		WHERE
 		user_id= #{userId};
@@ -44,13 +45,21 @@
 		WHERE
 		user_id= #{userId};
 	</select>
-	
-	
-	<!-- テスト用 100件挿入-->
+
+
+	<!-- テスト用 100件挿入 -->
 	<select id="insertMails" resultType="Integer">
-		INSERT INTO mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status) 
-		select format('rakuskarukaruaaa%s@rakus.co.jp',i),i,1,'2020-04-27 09:00:00',1,'2020-04-27 09:00:00',1,2
+		INSERT INTO
+		mails(mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status)
+		select format('rakuskarukaruaaa%s@rakus.co.jp',i),i,1,'2020-04-27
+		09:00:00',1,'2020-04-27 09:00:00',1,2
 		from generate_series(1,10) as i;
 	</select>
-	
+
+	<select id="findByMailName" resultMap="MailResultMap">
+		SELECT
+		mail_id,mail_name,user_id,register_user_id,register_date,update_user_id,update_date,version,status
+		from mails WHERE mail_name=#{mailName} AND status = 9
+	</select>
+
 </mapper>

@@ -40,4 +40,14 @@ public class RegisterMailService {
 		Mail reMail = mailMapper.insertMailAddress(mail);
 		return reMail;
 	}
+	
+	public boolean confirmMail(String mailAddress) {
+		Mail mail = mailMapper.findByMailName(mailAddress);
+		System.out.println(mail);
+		if(mail == null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }

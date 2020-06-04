@@ -38,7 +38,6 @@ public class RegisterPasswordService {
 		password.setRegisterUserId(0);
 		password.setMailAddress(form.getMailAddress());
 		Password confirmPassword = passwordMapper.confirmDuplication(form.getMailAddress());
-		System.out.println("41行目"+confirmPassword);
 		if(confirmPassword == null) {
 			passwordMapper.registerPassword(password);
 		}

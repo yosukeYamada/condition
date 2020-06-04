@@ -2,11 +2,15 @@ package com.example.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.validation.Valid;
 
 import com.example.domain.Mail;
+import com.example.domain.Status;
 import com.example.domain.User;
+import com.example.domain.error.ExclusiveException;
 import com.example.form.RegisterUserForm;
 import com.example.form.SignInUserForm;
 import com.example.service.RegisterMailService;
@@ -43,8 +47,18 @@ public class RegisterUserController {
 	 * @param form リクエストパラメータ
 	 */
 	@PostMapping("/signUp")
-	public void signUp(@RequestBody(required = false) @Valid SignInUserForm form) {
-		registerPasswordService.registerApiUser(form);
+	public void signUp(@RequestBody(required = false) @Valid SignInUserForm form) throws ExclusiveException{
+		String check = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@rakus-partners.co.jp";
+		String check2 = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@rakus.co.jp";
+		Pattern pattern = Pattern.compile(check);
+		Pattern pattern2 = Pattern.compile(check2);
+		Matcher matcher = pattern.matcher(form.getMailAddress());
+		Matcher matcher2 = pattern2.matcher(form.getMailAddress());
+		if (matcher.matches() || matcher2.matches()) {
+			registerPasswordService.registerApiUser(form);
+		}else{
+			throw new ExclusiveException("入力値が違法です");
+		}
 	}
 	
 	
@@ -57,7 +71,9 @@ public class RegisterUserController {
 	 * @return ユーザ情報
 	 */
 	@PostMapping("/registerUser")
-	public User reisterUser(@RequestBody(required = false) @Valid RegisterUserForm form) {
+	public User reisterUser(@RequestBody(required = false) @Valid RegisterUserForm form)throws ExclusiveException  {
+		boolean confirmDuplication = mailService.confirmMail(form.getMailAddress());
+		if(confirmDuplication == true) {
 		RegisterUserForm registerUserform = reMakeUserName(form);
 		User user = registerUserService.registerUser(registerUserform);
 		String mailAddress = form.getMailAddress();
@@ -66,6 +82,9 @@ public class RegisterUserController {
 		mailList.add(mail);
 		user.setMailList(mailList);
 		return user;
+		}else {
+			throw new ExclusiveException(null);
+		}
 	}
 
 	/**

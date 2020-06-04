@@ -39,4 +39,6 @@ public interface MailMapper {
 	//テスト用
 	public void insertMails();
 	
+	public Mail findByMailName(String mailName);
+	
 }

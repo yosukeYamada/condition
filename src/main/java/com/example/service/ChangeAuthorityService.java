@@ -3,13 +3,14 @@ package com.example.service;
 import java.sql.Timestamp;
 import java.util.Map;
 
-import com.example.domain.Authority;
-import com.example.domain.User;
-import com.example.mapper.UserMapper;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.example.domain.Authority;
+import com.example.domain.Status;
+import com.example.domain.User;
+import com.example.mapper.UserMapper;
 
 /**
  * ユーザー権限の変更を行うサービスクラス
@@ -30,7 +31,7 @@ public class ChangeAuthorityService {
      * @return ユーザー情報
      */
     public User findUserByMail(String email) {
-        User user = userMapper.findUserByMail(email);
+        User user = userMapper.findUserByMail(email,Status.AVAILABLE.getStatusId());
         if (user == null) {
             /** 該当のユーザーが存在しなかった場合 */
             User notUser = new User();
