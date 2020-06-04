@@ -149,7 +149,7 @@ public class AggregateScoreController {
 		Integer totalLastWeekMotivationScore = motivationScore.getClearCount() + motivationScore.getSunnyCount() + motivationScore.getCloudyCount() + motivationScore.getRainyCount() + motivationScore.getStormyCount();
 		Integer totalLastWeekConditionScore = conditionScore.getClearCount() + conditionScore.getSunnyCount() + conditionScore.getCloudyCount() + conditionScore.getRainyCount() + conditionScore.getStormyCount();
 		Integer totalLastWeekPerformanceScore = performanceScore.getClearCount() + performanceScore.getSunnyCount() + performanceScore.getCloudyCount() + performanceScore.getRainyCount() + performanceScore.getStormyCount();
-	    
+		count.setTotalOrderCountOfLastWeek(totalOrderCountOfLastWeek);
         count.setMaxTotalScoreOfLastWeek(maxTotalScoreOfLastWeek);
         count.setMaxPartScoreOfLastWeek(maxPartScoreOfLastWeek);
 		count.setTotalLastWeekMotivationScore(totalLastWeekMotivationScore);
@@ -182,7 +182,7 @@ public class AggregateScoreController {
         Timestamp startFirstDayOfMonth = Timestamp.valueOf(firstDay);
         Timestamp endLastDayOfMonth = Timestamp.valueOf(lastDay);
         
-        List<User> myDailyPostLastMonthList = userMapper.findByUserIdAndLastWeek(startFirstDayOfMonth,endLastDayOfMonth,Integer.parseInt(param.get("userId")));
+        List<User> myDailyPostLastMonthList = userMapper.findByUserIdAndLastMonth(startFirstDayOfMonth,endLastDayOfMonth,Integer.parseInt(param.get("userId")));
         
         Map<String, Map<String, DailyScore>> resultMap2 = new LinkedHashMap<>();
         for (int i = 0; i < lastDay.getDayOfMonth(); i++) {
@@ -267,6 +267,7 @@ public class AggregateScoreController {
         System.out.println("先月の総数"+maxTotalScoreOfLastMonth);
         System.out.println("先月の部分"+maxPartScoreOfLastMonth);
         
+        count.setTotalOrderCountOfLastMonth(totalOrderCountOfLastMonth);
         count.setMaxTotalScoreOfLastMonth(maxTotalScoreOfLastMonth);
         count.setMaxPartScoreOfLastMonth(maxPartScoreOfLastMonth);
         count.setTotalLastMonthMotivationScore(totalLastMonthMotivationScore);

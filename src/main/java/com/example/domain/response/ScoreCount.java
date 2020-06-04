@@ -10,6 +10,7 @@ public class ScoreCount {
     private Integer totalLastWeekConditionScore;
     private Integer totalLastWeekPerformanceScore;
 	private Integer totalLastWeekCount;
+	private Integer totalOrderCountOfLastWeek;
 	
 	private Integer maxTotalScoreOfLastMonth;
 	private Integer maxPartScoreOfLastMonth;
@@ -17,6 +18,6 @@ public class ScoreCount {
 	private Integer totalLastMonthConditionScore;
 	private Integer totalLastMonthPerformanceScore;
 	private Integer totalLastMonthCount;
-	
+	private Integer totalOrderCountOfLastMonth;
 	
 }
