@@ -204,7 +204,6 @@ public class AggregateScoreController {
         	monthPostByDayAndDep = user.getDailyPost();
         }
         
-        System.out.println(resultMap2);
         
         for (DailyPost post : monthPostByDayAndDep) {
         	// TimestampをString型に変換してyyyy/MM/ddにしてreturnMapの日付と合致するキーの中に計算した結果を入れる

@@ -43,7 +43,6 @@ public class RegisterMailService {
 	
 	public boolean confirmMail(String mailAddress) {
 		Mail mail = mailMapper.findByMailName(mailAddress);
-		System.out.println(mail);
 		if(mail == null) {
 			return true;
 		}else {
