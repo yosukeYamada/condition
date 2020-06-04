@@ -39,16 +39,19 @@ public class TestController {
 	
 	
 	//50人分をテスト
-	@RequestMapping("/insert")
-	public void insert() {
+//	@RequestMapping("/insert")
+//	public void insert() {
+//
 //		user.insertUsers();
 //		mail.insertMails();
+//		
 //		for (int i = 1; i <= 10; i++) {
 //		}
-		daily.insertDailyPost();
-		con.insertPostedCondition();
-		mot.insertPostedMotivation();
-		per.insertPostedPerformance();
-		com.insertPostedComment();
-	}
+//		daily.insertDailyPost();
+//
+//		con.insertPostedCondition();
+//		mot.insertPostedMotivation();
+//		per.insertPostedPerformance();
+//		com.insertPostedComment();
+//	}
 }

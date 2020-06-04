@@ -149,7 +149,7 @@ public class AggregateScoreController {
 		Integer totalLastWeekMotivationScore = motivationScore.getClearCount() + motivationScore.getSunnyCount() + motivationScore.getCloudyCount() + motivationScore.getRainyCount() + motivationScore.getStormyCount();
 		Integer totalLastWeekConditionScore = conditionScore.getClearCount() + conditionScore.getSunnyCount() + conditionScore.getCloudyCount() + conditionScore.getRainyCount() + conditionScore.getStormyCount();
 		Integer totalLastWeekPerformanceScore = performanceScore.getClearCount() + performanceScore.getSunnyCount() + performanceScore.getCloudyCount() + performanceScore.getRainyCount() + performanceScore.getStormyCount();
-	    
+		count.setTotalOrderCountOfLastWeek(totalOrderCountOfLastWeek);
         count.setMaxTotalScoreOfLastWeek(maxTotalScoreOfLastWeek);
         count.setMaxPartScoreOfLastWeek(maxPartScoreOfLastWeek);
 		count.setTotalLastWeekMotivationScore(totalLastWeekMotivationScore);
@@ -181,11 +181,12 @@ public class AggregateScoreController {
         //LocalDateTime→Timestamp
         Timestamp startFirstDayOfMonth = Timestamp.valueOf(firstDay);
         Timestamp endLastDayOfMonth = Timestamp.valueOf(lastDay);
-        
+
         DailyScore motivationScore2 = new DailyScore();
         DailyScore conditionScore2 = new DailyScore();
         DailyScore performanceScore2 = new DailyScore();
         
+
         List<User> myDailyPostLastMonthList = userMapper.findByUserIdAndLastMonth(startFirstDayOfMonth,endLastDayOfMonth,Integer.parseInt(param.get("userId")));
         
         Map<String, Map<String, DailyScore>> resultMap2 = new LinkedHashMap<>();
@@ -269,6 +270,7 @@ public class AggregateScoreController {
         Integer maxTotalScoreOfLastMonth = totalOrderCountOfLastMonth * 15;
         Integer maxPartScoreOfLastMonth = totalOrderCountOfLastMonth * 5;
         
+        count.setTotalOrderCountOfLastMonth(totalOrderCountOfLastMonth);
         count.setMaxTotalScoreOfLastMonth(maxTotalScoreOfLastMonth);
         count.setMaxPartScoreOfLastMonth(maxPartScoreOfLastMonth);
         count.setTotalLastMonthMotivationScore(totalLastMonthMotivationScore);
